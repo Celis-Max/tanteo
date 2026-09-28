@@ -123,8 +123,8 @@
     else                           pie = `${fecha(p.fecha, p.hora)}${climaDe(p) ? " · " + climaDe(p) : ""}`;
 
     return `<div class="paper card" style="padding: 18px 22px; display: flex; align-items: center; gap: 12px">
-      <span class="crest s" style="background: linear-gradient(135deg, ${color(p.local)} 50%, ${color2(p.local)} 50%)"></span>
-      <span class="crest s" style="background: linear-gradient(135deg, ${color(p.visita)} 50%, ${color2(p.visita)} 50%)"></span>
+      ${escudo(p.local, "s")}
+      ${escudo(p.visita, "s")}
       <div style="flex-grow: 1; min-width: 0">
         <div style="font-weight: 800; font-size: 16px">${p.local} vs ${p.visita}</div>
         <div style="font-size: 13px; color: #5A4C44">${pie}</div>
@@ -159,15 +159,26 @@
 
     pon("d-local", p.local);
     pon("d-visita", p.visita);
-    pon("d-abr-local", abrev(p.local));
-    pon("d-abr-visita", abrev(p.visita));
-    /* El banderín toma los colores reales del club. */
-    const banderin = (id, e) => {
+    /* Los dos escudos grandes de la tarjeta principal. Si el club no tiene
+       imagen se cae al banderín de colores con las iniciales, que es lo que
+       traía la plantilla. */
+    const marca = (id, e) => {
       const el = $(id);
-      if (el) el.style.background = `linear-gradient(135deg, ${color(e)} 50%, ${color2(e)} 50%)`;
+      if (!el) return;
+      const d = (ESC[e] || {});
+      if (d.img){
+        el.className = (el.className.replace(/\bcon-escudo\b/g, "").trim() + " con-escudo").trim();
+        el.title = e;
+        el.style.background = "";
+        el.innerHTML = `<img src="${d.img}" alt="${e}">`;
+      } else {
+        el.className = el.className.replace(/\bcon-escudo\b/g, "").trim();
+        el.textContent = abrev(e);
+        el.style.background = `linear-gradient(135deg, ${color(e)} 50%, ${color2(e)} 50%)`;
+      }
     };
-    banderin("d-abr-local", p.local);
-    banderin("d-abr-visita", p.visita);
+    marca("d-abr-local", p.local);
+    marca("d-abr-visita", p.visita);
     pon("d-local-pos", "Local · " + posTabla(p.local));
     pon("d-visita-pos", "Visitante · " + posTabla(p.visita));
 

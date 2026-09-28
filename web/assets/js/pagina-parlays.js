@@ -118,7 +118,7 @@
     const { p, o } = x;
     return `<div style="display:flex;align-items:center;gap:11px;padding:10px 0;
         border-top:1px solid rgba(26,20,20,.14)">
-      <span class="crest s" style="background:linear-gradient(135deg, ${col(p.local)} 50%, ${col2(p.local)} 50%)"></span>
+      ${escudo(p.local, "s")}
       <div style="flex-grow:1;min-width:0">
         <div style="font-weight:700;font-size:14.5px">${nombra(p, o.k)}</div>
         <div style="font-size:12px;color:#5A4C44">${p.local} vs ${p.visita} · ${fecha(p.fecha, p.hora)}</div>

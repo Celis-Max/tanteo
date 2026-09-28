@@ -199,7 +199,7 @@
       </div>
       ${cands.map(c => `
         <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid rgba(26,20,20,.14)">
-          <span class="crest s" style="background:linear-gradient(135deg, ${col(c.p.local)} 50%, ${col2(c.p.local)} 50%)"></span>
+          ${escudo(c.p.local, "s")}
           <div style="flex-grow:1;min-width:0">
             <div style="font-weight:700;font-size:14px">${c.k==="1"?c.p.local:c.k==="2"?c.p.visita:c.p.local} ${NOMBRES[c.k]||c.k}</div>
             <div style="font-size:12px;color:#5A4C44">vs ${c.p.visita} · ${fecha(c.p.fecha)}</div>
@@ -220,7 +220,7 @@
       .slice(-3).reverse();
     z.innerHTML = ult.map(p => `
       <div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px dashed rgba(26,20,20,.16)">
-        <span class="crest s" style="background:linear-gradient(135deg, ${col(p.local)} 50%, ${col2(p.local)} 50%)"></span>
+        ${escudo(p.local, "s")}
         <div style="flex-grow:1;min-width:0">
           <div style="font-weight:700;font-size:14px">${p.local} ${p.gl}–${p.gv} ${p.visita}</div>
           <div style="font-size:12px;color:#5A4C44">${fecha(p.fecha)} · J${p.jornada}</div>

@@ -192,3 +192,21 @@
   .luz{ opacity: .6 }
   .pieza{ opacity: calc(var(--hondo, .5) * .7) }
 }
+
+/* ── Escudos reales ───────────────────────────────────────────────────
+   Los pone `escudos-reales.js` encima de los banderines de la plantilla.
+   El `background` del banderín viene en el atributo style, así que hay
+   que ganarle con !important; no hay dónde más cambiarlo. */
+.crest.con-escudo{
+  background: none !important;
+  clip-path: none !important;
+  padding-bottom: 0 !important;
+  text-shadow: none;
+  aspect-ratio: 1;
+  height: auto !important;
+}
+.crest.con-escudo img{
+  width: 100%; height: 100%;
+  object-fit: contain;
+  display: block;
+}

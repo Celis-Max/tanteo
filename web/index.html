@@ -52,6 +52,18 @@ a{color:#E4C877}
 .mute{border:1px solid rgba(228,200,119,.6);background:rgba(4,18,12,.6);color:#F3EFE6;border-radius:999px;padding:12px 20px;display:flex;gap:10px;align-items:center;font:700 14px Manrope,sans-serif;cursor:pointer}
 </style>
 <style>#page{max-width:1440px;width:100%;margin:0 auto}</style>
+<style>
+/* La plantilla trae el lienzo clavado en 1440x900 y lo declara en tres
+   sitios distintos, cada uno tapando al siguiente; por eso esto va al
+   final, donde ya nadie lo pisa.
+
+   La intro no se re-maqueta para cada pantalla: se escala entera. Es una
+   portada con una composición pensada al milímetro —las fichas caen donde
+   caen— y re-fluirla la desarma. Escalar conserva el encuadre y en el
+   teléfono se ve lo mismo, más chico. */
+#page{display:flex;align-items:center;justify-content:center;min-height:100vh;max-width:none;overflow:hidden}
+#dc-root{transform:scale(var(--esc,1));transform-origin:center;flex:none}
+</style>
 </head>
 <body>
 <div id="page"><div id="dc-root"></div></div>
@@ -91,7 +103,7 @@ a{color:#E4C877}
 <div style="display: flex; gap: 14px; align-items: baseline"><span style="font-family: 'Great Vibes', cursive; font-size: 34px; color: #F3EFE6">{{tip}}</span><span style="font-family: 'Bodoni Moda', serif; font-size: 18px; font-weight: 700; color: #F3DC92">{{pct}}%</span></div>
 </sc-if>
 <sc-if value="{{done}}" hint-placeholder-val="{{false}}">
-<a href="inicio.html" class="cta"><span style="font-size: 18px">♦</span>Entrar a la mesa</a>
+<a href="{{destino}}" class="cta"><span style="font-size: 18px">♦</span>Entrar a la mesa</a>
 <button onClick="{{start}}" style="border: 0; background: rgba(0,0,0,0); color: #E4C877; font: 700 14px Manrope, sans-serif; cursor: pointer; padding: 8px">Repartir de nuevo</button>
 </sc-if>
 </div>
@@ -112,12 +124,36 @@ a{color:#E4C877}
 </button>
 </div>
 </template>
+<script>
+/* En cuanto se abre la intro queda marcada la sesión, de modo que las demás
+   páginas ya no rebotan aquí. Se marca al ABRIR y no al entrar a la mesa:
+   si alguien llega, no reparte y se va a inicio.html por el historial, no
+   debe quedar atrapado volviendo a la intro una y otra vez. */
+try { sessionStorage.setItem("tanteo.enmesa", "1"); } catch (e) {}
+
+/* La intro está compuesta sobre un lienzo fijo de 1440x900. En vez de
+   rehacer la composición para cada pantalla, se escala entera: es una
+   portada, no una página de lectura, y así conserva su encuadre exacto. */
+(function(){
+  function ajustar(){
+    var e = Math.min(1, innerWidth / 1440, innerHeight / 900);
+    document.documentElement.style.setProperty("--esc", e.toFixed(4));
+  }
+  ajustar();
+  addEventListener("resize", ajustar, { passive: true });
+})();
+</script>
 <script src="assets/js/tanteo-runtime.js"></script>
 <script>
 class Component extends DCLogic {
 constructor(...args) {
 super(...args);
 this.state = { phase: 'idle', pct: 0, muted: false };
+// A dónde se entra al terminar. Se limita a las páginas conocidas: un ?ir=
+// venido de fuera no debe poder mandar a nadie a otro sitio.
+var PAGINAS = ['inicio.html','en-vivo.html','parlays.html','simulador.html'];
+var pide = new URLSearchParams(location.search).get('ir');
+this.destino = PAGINAS.indexOf(pide) >= 0 ? pide : 'inicio.html';
 this.timers = [];
 this.SND = {
 entrada: 'assets/sonidos/tanteo-entrada.mp3',
@@ -153,6 +189,7 @@ return {
 goCls: ph === 'go' || ph === 'done' ? 'go' : '',
 idle: ph === 'idle', loading: ph !== 'done', done: ph === 'done',
 pct: pct, tip: tip,
+destino: this.destino,
 muted: this.state.muted, soundOn: !this.state.muted, mutedStr: this.state.muted ? 'true' : 'false',
 muteLabel: this.state.muted ? 'Sonido apagado' : 'Sonido encendido',
 toggleMute: function () {

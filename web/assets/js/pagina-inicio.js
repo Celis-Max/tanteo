@@ -104,6 +104,27 @@
     return jugando || deLaJornada.find(p => !p.jugado) || deLaJornada[0];
   }
 
+  /* El hero traía, en el diseño original, el arte de Tanteo de fondo con la
+     tarjeta del partido encima. Al pintar aquí con innerHTML se borraba todo
+     el contenedor y el arte desaparecía: solo se alcanzaba a ver en el
+     parpadeo de la recarga, antes de que este código corriera.
+
+     Ahora la tarjeta vive en su propio hueco dentro de la zona, y lo demás
+     —el arte y el as quemado— se queda donde estaba. */
+  function huecoDestacado(z){
+    let h = z.querySelector("#tarjeta-destacada");
+    if (h) return h;
+    h = document.createElement("div");
+    h.id = "tarjeta-destacada";
+    h.style.cssText = "position:absolute;left:-40px;bottom:0;width:350px;z-index:2";
+    /* Se retira la tarjeta de ejemplo de la plantilla, que ocupaba este
+       mismo sitio; el arte y el as se conservan. */
+    const ejemplo = z.querySelector(".paper.card");
+    if (ejemplo) ejemplo.remove();
+    z.appendChild(h);
+    return h;
+  }
+
   function pintarDestacado(){
     const z = $("zona-destacado"); if (!z) return;
     const p = elegir(); if (!p) return;
@@ -116,19 +137,17 @@
     /* Se vuelve a poner la envoltura .paper.card: el id quedó en el contenedor
        de afuera, así que al reemplazar su contenido se perdía la carta y el
        texto quedaba rojo sobre el fieltro, ilegible. */
-    z.innerHTML = `
+    huecoDestacado(z).innerHTML = `
       <div class="paper card" style="padding:20px 22px;display:flex;flex-direction:column;gap:4px">
       <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
         <span style="font-family:'Great Vibes',cursive;font-size:26px;color:#C1121F">${p.local} vs ${p.visita}</span>
         <span style="font-size:12px;color:#5A4C44;white-space:nowrap">${nota}</span>
       </div>
       <div style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;margin:10px 0 8px">
-        <span class="crest" style="width:46px;height:52px;font-size:13px;padding-bottom:9px;
-          background:linear-gradient(135deg, ${col(p.local)} 50%, ${col2(p.local)} 50%)">${abrev(p.local)}</span>
+        ${escudo(p.local, "", "width:46px;height:52px;font-size:13px")}
         <span style="font-family:'Bodoni Moda',serif;font-size:36px;font-weight:700;text-align:center">
           ${gl} <span style="color:#C1121F;font-size:20px">·</span> ${gv}</span>
-        <span class="crest" style="width:46px;height:52px;font-size:13px;padding-bottom:9px;
-          background:linear-gradient(135deg, ${col(p.visita)} 50%, ${col2(p.visita)} 50%)">${abrev(p.visita)}</span>
+        ${escudo(p.visita, "", "width:46px;height:52px;font-size:13px")}
       </div>
       <div class="barra" style="display:flex;height:8px;border-radius:999px;overflow:hidden;background:#E2D6C6">
         ${barra(P["1"]*100, col(p.local))}${barra(P["X"]*100, "#1A1414")}${barra(P["2"]*100, col(p.visita))}
@@ -191,7 +210,7 @@
       const ficha = (a, val, c) => `<span class="chip pr sm" style="--c:${c}"><small>${a}</small><b>${pct(val)}</b></span>`;
       const lado = (e, g) => `
         <div style="display:flex;align-items:center;gap:10px">
-          <span class="crest s" style="background:linear-gradient(135deg, ${col(e)} 50%, ${col2(e)} 50%)"></span>
+          ${escudo(e, "s")}
           <span style="font-weight:700;flex-grow:1;min-width:0">${e}</span>
           <span style="font-family:'Bodoni Moda',serif;font-size:26px;font-weight:700">${g}</span>
         </div>`;
@@ -215,8 +234,7 @@
       <tr>
         <td style="text-align:left;color:#8A7A70">${i+1}</td>
         <td style="text-align:left">
-          <span class="crest s" style="display:inline-block;vertical-align:middle;margin-right:7px;
-            background:linear-gradient(135deg, ${col(r.equipo)} 50%, ${col2(r.equipo)} 50%)"></span>${r.equipo}</td>
+          ${escudo(r.equipo, "s", "display:inline-block;vertical-align:middle;margin-right:7px")}${r.equipo}</td>
         <td>${r.jj}</td><td>${r.dif > 0 ? "+" : ""}${r.dif}</td>
         <td><b>${r.pts}</b></td>
       </tr>`).join("");
