@@ -283,3 +283,34 @@ ensamble y difiere hasta 0.4 puntos, lo bastante para elegir otro parlay.
 | `web/simulador.html` | libro de tickets de $100 por jornada |
 | `web/estilo.css` · `web/comun.js` | diseño y lógica compartidos por las cuatro |
 | `web/datos.js` | lo único que reescribe `generar.py` |
+
+## Publicar
+
+El sitio vive en <https://celis-max.github.io/tanteo/>, servido desde la rama
+`gh-pages`.
+
+```sh
+./publicar.sh              # publica lo que haya en web/
+./publicar.sh --actualizar # corre antes el ciclo de datos
+```
+
+`gh-pages` se rehace entera en cada publicación, con un commit huérfano y push
+forzado. Es a propósito: `datos.js` pesa 648 KB y cambia a diario, así que un
+historial de verdad haría crecer el repo cientos de megas al año sin que nadie
+fuera a consultar esas versiones. La historia que importa es la del código, y
+esa vive en `main`.
+
+Por lo mismo `web/datos.js` no está versionado: se genera en cada ciclo.
+
+### Automatizarlo
+
+`.github/workflows/tanteo.yml` hace todo esto solo, a diario a las 07:20 y con
+revalidación del modelo los lunes. Para poder subirlo, el token de `gh` necesita
+el permiso `workflow`, que GitHub exige para escribir en `.github/workflows/`:
+
+```sh
+gh auth refresh -s workflow
+git add .github/workflows/tanteo.yml
+git commit -m "Ciclo diario en Actions"
+git push
+```
