@@ -1,0 +1,179 @@
+{
+ "n": 3324,
+ "descriptivo": {
+  "Sin lluvia": {
+   "n": 2944,
+   "goles": 2.68,
+   "over25_pct": 50.8,
+   "empate_pct": 27.0,
+   "local_pct": 45.5
+  },
+  "Lluvia (≥0.5 mm)": {
+   "n": 380,
+   "goles": 2.74,
+   "over25_pct": 51.3,
+   "empate_pct": 25.5,
+   "local_pct": 47.6
+  },
+  "Lluvia fuerte (≥3 mm)": {
+   "n": 114,
+   "goles": 2.84,
+   "over25_pct": 54.4,
+   "empate_pct": 22.8,
+   "local_pct": 49.1
+  },
+  "Calor (≥30°C)": {
+   "n": 120,
+   "goles": 2.66,
+   "over25_pct": 46.7,
+   "empate_pct": 28.3,
+   "local_pct": 50.0
+  },
+  "Templado (12–30°C)": {
+   "n": 3012,
+   "goles": 2.7,
+   "over25_pct": 51.3,
+   "empate_pct": 26.5,
+   "local_pct": 45.8
+  },
+  "Frío (≤12°C)": {
+   "n": 192,
+   "goles": 2.6,
+   "over25_pct": 46.9,
+   "empate_pct": 31.8,
+   "local_pct": 43.2
+  },
+  "Viento ≥20 km/h": {
+   "n": 103,
+   "goles": 2.58,
+   "over25_pct": 46.6,
+   "empate_pct": 26.2,
+   "local_pct": 38.8
+  },
+  "Altura ≥2000 m": {
+   "n": 1213,
+   "goles": 2.77,
+   "over25_pct": 52.1,
+   "empate_pct": 26.5,
+   "local_pct": 49.3
+  },
+  "Altura <1000 m": {
+   "n": 722,
+   "goles": 2.75,
+   "over25_pct": 51.7,
+   "empate_pct": 28.4,
+   "local_pct": 50.7
+  },
+  "Todos": {
+   "n": 3324,
+   "goles": 2.69,
+   "over25_pct": 50.9,
+   "empate_pct": 26.9,
+   "local_pct": 45.8
+  }
+ },
+ "sobre_modelo_goles": {
+  "llueve": {
+   "coef": -0.033,
+   "p": 0.799
+  },
+  "lluvia_fuerte": {
+   "coef": 0.203,
+   "p": 0.377
+  },
+  "calor": {
+   "coef": -0.145,
+   "p": 0.448
+  },
+  "frio": {
+   "coef": -0.219,
+   "p": 0.148
+  },
+  "viento_fuerte": {
+   "coef": -0.146,
+   "p": 0.477
+  },
+  "_n": 3319
+ },
+ "sobre_mercado_1x2": {
+  "gana_local": {
+   "llueve": {
+    "coef": 0.389,
+    "p": 0.107
+   },
+   "lluvia_fuerte": {
+    "coef": 0.087,
+    "p": 0.722
+   },
+   "calor": {
+    "coef": 0.181,
+    "p": 0.382
+   },
+   "frio": {
+    "coef": -0.051,
+    "p": 0.755
+   },
+   "viento_fuerte": {
+    "coef": -0.08,
+    "p": 0.711
+   },
+   "lluvia_x_favlocal": {
+    "coef": -0.385,
+    "p": 0.137
+   }
+  },
+  "empate": {
+   "llueve": {
+    "coef": 0.18,
+    "p": 0.473
+   },
+   "lluvia_fuerte": {
+    "coef": -0.224,
+    "p": 0.424
+   },
+   "calor": {
+    "coef": 0.138,
+    "p": 0.53
+   },
+   "frio": {
+    "coef": 0.255,
+    "p": 0.128
+   },
+   "viento_fuerte": {
+    "coef": -0.087,
+    "p": 0.707
+   },
+   "lluvia_x_favlocal": {
+    "coef": -0.244,
+    "p": 0.377
+   }
+  },
+  "gana_visita": {
+   "llueve": {
+    "coef": -0.528,
+    "p": 0.038
+   },
+   "lluvia_fuerte": {
+    "coef": 0.113,
+    "p": 0.681
+   },
+   "calor": {
+    "coef": -0.412,
+    "p": 0.104
+   },
+   "frio": {
+    "coef": -0.235,
+    "p": 0.217
+   },
+   "viento_fuerte": {
+    "coef": 0.176,
+    "p": 0.426
+   },
+   "lluvia_x_favlocal": {
+    "coef": 0.589,
+    "p": 0.034
+   }
+  },
+  "_n": 3038
+ }
+}

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tanteo · Carga: ficha</title>
+<link rel="icon" href="assets/img/tanteo-keyart.jpg">
+<link rel="stylesheet" href="assets/css/fuentes.css">
+<link rel="stylesheet" href="assets/css/adaptable.css">
+<style>
+body{margin:0;background:#050F0A;font-family:Manrope,system-ui,sans-serif;color:#F3EFE6}
+.table{position:relative;background-color:#0F3D2E;background-image:radial-gradient(ellipse 900px 700px at 50% 40%,rgba(210,245,200,.20),rgba(0,0,0,0) 70%),radial-gradient(ellipse 130% 90% at 50% 45%,rgba(0,0,0,0) 45%,rgba(0,0,0,.7) 100%),repeating-radial-gradient(circle at 0 0,rgba(0,0,0,0) 0 30px,rgba(255,255,255,.026) 31px 32px,rgba(0,0,0,0) 33px 60px),repeating-radial-gradient(circle at 70px 70px,rgba(0,0,0,0) 0 18px,rgba(0,0,0,.06) 19px 20px,rgba(0,0,0,0) 21px 40px),radial-gradient(rgba(255,255,255,.05) .7px,rgba(0,0,0,0) 1.2px),radial-gradient(rgba(0,0,0,.14) .7px,rgba(0,0,0,0) 1.2px);background-size:100% 100%,100% 100%,140px 140px,140px 140px,4px 4px,6px 6px}
+.paper{background-color:#F6F1E6;background-image:linear-gradient(135deg,rgba(255,255,255,.55),rgba(255,255,255,0) 40%,rgba(0,0,0,.07) 100%),radial-gradient(rgba(60,40,20,.10) .8px,rgba(0,0,0,0) 1.3px);background-size:100% 100%,9px 9px;color:#1A1414}
+.chip{position:absolute;border-radius:50%;background:radial-gradient(circle at 35% 28%,rgba(255,255,255,.30),rgba(255,255,255,0) 45%),radial-gradient(circle,var(--c) 0 52%,#EDE6D6 53% 55%,rgba(0,0,0,0) 56%),repeating-conic-gradient(#EDE6D6 0 12deg,var(--c) 12deg 45deg);box-shadow:inset 0 0 0 3px rgba(0,0,0,.2),inset 0 -4px 0 rgba(0,0,0,.25),0 2px 0 rgba(0,0,0,.35),0 14px 22px rgba(0,0,0,.5)}
+.stage{position:relative;width:300px;height:330px;perspective:900px}
+.coin{position:absolute;left:40px;top:10px;width:220px;height:220px;display:flex;align-items:center;justify-content:center;animation:flip 1.8s cubic-bezier(.45,.05,.55,.95) infinite;box-shadow:inset 0 0 0 4px rgba(0,0,0,.2),inset 0 -6px 0 rgba(0,0,0,.25)}
+@keyframes flip{0%{transform:translateY(0) rotateY(0deg)}50%{transform:translateY(-70px) rotateY(540deg)}100%{transform:translateY(0) rotateY(1080deg)}}
+.shadow{position:absolute;left:70px;top:280px;width:160px;height:26px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.55),rgba(0,0,0,0));animation:sh 1.8s cubic-bezier(.45,.05,.55,.95) infinite}
+@keyframes sh{0%,100%{transform:scaleX(1);opacity:1}50%{transform:scaleX(.55);opacity:.45}}
+.hop{position:relative;width:46px;height:46px;animation:hop 1.2s ease-in-out infinite}
+@keyframes hop{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-26px)}}
+.mute{border:1px solid rgba(228,200,119,.6);background:rgba(4,18,12,.6);color:#F3EFE6;border-radius:999px;padding:12px 20px;display:flex;gap:10px;align-items:center;font:700 14px Manrope,sans-serif;cursor:pointer}
+.mute:focus-visible{outline:3px solid #F3DC92;outline-offset:4px}
+</style>
+<style>#page{max-width:1440px;width:100%;margin:0 auto}</style>
+</head>
+<body>
+<div id="page"><div id="dc-root"></div></div>
+<template id="dc-tpl">
+<div class="table">
+<div class="paper" style="position: absolute; left: 44px; top: 34px; padding: 4px 18px; border-radius: 8px; transform: rotate(-4deg); box-shadow: 0 2px 2px rgba(0,0,0,.4), 0 10px 18px rgba(0,0,0,.5); font-family: 'Great Vibes', cursive; font-size: 40px; color: #C1121F">Tanteo</div>
+<div class="paper" style="position: absolute; left: 1220px; top: 640px; width: 150px; height: 214px; border-radius: 12px; transform: rotate(18deg); box-shadow: 0 2px 2px rgba(0,0,0,.4), 0 20px 36px rgba(0,0,0,.5); padding: 12px; box-sizing: border-box; font-family: 'Bodoni Moda', serif; color: #C1121F"><div style="font-size: 28px; font-weight: 700; line-height: 1">A</div><div style="font-size: 22px; line-height: 1">♦</div></div>
+<div class="chip" style="--c: #1A1414; left: 70px; top: 700px; width: 110px; height: 110px"></div>
+<div class="chip" style="--c: #1F5E47; left: 1300px; top: 110px; width: 110px; height: 110px"></div>
+
+<div class="stage" style="margin-top: 170px">
+<div class="shadow"></div>
+<div class="chip coin" style="--c: #C1121F; font-family: 'Bodoni Moda', serif; font-size: 60px; font-weight: 700; color: #FFFFFF">%</div>
+</div>
+
+<div style="display: flex; flex-direction: column; align-items: center; gap: 22px; margin-top: 10px">
+<div style="font-family: 'Great Vibes', cursive; font-size: 72px; line-height: 1; text-shadow: 0 4px 16px rgba(0,0,0,.6)">{{msg}}</div>
+<div style="display: flex; gap: 20px; align-items: flex-end; height: 60px">
+<span class="chip hop" style="--c: #1F5E47; position: relative; animation-delay: 0s"></span>
+<span class="chip hop" style="--c: #1F4E8C; position: relative; animation-delay: .15s"></span>
+<span class="chip hop" style="--c: #1A1414; position: relative; animation-delay: .3s"></span>
+<span class="chip hop" style="--c: #C1121F; position: relative; animation-delay: .45s"></span>
+</div>
+<div style="font-size: 15px; color: #D8E4DC">Actualizando las probabilidades de la jornada 10 de la Liga MX</div>
+</div>
+
+<button class="mute" onClick="{{toggle}}" aria-pressed="{{onStr}}" style="position: absolute; right: 36px; bottom: 30px">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg>
+<span>{{label}}</span>
+</button>
+<div style="position: absolute; left: 44px; bottom: 36px; font-size: 13px; color: #C9D8CF">Plataforma informativa · sin apuestas</div>
+</div>
+</template>
+<script src="assets/js/tanteo-runtime.js"></script>
+<script>
+class Component extends DCLogic {
+constructor(...args) {
+super(...args);
+this.state = { i: 0, on: false };
+this.msgs = ['Calculando probabilidades…', 'Consultando el clima…', 'Revisando alineaciones…'];
+this.url = 'assets/sonidos/tanteo-ficha.mp3';
+}
+componentDidMount() {
+var self = this;
+this.msgTimer = setInterval(function () { self.setState({ i: (self.state.i + 1) % self.msgs.length }); }, 2600);
+}
+componentWillUnmount() { clearInterval(this.msgTimer); this.stop(); }
+play() { try { var a = new Audio(this.url); a.volume = 1; var p = a.play(); if (p && p.catch) p.catch(function () {}); } catch (e) {} }
+stop() { if (this.loop) { clearInterval(this.loop); this.loop = null; } }
+renderVals() {
+var self = this;
+return {
+msg: this.msgs[this.state.i],
+label: this.state.on ? 'Silenciar' : 'Escuchar sonido',
+onStr: this.state.on ? 'true' : 'false',
+toggle: function () {
+if (self.state.on) { self.stop(); self.setState({ on: false }); }
+else { self.play(); self.loop = setInterval(function () { self.play(); }, 1800); self.setState({ on: true }); }
+}
+};
+}
+}
+TanteoDC.mount(Component);
+</script>
+</body>
+</html>

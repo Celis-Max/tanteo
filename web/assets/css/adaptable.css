@@ -1,0 +1,123 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   TANTEO · adaptación a pantallas chicas
+
+   El template viene exportado con TODO el diseño en estilos en línea y
+   anchos fijos (rejillas de 400px, paddings de 90px, tipos de 100px). Un
+   estilo en línea le gana a cualquier hoja externa, así que aquí hay que
+   usar !important: no es descuido, es la única forma de reacomodarlo sin
+   reescribir las nueve páginas a mano.
+
+   Solo entra por debajo de 1100px. En computadora el diseño queda intacto.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 1100px){
+  /* Cualquier rejilla de dos columnas pasa a una sola. */
+  [style*="grid-template-columns"]{
+    grid-template-columns: 1fr !important;
+  }
+  /* Los paddings laterales grandes se encogen. */
+  [style*="padding: 16px 56px 70px 90px"],
+  [style*="padding: 0 56px"],
+  [style*="padding: 0 90px"],
+  [style*="padding: 28px 90px"]{
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+  /* La barra se apila y se centra. */
+  header,[style*="justify-content: space-between"]{
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+  }
+  /* Las cartas dejan de girar: en columna angosta el giro las desborda. */
+  [style*="transform: rotate"]{ transform: none !important; }
+  /* Las cartas decorativas del fondo estorban en pantalla chica. */
+  .back{ display: none !important; }
+}
+
+@media (max-width: 760px){
+  /* Tipos gigantes del marcador y los titulares. */
+  [style*="font-size: 100px"]{ font-size: 56px !important; }
+  [style*="font-size: 72px"] { font-size: 40px !important; }
+  [style*="font-size: 56px"] { font-size: 34px !important; }
+  [style*="font-size: 32px"] { font-size: 24px !important; }
+  /* Escudos y fichas, a escala. */
+  [style*="width: 80px"][style*="height: 92px"]{
+    width: 54px !important; height: 62px !important; font-size: 14px !important;
+  }
+  .chip[style*="width: 80px"]{ width: 58px !important; height: 58px !important; font-size: 16px !important; }
+  /* Menos aire dentro de las cartas. */
+  [style*="padding: 32px 38px"]{ padding: 18px 16px !important; }
+  [style*="gap: 36px"],[style*="gap: 34px"]{ gap: 18px !important; }
+}
+
+/* Que nada se desborde a lo ancho, pase lo que pase. */
+html,body{ max-width: 100%; overflow-x: hidden; }
+img,svg{ max-width: 100%; }
+
+/* ═══ El lienzo deja de ser fijo ═══════════════════════════════════════
+   El template traía `.table` con width:1440px; height:2860px; overflow:hidden:
+   un lienzo de tamaño fijo que recortaba todo lo que no cupiera. Quitado ese
+   estilo en línea, la clase se queda con el fieltro y el contenido fluye.
+   El tope de 1440 se conserva en .content para que en computadora se vea
+   exactamente igual que en el diseño.                                      */
+.table{ min-height: 100vh; width: 100%; overflow: clip; }
+.content{ max-width: 1440px; margin: 0 auto; }
+/* La capa decorativa (lámpara, cartas, recortes) tiene posiciones en píxeles
+   pensadas para 1440: en pantallas chicas estorba más de lo que aporta. */
+@media (max-width: 900px){ .deco{ display: none; } }
+
+/* ═══ Segunda pasada: lo que se vio roto en la portada ═════════════════
+   Medido a 520px, no supuesto.                                          */
+@media (max-width: 1100px){
+  /* Una tarjeta del diseño va en position:absolute para montarse sobre el
+     arte. En columna angosta se encimaba con el título. */
+  /* Cualquier elemento de CONTENIDO colocado en absoluto vuelve al flujo.
+     La capa decorativa (.deco y sus hijos) se queda como está: es adorno y
+     ya se oculta por debajo de 900px. */
+  .content [style*="position: absolute"]:not(.deco):not(.deco *):not(.stitch){
+    position: static !important;
+    width: auto !important; height: auto !important;
+    left: auto !important; right: auto !important;
+    top: auto !important; bottom: auto !important;
+    transform: none !important;
+    margin-top: 14px;
+  }
+  /* Los rótulos de sección iban encima de una línea: en columna estorban. */
+  legend{ position: static !important; padding: 0 0 8px !important }
+  /* El ticker no debe envolver: se desplaza a lo ancho. */
+  #zona-ticker{
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    gap: 12px;
+    -webkit-overflow-scrolling: touch;
+  }
+  #zona-ticker::-webkit-scrollbar{ height: 0 }
+}
+
+@media (max-width: 760px){
+  /* Los titulares del diseño llegan a 68px y desbordaban en cel. */
+  [style*="font-size: 68px"]{ font-size: 33px !important; line-height: 1.08 !important }
+  [style*="font-size: 64px"]{ font-size: 31px !important; line-height: 1.08 !important }
+  [style*="font-size: 48px"]{ font-size: 27px !important }
+  [style*="font-size: 44px"]{ font-size: 25px !important }
+  [style*="font-size: 40px"]{ font-size: 24px !important }
+  [style*="font-size: 36px"]{ font-size: 23px !important }
+  /* Palabras largas ("probabilidades") partiendo la caja. */
+  h1,h2,.portada-titulo{ overflow-wrap: anywhere }
+}
+
+/* La tarjeta del partido destacado vive en la segunda columna del hero.
+   En columna única quedaba montada en el borde derecho: se fuerza a ocupar
+   el ancho completo y a ir después del texto. */
+@media (max-width: 1100px){
+  #zona-destacado{
+    position: static !important;
+    width: 100% !important; max-width: 100% !important;
+    left: auto !important; right: auto !important; top: auto !important; bottom: auto !important;
+    transform: none !important;
+    margin: 18px 0 0 !important;
+    grid-column: 1 / -1 !important;
+  }
+  #zona-destacado .paper.card{ width: auto !important }
+}

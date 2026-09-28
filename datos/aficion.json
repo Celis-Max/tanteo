@@ -1,0 +1,60 @@
+{
+ "pandemia": {
+  "grupos": {
+   "Con público": {
+    "n": 3065,
+    "local_gana_pct": 44.7,
+    "cuota_decia_pct": 45.0,
+    "pts_local": 1.61,
+    "pts_visita": 1.12
+   },
+   "Sin público (pandemia)": {
+    "n": 203,
+    "local_gana_pct": 47.8,
+    "cuota_decia_pct": 43.2,
+    "pts_local": 1.69,
+    "pts_visita": 1.04
+   }
+  },
+  "coef": 0.207,
+  "p": 0.168
+ },
+ "asistencia": {
+  "n": 880,
+  "grupos": {
+   "Estadio lleno (≥125% de su promedio)": {
+    "n": 208,
+    "local_gana_pct": 37.0,
+    "cuota_decia_pct": 41.9
+   },
+   "Normal": {
+    "n": 419,
+    "local_gana_pct": 48.2,
+    "cuota_decia_pct": 46.0
+   },
+   "Flojo (≤75% de su promedio)": {
+    "n": 253,
+    "local_gana_pct": 42.7,
+    "cuota_decia_pct": 46.4
+   }
+  },
+  "lleno": {
+   "coef": -0.316,
+   "p": 0.08
+  },
+  "flojo": {
+   "coef": -0.256,
+   "p": 0.123
+  }
+ },
+ "peso_casa": {
+  "n": 3187,
+  "coef": -0.119,
+  "p": 0.347,
+  "top20": {
+   "n": 638,
+   "local_gana_pct": 44.4,
+   "cuota_decia_pct": 44.5
+  }
+ }
+}

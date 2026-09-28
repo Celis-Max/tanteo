@@ -1,0 +1,14 @@
+[Unit]
+Description=Tanteo · dispara el ciclo diario
+
+[Timer]
+# 07:20 hora de México. Los partidos de la noche anterior ya cerraron y las
+# casas ya movieron cuotas. El desfase evita el minuto en punto, cuando todo
+# mundo golpea las mismas APIs.
+OnCalendar=*-*-* 07:20:00
+# Si el servidor estuvo apagado a esa hora, corre al encender.
+Persistent=true
+RandomizedDelaySec=5min
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,22 @@
+# Entorno
+__pycache__/
+*.pyc
+venv/
+.DS_Store
+
+# Caché de clima: 69 MB de histórico que Open-Meteo vuelve a dar gratis.
+# No tiene sentido cargarlo en el repo; en CI se guarda en la caché de
+# Actions, y si se pierde solo cuesta una descarga.
+datos/clima_historico/
+
+# Resultados intermedios caros pero regenerables (walk-forward, comparativa).
+datos/*.pkl
+datos/*.log
+
+# Lo genera el propio ciclo en cada ejecución: si se commitea, el repo
+# engorda 680 KB al día sin que nadie gane nada. Pages lo publica desde el
+# artefacto, no desde el árbol de git.
+web/datos.js
+
+# La versión anterior del sitio, que se conserva en la Mac pero no se publica.
+web-anterior/

@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tanteo · Simulador de probabilidades</title>
+<link rel="icon" href="assets/img/tanteo-keyart.jpg">
+<link rel="stylesheet" href="assets/css/fuentes.css">
+<link rel="stylesheet" href="assets/css/adaptable.css">
+<link rel="stylesheet" href="assets/css/movimiento.css">
+<style>
+body{margin:0;background:#07190F;font-family:Manrope,system-ui,sans-serif;color:#F3EFE6}
+a{color:#E4C877}a:hover{color:#F3DC92}
+.table{position:relative;background-color:#0F3D2E;background-image:radial-gradient(ellipse 130% 90% at 50% 45%,rgba(0,0,0,0) 50%,rgba(0,0,0,.62) 100%),repeating-radial-gradient(circle at 0 0,rgba(0,0,0,0) 0 30px,rgba(255,255,255,.026) 31px 32px,rgba(0,0,0,0) 33px 60px),repeating-radial-gradient(circle at 70px 70px,rgba(0,0,0,0) 0 18px,rgba(0,0,0,.06) 19px 20px,rgba(0,0,0,0) 21px 40px),radial-gradient(rgba(255,255,255,.05) .7px,rgba(0,0,0,0) 1.2px),radial-gradient(rgba(0,0,0,.14) .7px,rgba(0,0,0,0) 1.2px);background-size:100% 100%,140px 140px,140px 140px,4px 4px,6px 6px;background-position:0 0,0 0,0 0,0 0,2px 3px}
+.deco{position:absolute;left:0;top:0;right:0;bottom:0;pointer-events:none;overflow:hidden;z-index:0}
+.content{position:relative;z-index:1}
+.lamp{position:absolute;border-radius:50%;background:radial-gradient(closest-side,rgba(200,240,190,.20),rgba(200,240,190,.07) 55%,rgba(0,0,0,0))}
+.crop{position:absolute;overflow:hidden;-webkit-mask-image:radial-gradient(closest-side,#000 55%,rgba(0,0,0,0) 100%);mask-image:radial-gradient(closest-side,#000 55%,rgba(0,0,0,0) 100%)}
+.crop img{position:absolute;display:block;width:1400px;height:1400px;max-width:none}
+.leather{background-color:#4A1216;background-image:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,0) 30%,rgba(0,0,0,.35) 100%),radial-gradient(rgba(0,0,0,.22) 1px,rgba(0,0,0,0) 1.4px);background-size:100% 100%,3px 3px;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),inset 0 -2px 4px rgba(0,0,0,.5),0 3px 0 #9C7A33,0 5px 0 #4A360F,0 18px 30px rgba(0,0,0,.6)}
+.stitch{position:absolute;left:9px;top:9px;right:9px;bottom:9px;border:1.5px dashed rgba(228,200,119,.5);border-radius:inherit;pointer-events:none}
+.paper{background-color:#F6F1E6;background-image:linear-gradient(135deg,rgba(255,255,255,.55),rgba(255,255,255,0) 40%,rgba(0,0,0,.07) 100%),radial-gradient(rgba(60,40,20,.10) .8px,rgba(0,0,0,0) 1.3px),radial-gradient(rgba(60,40,20,.06) .8px,rgba(0,0,0,0) 1.3px);background-size:100% 100%,9px 9px,13px 13px;background-position:0 0,0 0,4px 6px;color:#1A1414}
+.card{position:relative;border-radius:16px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.7),inset 0 0 22px rgba(120,90,50,.20),0 1px 1px rgba(0,0,0,.35),0 8px 16px rgba(0,0,0,.35),0 28px 52px rgba(0,0,0,.38)}
+.card::before{content:"";position:absolute;left:9px;top:9px;right:9px;bottom:9px;border:1px solid rgba(193,18,31,.28);border-radius:10px;pointer-events:none}
+.wood{background-color:#3B1114;background-image:linear-gradient(160deg,rgba(255,255,255,.12),rgba(255,255,255,0) 35%),radial-gradient(ellipse 80% 70% at 30% 20%,rgba(140,50,50,.45),rgba(0,0,0,0) 70%),repeating-linear-gradient(100deg,rgba(0,0,0,.13) 0 3px,rgba(0,0,0,0) 3px 11px)}
+.zone{position:relative;margin:0;min-width:0;border:2px solid rgba(238,226,196,.5);border-radius:26px;padding:30px 30px 34px}
+.zone legend{padding:0 16px;font:700 15px 'Bodoni Moda',serif;letter-spacing:.32em;text-transform:uppercase;color:rgba(242,232,204,.9)}
+.chip{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:50%;border:0;color:#FFFFFF;background:radial-gradient(circle at 35% 28%,rgba(255,255,255,.30),rgba(255,255,255,0) 45%),radial-gradient(circle,var(--c) 0 52%,#EDE6D6 53% 55%,rgba(0,0,0,0) 56%),repeating-conic-gradient(#EDE6D6 0 12deg,var(--c) 12deg 45deg);box-shadow:inset 0 0 0 3px rgba(0,0,0,.2),inset 0 -4px 0 rgba(0,0,0,.25),0 2px 0 rgba(0,0,0,.35),0 12px 20px rgba(0,0,0,.45)}
+.abs{position:absolute}
+.back{position:absolute;border-radius:12px;background-color:#9E1520;background-image:linear-gradient(135deg,rgba(255,255,255,.18),rgba(255,255,255,0) 45%),repeating-linear-gradient(45deg,rgba(255,255,255,.16) 0 2px,rgba(0,0,0,0) 2px 9px),repeating-linear-gradient(-45deg,rgba(255,255,255,.16) 0 2px,rgba(0,0,0,0) 2px 9px);box-shadow:inset 0 0 0 7px #F4F0E7,inset 0 0 0 9px #7A0F17,0 2px 2px rgba(0,0,0,.4),0 18px 34px rgba(0,0,0,.55)}
+.burnt{border-radius:10px 16px 6px 22px;box-shadow:inset 0 0 26px 9px rgba(80,34,8,.78),inset 0 0 5px 2px rgba(30,10,0,.9),0 18px 34px rgba(0,0,0,.55)}
+.dia{position:absolute;width:18px;height:18px;background:linear-gradient(135deg,#F7E3A0,#A57A2A 60%,#6E4F16);transform:rotate(45deg);box-shadow:0 4px 8px rgba(0,0,0,.55)}
+.die{position:absolute;width:62px;height:62px;border-radius:14px;background-color:#F4F0E7;background-image:radial-gradient(circle at 26% 26%,#1A1414 0 6px,rgba(0,0,0,0) 7px),radial-gradient(circle at 74% 26%,#1A1414 0 6px,rgba(0,0,0,0) 7px),radial-gradient(circle at 26% 50%,#1A1414 0 6px,rgba(0,0,0,0) 7px),radial-gradient(circle at 74% 50%,#1A1414 0 6px,rgba(0,0,0,0) 7px),radial-gradient(circle at 26% 74%,#1A1414 0 6px,rgba(0,0,0,0) 7px),radial-gradient(circle at 74% 74%,#1A1414 0 6px,rgba(0,0,0,0) 7px),linear-gradient(135deg,#FFFFFF,#DCD4C2);box-shadow:inset 0 -5px 0 rgba(0,0,0,.14),0 2px 2px rgba(0,0,0,.4),0 16px 28px rgba(0,0,0,.55)}
+.suit{position:absolute;font-family:'Bodoni Moda',serif;line-height:1}
+.live{display:inline-block;width:9px;height:9px;border-radius:50%;background:#FF3B45;box-shadow:0 0 0 4px rgba(255,59,69,.25)}
+.crest{display:flex;align-items:center;justify-content:center;flex-shrink:0;width:40px;height:46px;padding-bottom:8px;box-sizing:border-box;clip-path:polygon(0 0,100% 0,100% 62%,50% 100%,0 62%);font:800 10px Manrope,sans-serif;color:#FFFFFF;text-shadow:0 1px 2px rgba(0,0,0,.6)}
+.eyebrow{font-size:13px;letter-spacing:.24em;text-transform:uppercase;font-weight:800;color:#E4C877}
+.fcol a{display:block;color:#EADBD0;text-decoration:none;font-size:15px;padding:5px 0}
+.pill{padding:8px 14px;border-radius:8px;font-size:13px;font-weight:800}
+.wx{display:inline-flex;gap:6px;align-items:center;padding:4px 10px;border-radius:999px;background:rgba(26,20,20,.07);font-size:12px;font-weight:800;color:#4A3F38;letter-spacing:0}
+.opt{border:0;background:rgba(0,0,0,0);padding:0;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;font-family:Manrope,sans-serif}
+.opt .chip{width:70px;height:70px;font:800 16px Manrope,sans-serif;transition:transform .15s}
+.opt .lb{font-size:12px;font-weight:800;color:#4A3F38}
+.opt .fav{font-size:10px;font-weight:800;letter-spacing:.1em;color:#9C7A33;height:12px}
+.opt:focus-visible,.clear:focus-visible,.save:focus-visible,.mute:focus-visible{outline:3px solid #F3DC92;outline-offset:4px;border-radius:12px}
+.ticket{position:relative;border-radius:4px}
+.ticket::before{content:"";position:absolute;left:0;right:0;top:-8px;height:8px;background:radial-gradient(circle at 8px 8px,#F6F1E6 7px,rgba(0,0,0,0) 7.6px);background-size:16px 8px}
+.ticket::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:8px;background:radial-gradient(circle at 8px 0,#F3EEE2 7px,rgba(0,0,0,0) 7.6px);background-size:16px 8px}
+.tear{position:relative;height:0;border-top:2px dashed rgba(26,20,20,.28);margin:6px -24px}
+.tear::before,.tear::after{content:"";position:absolute;top:-12px;width:22px;height:22px;border-radius:50%;background:#3B1114;box-shadow:inset 0 2px 4px rgba(0,0,0,.5)}
+.tear::before{left:-11px}.tear::after{right:-11px}
+.dist{display:grid;grid-template-columns:90px minmax(0,1fr) 60px;gap:12px;align-items:center;font-size:14px;font-weight:700}
+.dist i{display:block;height:14px;border-radius:7px}
+.mute{border:1px solid rgba(228,200,119,.6);background:rgba(4,18,12,.6);color:#F3EFE6;border-radius:999px;padding:12px 20px;display:flex;gap:10px;align-items:center;font:700 14px Manrope,sans-serif;cursor:pointer;white-space:nowrap;flex-shrink:0}
+</style>
+<style>#page{max-width:1440px;width:100%;margin:0 auto}</style>
+</head>
+<body>
+<div id="page"><div id="dc-root"></div></div>
+<template id="dc-tpl">
+<div class="table">
+
+<div class="deco">
+<div class="lamp" style="left: 0; top: 100px; width: 1200px; height: 1000px"></div>
+<div class="lamp" style="left: 500px; top: 900px; width: 1100px; height: 1000px"></div>
+<div class="crop" style="left: 1150px; top: 1640px; width: 560px; height: 560px"><img src="assets/img/tanteo-keyart.jpg" alt="" style="left: -938px; top: 140px"></div>
+<div class="crop" style="left: -160px; top: 220px; width: 420px; height: 680px"><img src="assets/img/tanteo-keyart.jpg" alt="" style="left: -20px; top: -500px"></div>
+<div class="crop" style="left: -60px; top: 1720px; width: 600px; height: 400px"><img src="assets/img/tanteo-keyart.jpg" alt="" style="left: -812px; top: -1010px"></div>
+<div class="suit" style="left: 380px; top: 1580px; font-size: 420px; color: rgba(0,0,0,.12); transform: rotate(-8deg)">♦</div>
+<div class="die" style="left: 1330px; top: 170px; transform: rotate(14deg)"></div>
+<div class="paper burnt abs" style="left: 1350px; top: 760px; width: 120px; height: 172px; transform: rotate(14deg)"></div>
+<div class="back" style="left: 30px; top: 1100px; width: 110px; height: 158px; transform: rotate(-20deg)"></div>
+<div class="dia" style="left: 560px; top: 170px"></div>
+<div class="dia" style="left: 1400px; top: 1100px"></div>
+<div class="dia" style="left: 40px; top: 980px; width: 14px; height: 14px"></div>
+</div>
+
+<div class="content" style="display: flex; flex-direction: column">
+<header class="leather" style="position: relative; display: flex; align-items: center; justify-content: space-between; padding: 18px 56px; border-radius: 0 0 30px 30px; margin: 0 14px">
+<span class="stitch"></span>
+<a href="inicio.html" class="paper" style="display: flex; align-items: center; justify-content: center; width: 156px; height: 60px; border-radius: 8px; transform: rotate(-4deg); box-shadow: 0 2px 2px rgba(0,0,0,.4), 0 10px 18px rgba(0,0,0,.5); text-decoration: none" aria-label="Tanteo, inicio"><span style="font-family: 'Great Vibes', cursive; font-size: 44px; line-height: 1; color: #C1121F">Tanteo</span></a>
+<nav style="display: flex; gap: 36px; align-items: center; font-size: 16px; font-weight: 600">
+<a href="inicio.html" style="color: #F3EFE6; text-decoration: none">Inicio</a>
+<a href="en-vivo.html" style="color: #F3EFE6; text-decoration: none; display: flex; gap: 10px; align-items: center"><span class="live"></span>En vivo</a>
+<a href="parlays.html" style="color: #F3EFE6; text-decoration: none">Parlays</a>
+<a href="simulador.html" style="color: #F3DC92; text-decoration: none; display: flex; gap: 8px; align-items: center"><span style="font-size: 12px">♦</span>Simulador</a>
+<a href="inicio.html#modelo" style="color: #F3EFE6; text-decoration: none">Cómo funciona</a>
+</nav>
+<div style="display: flex; gap: 12px; align-items: center">
+
+
+</div>
+</header>
+
+<section style="padding: 48px 56px 30px 110px; display: flex; justify-content: space-between; align-items: flex-end">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div class="eyebrow"><span id="sim-eyebrow">Liga MX · Solo información</span></div>
+<h1 style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: 62px; line-height: 1.05; text-shadow: 0 4px 18px rgba(0,0,0,.55)">Simulador de <span style="font-family: 'Great Vibes', cursive; font-weight: 400; font-size: 92px; color: #F0484F">probabilidades</span></h1>
+<p style="margin: 0; font-size: 18px; color: #D8E4DC">Pon una ficha en cada resultado que imaginas y mira qué tan probable es que se cumplan todos.</p>
+</div>
+<div style="display: flex; gap: 22px; align-items: center; margin-right: 110px">
+<button class="mute" onClick="{{toggleMute}}" aria-pressed="{{mutedStr}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg>{{muteLabel}}</button>
+<div class="paper card" style="padding: 18px 24px; transform: rotate(3deg); display: flex; gap: 14px; align-items: center">
+<span style="font-family: 'Bodoni Moda', serif; font-size: 36px; color: #C1121F; line-height: 1">♦</span>
+<div><div style="font-size: 12px; font-weight: 800; letter-spacing: .14em; color: #5A4C44">PRONÓSTICOS</div><div style="font-family: 'Bodoni Moda', serif; font-size: 30px; font-weight: 700; line-height: 1.1">{{count}} de 6</div></div>
+</div>
+</div>
+</section>
+
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) 480px; gap: 40px; padding: 10px 56px 80px 110px; align-items: start">
+<fieldset class="zone" style="display: flex; flex-direction: column; gap: 22px">
+<legend>1 · Elige tus pronósticos</legend>
+<sc-for list="{{matches}}" as="m" hint-placeholder-count="6">
+<div class="paper card" style="padding: 20px 26px; display: grid; grid-template-columns: minmax(0, 1fr) 270px; gap: 16px; align-items: center; transform: rotate({{m.tilt}}deg); box-shadow: {{m.glow}}">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; gap: 10px; align-items: center; font-size: 12px; font-weight: 800; letter-spacing: .12em; color: #5A4C44"><span style="color: {{m.suitColor}}; font-family: 'Bodoni Moda', serif; font-size: 18px">{{m.suit}}</span>{{m.tag}} · {{m.when}}</div>
+<div style="display: flex; gap: 12px; align-items: center"><span class="crest" style="background: {{m.hc}}">{{m.hs}}</span><span style="font-size: 18px; font-weight: 800">{{m.home}}</span></div>
+<div style="display: flex; gap: 12px; align-items: center"><span class="crest" style="background: {{m.ac}}">{{m.as}}</span><span style="font-size: 18px; font-weight: 800">{{m.away}}</span></div>
+<div><span class="wx">{{m.wx}}</span></div>
+</div>
+<div style="display: flex; gap: 18px; justify-content: flex-end">
+<sc-for list="{{m.options}}" as="o" hint-placeholder-count="3">
+<button class="opt" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" aria-label="{{o.aria}}"><span class="fav">{{o.fav}}</span><span class="chip" style="--c: {{o.color}}; box-shadow: {{o.ring}}; transform: {{o.lift}}">{{o.pct}}</span><span class="lb">{{o.label}}</span></button>
+</sc-for>
+</div>
+</div>
+</sc-for>
+<div style="font-size: 13px; color: #C9D8CF; text-align: center">★ FAVORITO marca el resultado más probable según el modelo</div>
+</fieldset>
+
+<aside style="position: relative; display: flex; flex-direction: column; gap: 26px; padding-top: 10px">
+<div class="chip abs" style="--c: #1F5E47; width: 76px; height: 76px; right: -22px; top: -18px; z-index: 2"></div>
+<div class="wood" style="position: relative; border-radius: 28px; padding: 34px; display: flex; flex-direction: column; gap: 20px; box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 0 0 3px #9C7A33, 0 0 0 5px #4A360F, 0 34px 70px rgba(0,0,0,.6)">
+<span class="stitch" style="left: 12px; top: 12px; right: 12px; bottom: 12px"></span>
+<div class="eyebrow">2 · Tu combinación</div>
+<div class="paper ticket" style="padding: 24px; display: flex; flex-direction: column; gap: 8px; transform: rotate(-.8deg); box-shadow: 0 2px 2px rgba(0,0,0,.35), 0 18px 34px rgba(0,0,0,.45)">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-family: 'Great Vibes', cursive; font-size: 42px; color: #C1121F; line-height: 1">Tus cartas</span><span style="font-size: 12px; font-weight: 800; color: #5A4C44; letter-spacing: .1em">{{countLabel}}</span></div>
+<sc-if value="{{hasLegs}}" hint-placeholder-val="{{true}}">
+<sc-for list="{{legs}}" as="l" hint-placeholder-count="3">
+<div style="display: flex; gap: 12px; align-items: center; padding: 10px 0; border-bottom: 1px dashed rgba(26,20,20,.22)"><span class="crest" style="background: {{l.crest}}; width: 26px; height: 30px; font-size: 0; padding: 0"></span><div style="flex-grow: 1"><div style="font-weight: 800; font-size: 15px">{{l.label}}</div><div style="font-size: 13px; color: #5A4C44">{{l.match}}</div></div><span style="font-family: 'Bodoni Moda', serif; font-weight: 700; font-size: 20px">{{l.pct}}</span><button onClick="{{l.remove}}" aria-label="{{l.aria}}" style="border: 0; background: rgba(0,0,0,0); color: #5A4C44; width: 28px; height: 28px; padding: 0; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div>
+</sc-for>
+</sc-if>
+<sc-if value="{{noLegs}}" hint-placeholder-val="{{false}}">
+<div style="padding: 16px 0; font-size: 15px; color: #5A4C44; line-height: 1.5">Pon una ficha en cualquier partido para empezar.</div>
+</sc-if>
+<div class="tear"></div>
+<div style="display: flex; justify-content: space-between; align-items: flex-end">
+<div><div style="font-size: 12px; font-weight: 800; letter-spacing: .12em; color: #5A4C44">PROBABILIDAD DE QUE SE CUMPLAN TODOS</div><div style="font-size: 14px; font-weight: 800; color: #5A4C44; padding-top: 4px">{{oneIn}}</div></div>
+<div style="font-family: 'Bodoni Moda', serif; font-size: 50px; font-weight: 700; color: #1F5E47; line-height: 1">{{combined}}</div>
+</div>
+</div>
+
+<div style="display: flex; gap: 14px; align-items: flex-start; padding: 4px 4px 0">
+<span style="font-family: 'Bodoni Moda', serif; font-size: 26px; color: #F3DC92; line-height: 1">♦</span>
+<div><div style="font-family: 'Great Vibes', cursive; font-size: 30px; line-height: 1.1; color: #F4F0E7">{{verdictTitle}}</div><div style="font-size: 15px; line-height: 1.5; color: #F3E6E6">{{verdict}}</div></div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; text-align: center">
+<div style="padding: 14px; border-radius: 14px; background: rgba(0,0,0,.28); border: 1px solid rgba(212,175,90,.3)"><div style="font-size: 11px; font-weight: 800; letter-spacing: .12em; color: #E0C9C9">ACIERTOS ESPERADOS</div><div style="font-family: 'Bodoni Moda', serif; font-size: 28px; font-weight: 700; color: #F4F0E7">{{expected}}</div></div>
+<div style="padding: 14px; border-radius: 14px; background: rgba(0,0,0,.28); border: 1px solid rgba(212,175,90,.3)"><div style="font-size: 11px; font-weight: 800; letter-spacing: .12em; color: #E0C9C9">FALLA AL MENOS UNO</div><div style="font-family: 'Bodoni Moda', serif; font-size: 28px; font-weight: 700; color: #F4F0E7">{{failOne}}</div></div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<button class="clear" onClick="{{clear}}" style="padding: 16px; border: 1.5px solid #D4AF5A; background: rgba(0,0,0,0); color: #F3EFE6; border-radius: 999px; font: 800 15px Manrope, sans-serif; cursor: pointer">Recoger fichas</button>
+<button class="save" onClick="{{save}}" style="padding: 16px; border: 0; background: #C1121F; color: #FFFFFF; border-radius: 999px; font: 800 15px Manrope, sans-serif; cursor: pointer; box-shadow: inset 0 1px 0 rgba(255,255,255,.3)">{{saveLabel}}</button>
+</div>
+</div>
+
+<div class="paper card" style="padding: 26px; display: flex; flex-direction: column; gap: 12px; transform: rotate(.8deg)">
+<div style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 4px"><span style="font-family: 'Great Vibes', cursive; font-size: 36px; color: #C1121F; line-height: 1">Escenarios</span><span style="font-size: 12px; font-weight: 800; letter-spacing: .1em; color: #5A4C44">3 · ¿CUÁNTOS SE CUMPLEN?</span></div>
+<sc-for list="{{dist}}" as="d" hint-placeholder-count="4">
+<div class="dist"><span>{{d.label}}</span><div style="background: rgba(26,20,20,.08); border-radius: 7px"><i style="width: {{d.w}}%; background: {{d.color}}"></i></div><span style="text-align: right">{{d.v}}</span></div>
+</sc-for>
+<div style="font-size: 12px; color: #5A4C44; line-height: 1.5; padding-top: 4px">Probabilidades estimadas por el modelo con datos de resultados, forma, estadísticas, alineaciones y clima.</div>
+</div>
+</aside>
+</div>
+
+<footer class="leather" style="position: relative; margin: auto 14px 0; padding: 56px 70px 34px; border-radius: 34px 34px 0 0; display: flex; flex-direction: column; gap: 36px">
+<span class="stitch"></span>
+<div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 1.2fr; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<span class="paper" style="align-self: flex-start; padding: 6px 22px; border-radius: 8px; transform: rotate(-4deg); font-family: 'Great Vibes', cursive; font-size: 48px; line-height: 1.1; color: #C1121F; box-shadow: 0 2px 2px rgba(0,0,0,.4), 0 12px 20px rgba(0,0,0,.5)">Tanteo</span>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #EADBD0">Probabilidades de la Liga MX calculadas con resultados, estadísticas, alineaciones y clima.</p>
+<div style="display: flex; gap: 10px">
+<a href="#" aria-label="Instagram" style="width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(228,200,119,.5); display: flex; align-items: center; justify-content: center; color: #E4C877"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+<a href="#" aria-label="X" style="width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(228,200,119,.5); display: flex; align-items: center; justify-content: center; color: #E4C877"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
+<a href="#" aria-label="Facebook" style="width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(228,200,119,.5); display: flex; align-items: center; justify-content: center; color: #E4C877"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 3h-2a4 4 0 0 0-4 4v14M6 11h8"/></svg></a>
+<a href="#" aria-label="YouTube" style="width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(228,200,119,.5); display: flex; align-items: center; justify-content: center; color: #E4C877"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z"/></svg></a>
+</div>
+</div>
+<div class="fcol"><div class="eyebrow" style="padding-bottom: 12px">Liga MX</div><a href="en-vivo.html">Jornada en vivo</a><a href="#">Calendario</a><a href="inicio.html#tabla">Tabla general</a><a href="#">Liguilla y Play-In</a><a href="#">Clubes</a></div>
+<div class="fcol"><div class="eyebrow" style="padding-bottom: 12px">Análisis</div><a href="parlays.html">Parlays más probables</a><a href="simulador.html">Simulador</a><a href="inicio.html#modelo">Cómo funciona el modelo</a><a href="#">Historial de aciertos</a><a href="#">Alertas</a></div>
+<div class="fcol"><div class="eyebrow" style="padding-bottom: 12px">Ayuda</div><a href="#">Centro de ayuda</a><a href="#">Preguntas frecuentes</a><a href="#">Términos</a><a href="#">Privacidad</a><a href="#">Contacto</a></div>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div class="eyebrow">Datos que analizamos</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><span class="paper pill">Resultados</span><span class="paper pill">Estadísticas</span><span class="paper pill">Alineaciones</span><span class="paper pill">Lesiones</span><span class="paper pill">Clima</span><span class="paper pill">Localía</span></div>
+<div class="eyebrow" style="padding-top: 8px">Contacto</div>
+<div style="font-size: 15px; color: #EADBD0">[CORREO DE CONTACTO]</div>
+</div>
+</div>
+<div style="height: 1px; background: linear-gradient(90deg, rgba(228,200,119,0), rgba(228,200,119,.6), rgba(228,200,119,0))"></div>
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 30px">
+<div style="display: flex; gap: 16px; align-items: center"><span style="width: 48px; height: 48px; flex-shrink: 0; border-radius: 50%; border: 2px solid #E4C877; display: flex; align-items: center; justify-content: center; font-family: 'Bodoni Moda', serif; font-weight: 700; font-size: 22px; color: #E4C877">i</span><span style="font-size: 13px; line-height: 1.6; color: #EADBD0; max-width: 700px">Tanteo es una plataforma informativa: no acepta apuestas ni maneja dinero. Las probabilidades son estimaciones de un modelo y no garantizan ningún resultado.</span></div>
+<div style="font-size: 13px; color: #CDB9A8">© 2026 Tanteo · Hecho en México</div>
+</div>
+</footer>
+</div>
+</div>
+</template>
+<script src="datos.js"></script>
+<script src="assets/js/tanteo-runtime.js"></script>
+<script>
+class Component extends DCLogic {
+constructor(...args) {
+super(...args);
+this.state = { picks: { m1: 0, m4: 0, m6: 0 }, muted: false, saved: false };
+this.SND = { ficha: 'assets/sonidos/tanteo-ficha.mp3', apilar: 'assets/sonidos/tanteo-fichas-apilar.mp3', recoger: 'assets/sonidos/tanteo-fichas-recoger.mp3', click: 'assets/sonidos/tanteo-click.mp3' };
+}
+snd(k) {
+if (this.state.muted) return;
+try { var a = new Audio(this.SND[k]); a.volume = k === 'click' ? .7 : 1; var p = a.play(); if (p && p.catch) p.catch(function () {}); } catch (e) {}
+}
+renderVals() {
+var self = this;
+var M = (function(){
+  /* Los seis partidos de ejemplo se sustituyen por los reales de la jornada.
+     Se conservan exactamente los mismos campos que esperaba la plantilla
+     (id, tag, suit, when, wx, home, hs, hc, away, as, ac, p) para no tocar
+     el diseño. */
+  if (typeof DATOS === 'undefined') return [];
+  var D = DATOS;
+
+  var MK = { '1': function(a,b){return a>b;}, 'X': function(a,b){return a===b;}, '2': function(a,b){return a<b;} };
+  function probs(pt){
+    var Mx = pt.matriz_ajustada || pt.matriz; if (!Mx) return null;
+    var r = {};
+    for (var k in MK){ var t = 0;
+      for (var a = 0; a < Mx.length; a++) for (var b = 0; b < Mx[a].length; b++)
+        if (MK[k](a,b)) t += Mx[a][b];
+      r[k] = t; }
+    return r;
+  }
+  var ABR = {"Club America":"AME","Atlante":"ATE","Atlas":"ATL","Atl. San Luis":"SLU",
+    "Cruz Azul":"CAZ","Juarez":"JUA","Guadalajara Chivas":"GDL","Club Leon":"LEO",
+    "Monterrey":"MTY","Necaxa":"NEC","Pachuca":"PAC","Puebla":"PUE","UNAM Pumas":"PUM",
+    "Queretaro":"QRO","Santos Laguna":"SAN","Tigres UANL":"TIG","Club Tijuana":"TIJ",
+    "Toluca":"TOL","Mazatlan FC":"MAZ"};
+  function abrev(e){ return ABR[e] || (e||'').replace(/[^A-Za-zÁÉÍÓÚÑ]/g,'').slice(0,3).toUpperCase(); }
+  var ESC = D.escudos || {};
+  function grad(e){
+    var c = (ESC[e]||{}).color || '#1F5E47', c2 = (ESC[e]||{}).color2 || '#F3EFE6';
+    return 'linear-gradient(135deg, ' + c + ' 50%, ' + c2 + ' 50%)';
+  }
+  var MES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  function cuando(pt){
+    var d = new Date(pt.fecha + 'T12:00');
+    return d.getDate() + ' ' + MES[d.getMonth()] + (pt.hora ? ' · ' + pt.hora : '');
+  }
+  function clima(pt){
+    var c = pt.clima;
+    if (!c || c.temperatura == null) return '';
+    return Math.round(c.temperatura) + '° · ' + (c.lluvia > 0.2 ? 'Lluvia' : 'Sin lluvia');
+  }
+
+  /* Misma regla de jornada que el resto del sitio: la que más partidos
+     tiene en la semana próxima (los datos traen jornadas encimadas). */
+  var pend = D.partidos.filter(function(x){ return !x.jugado && typeof x.jornada === 'number'; })
+                       .sort(function(a,b){ return a.fecha.localeCompare(b.fecha); });
+  if (!pend.length) return [];
+  var hasta = new Date(new Date(pend[0].fecha+'T12:00').getTime() + 7*864e5).toISOString().slice(0,10);
+  var cnt = {};
+  pend.filter(function(x){ return x.fecha <= hasta; })
+      .forEach(function(x){ cnt[x.jornada] = (cnt[x.jornada]||0)+1; });
+  var jor = +Object.keys(cnt).sort(function(a,b){ return cnt[b]-cnt[a] || a-b; })[0];
+
+  var PALOS = ['♥','♣','♦','♠'];
+  return D.partidos
+    .filter(function(x){ return !x.jugado && x.jornada === jor && probs(x); })
+    .slice(0, 6)
+    .map(function(x, i){
+      var P = probs(x);
+      return {
+        id: 'm' + (i+1),
+        tag: (x.sede || x.ciudad || '').toUpperCase(),
+        suit: PALOS[i % 4], red: i % 4 === 0 || i % 4 === 2,
+        when: cuando(x), wx: clima(x),
+        home: x.local,  hs: abrev(x.local),  hc: grad(x.local),
+        away: x.visita, as: abrev(x.visita), ac: grad(x.visita),
+        p: [Math.round(P['1']*100), Math.round(P['X']*100), Math.round(P['2']*100)]
+      };
+    });
+})();
+var tilts = [-0.8, 0.6, -0.4, 0.7, -0.6, 0.4];
+var colors = ['#C1121F', '#1A1414', '#1F4E8C'];
+var picks = this.state.picks || {};
+function f1(n) { return n.toLocaleString('es-MX', { minimumFractionDigits: 1, maximumFractionDigits: 1 }); }
+var matches = M.map(function (m, mi) {
+var has = picks[m.id] !== undefined;
+var names = [m.home, 'Empate', m.away];
+var best = m.p.indexOf(Math.max.apply(null, m.p));
+return {
+tag: m.tag, suit: m.suit, suitColor: m.red ? '#C1121F' : '#1A1414', when: m.when, wx: m.wx,
+home: m.home, hs: m.hs, hc: m.hc, away: m.away, as: m.as, ac: m.ac, tilt: tilts[mi],
+glow: has ? '0 0 0 3px rgba(243,220,146,.9), 0 1px 1px rgba(0,0,0,.35), 0 8px 16px rgba(0,0,0,.35), 0 28px 52px rgba(0,0,0,.38)' : 'inset 0 0 0 1px rgba(255,255,255,.7), inset 0 0 22px rgba(120,90,50,.20), 0 1px 1px rgba(0,0,0,.35), 0 8px 16px rgba(0,0,0,.35), 0 28px 52px rgba(0,0,0,.38)',
+options: m.p.map(function (v, i) {
+var sel = picks[m.id] === i;
+return {
+label: names[i], pct: v + '%', color: colors[i], pressed: sel ? 'true' : 'false', fav: i === best ? '★ FAVORITO' : '',
+aria: names[i] + ', ' + v + ' por ciento',
+ring: sel ? '0 0 0 3px #F3DC92, 0 0 0 5px rgba(0,0,0,.4), 0 18px 26px rgba(0,0,0,.55)' : 'inset 0 0 0 3px rgba(0,0,0,.2), inset 0 -4px 0 rgba(0,0,0,.25), 0 2px 0 rgba(0,0,0,.35), 0 12px 20px rgba(0,0,0,.45)',
+lift: sel ? 'translateY(-8px)' : 'none',
+pick: function () { var p = Object.assign({}, self.state.picks || {}); if (p[m.id] === i) { delete p[m.id]; self.snd('click'); } else { p[m.id] = i; self.snd('ficha'); } self.setState({ picks: p, saved: false }); }
+};
+})
+};
+});
+var legs = M.filter(function (m) { return picks[m.id] !== undefined; }).map(function (m) {
+var i = picks[m.id];
+var name = [m.home, 'Empate', m.away][i];
+return {
+label: i === 1 ? 'Empate' : name + ' gana', match: m.home + ' vs ' + m.away + ' · ' + m.when, pct: m.p[i] + '%', v: m.p[i] / 100,
+crest: i === 2 ? m.ac : m.hc, aria: 'Quitar ' + name,
+remove: function () { var p = Object.assign({}, self.state.picks || {}); delete p[m.id]; self.snd('click'); self.setState({ picks: p, saved: false }); }
+};
+});
+var n = legs.length;
+var prob = legs.reduce(function (a, l) { return a * l.v; }, 1);
+var d = [1];
+legs.forEach(function (l) { var nx = []; for (var k = 0; k <= d.length; k++) nx[k] = 0; d.forEach(function (v, k) { nx[k] += v * (1 - l.v); nx[k + 1] += v * l.v; }); d = nx; });
+var dist = [];
+if (n > 0) {
+for (var k = n; k >= 0; k--) {
+var v = d[k] * 100;
+dist.push({ label: k === 0 ? 'Ninguno' : k + ' de ' + n, w: Math.max(1, v).toFixed(1), v: f1(v) + '%', color: k === n ? '#1F5E47' : k === 0 ? '#1A1414' : k === n - 1 ? '#C9A24A' : '#8E1B22' });
+}
+}
+var valid = n >= 2;
+var vt, vx;
+if (n === 0) { vt = 'La mesa está vacía'; vx = 'Elige al menos dos pronósticos para ver su probabilidad combinada.'; }
+else if (n === 1) { vt = 'Una sola carta'; vx = 'Agrega otro pronóstico para formar una combinación.'; }
+else if (prob >= .3) { vt = 'Combinación sólida'; vx = 'Según el modelo, es de las más probables que puedes armar con estos partidos.'; }
+else if (prob >= .1) { vt = 'Posible, con riesgo'; vx = 'Puede cumplirse, pero lo más común es que falle al menos un pronóstico.'; }
+else { vt = 'Muy poco probable'; vx = 'Con tantas cartas, la probabilidad de que todas se cumplan es baja.'; }
+return {
+matches: matches, legs: legs, dist: dist,
+count: n, countLabel: n === 1 ? '1 PRONÓSTICO' : n + ' PRONÓSTICOS',
+hasLegs: n > 0, noLegs: n === 0,
+combined: valid ? f1(prob * 100) + '%' : '—',
+oneIn: valid ? '1 en ' + f1(1 / prob) : 'Faltan pronósticos',
+expected: n ? f1(legs.reduce(function (a, l) { return a + l.v; }, 0)) + ' de ' + n : '—',
+failOne: valid ? f1((1 - prob) * 100) + '%' : '—',
+verdictTitle: vt, verdict: vx,
+saveLabel: this.state.saved ? 'Guardada ✓' : 'Guardar combinación',
+muteLabel: this.state.muted ? 'Sonido apagado' : 'Sonido encendido',
+mutedStr: this.state.muted ? 'true' : 'false',
+toggleMute: function () { self.setState({ muted: !self.state.muted }); },
+clear: function () { self.snd('recoger'); self.setState({ picks: {}, saved: false }); },
+save: function () { if (n < 2) { return; } self.snd('apilar'); self.setState({ saved: true }); }
+};
+}
+}
+TanteoDC.mount(Component);
+</script>
+<script>(function(){
+  /* La jornada venía escrita en el diseño. */
+  if (typeof DATOS === "undefined") return;
+  var e = document.getElementById("sim-eyebrow"); if (!e) return;
+  var pend = DATOS.partidos.filter(function(x){return !x.jugado && typeof x.jornada==="number";})
+                           .sort(function(a,b){return a.fecha.localeCompare(b.fecha);});
+  if (!pend.length) return;
+  var hasta = new Date(new Date(pend[0].fecha+"T12:00").getTime()+7*864e5).toISOString().slice(0,10);
+  var c = {}; pend.filter(function(x){return x.fecha<=hasta;}).forEach(function(x){c[x.jornada]=(c[x.jornada]||0)+1;});
+  var j = Object.keys(c).sort(function(a,b){return c[b]-c[a]||a-b;})[0];
+  e.textContent = "Liga MX · Jornada " + j + " · Solo información";
+})();</script>
+<script src="assets/js/mesa-viva.js"></script>
+</body>
+</html>

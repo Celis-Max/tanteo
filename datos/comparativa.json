@@ -1,0 +1,315 @@
+{
+ "periodo_prueba": "2021-07-23 a 2025-10-27",
+ "n_prueba": 1494,
+ "periodo_538": "2019-07-20 a 2023-05-29",
+ "n_538": 1283,
+ "peso_ensamble": 0.2,
+ "tabla": [
+  {
+   "modelo": "Mercado · Pinnacle (Shin)",
+   "rps": 0.20230127971716425,
+   "log_loss": 1.0019056893919738,
+   "brier": 0.5990738189571445,
+   "acierto": 0.5026773761713521,
+   "n": 1494
+  },
+  {
+   "modelo": "Mezcla ensamble 20% + Pinnacle",
+   "rps": 0.20253638901985535,
+   "log_loss": 1.0028125851159793,
+   "brier": 0.5995820799809353,
+   "acierto": 0.5026773761713521,
+   "n": 1494
+  },
+  {
+   "modelo": "Mercado · promedio de casas",
+   "rps": 0.2026093672284736,
+   "log_loss": 1.002979315274094,
+   "brier": 0.5995861488265262,
+   "acierto": 0.5026773761713521,
+   "n": 1494
+  },
+  {
+   "modelo": "Mercado · consenso Kaunitz",
+   "rps": 0.2026093672284736,
+   "log_loss": 1.002979315274094,
+   "brier": 0.5995861488265262,
+   "acierto": 0.5026773761713521,
+   "n": 1494
+  },
+  {
+   "modelo": "Ensamble de modelos",
+   "rps": 0.20790195255801958,
+   "log_loss": 1.0196785698396675,
+   "brier": 0.6110984029351696,
+   "acierto": 0.49531459170013387,
+   "n": 1494
+  },
+  {
+   "modelo": "Poisson bivariado",
+   "rps": 0.2086523632363831,
+   "log_loss": 1.0216711877986282,
+   "brier": 0.6124470465556117,
+   "acierto": 0.4926372155287818,
+   "n": 1494
+  },
+  {
+   "modelo": "Nuestro Dixon-Coles",
+   "rps": 0.2086807264218809,
+   "log_loss": 1.0222634320419044,
+   "brier": 0.6127962363085784,
+   "acierto": 0.4926372155287818,
+   "n": 1494
+  },
+  {
+   "modelo": "Ensamble de modelos de goles",
+   "rps": 0.20869658318916826,
+   "log_loss": 1.0220681416396797,
+   "brier": 0.6126922818397912,
+   "acierto": 0.4939759036144578,
+   "n": 1494
+  },
+  {
+   "modelo": "Poisson cero-inflado",
+   "rps": 0.2087513364931444,
+   "log_loss": 1.0224913667625615,
+   "brier": 0.6128965448696461,
+   "acierto": 0.4939759036144578,
+   "n": 1494
+  },
+  {
+   "modelo": "Poisson",
+   "rps": 0.20875209021341,
+   "log_loss": 1.0224939066977612,
+   "brier": 0.6128983366677965,
+   "acierto": 0.4939759036144578,
+   "n": 1494
+  },
+  {
+   "modelo": "Binomial negativa",
+   "rps": 0.20875406386733292,
+   "log_loss": 1.0225039205322424,
+   "brier": 0.6129033597387875,
+   "acierto": 0.4939759036144578,
+   "n": 1494
+  },
+  {
+   "modelo": "Dixon-Coles (penaltyblog)",
+   "rps": 0.2087888314431762,
+   "log_loss": 1.0226661999848106,
+   "brier": 0.6131167135282178,
+   "acierto": 0.4933065595716198,
+   "n": 1494
+  },
+  {
+   "modelo": "Cópula Weibull",
+   "rps": 0.2088619526057164,
+   "log_loss": 1.0222401984071041,
+   "brier": 0.612902167798193,
+   "acierto": 0.4966532797858099,
+   "n": 1494
+  },
+  {
+   "modelo": "Elo",
+   "rps": 0.2100292207228202,
+   "log_loss": 1.0404676832714082,
+   "brier": 0.6213008470875302,
+   "acierto": 0.5033467202141901,
+   "n": 1494
+  },
+  {
+   "modelo": "Pi-ratings",
+   "rps": 0.21682059672968262,
+   "log_loss": 1.0716504573915748,
+   "brier": 0.6335727761036932,
+   "acierto": 0.47724230254350736,
+   "n": 1494
+  }
+ ],
+ "tabla_538": [
+  {
+   "modelo": "Mercado · Pinnacle (Shin)",
+   "rps": 0.20986785096331073,
+   "log_loss": 1.0258382350237603,
+   "brier": 0.6161098956318387,
+   "acierto": 0.48558067030397506,
+   "n": 1283
+  },
+  {
+   "modelo": "Mezcla ensamble 20% + Pinnacle",
+   "rps": 0.20987850549727133,
+   "log_loss": 1.026165573161007,
+   "brier": 0.6161427592232013,
+   "acierto": 0.48947778643803586,
+   "n": 1283
+  },
+  {
+   "modelo": "Mercado · promedio de casas",
+   "rps": 0.21023167443731233,
+   "log_loss": 1.0271368246693258,
+   "brier": 0.6168483707978277,
+   "acierto": 0.48558067030397506,
+   "n": 1283
+  },
+  {
+   "modelo": "Mercado · consenso Kaunitz",
+   "rps": 0.21023167443731233,
+   "log_loss": 1.0271368246693258,
+   "brier": 0.6168483707978277,
+   "acierto": 0.48558067030397506,
+   "n": 1283
+  },
+  {
+   "modelo": "Ensamble de modelos",
+   "rps": 0.21461371924657063,
+   "log_loss": 1.0414697401566302,
+   "brier": 0.6264156746912113,
+   "acierto": 0.48246297739672644,
+   "n": 1283
+  },
+  {
+   "modelo": "FiveThirtyEight SPI",
+   "rps": 0.21475609808665594,
+   "log_loss": 1.141706825506776,
+   "brier": 0.6276961047791407,
+   "acierto": 0.4848012470771629,
+   "n": 1283
+  },
+  {
+   "modelo": "Nuestro Dixon-Coles",
+   "rps": 0.21477695502733674,
+   "log_loss": 1.0420741904437751,
+   "brier": 0.6263084745507531,
+   "acierto": 0.475448168355417,
+   "n": 1283
+  },
+  {
+   "modelo": "Ensamble de modelos de goles",
+   "rps": 0.21517009837241127,
+   "log_loss": 1.0440866560545123,
+   "brier": 0.6272374673092059,
+   "acierto": 0.48168355416991426,
+   "n": 1283
+  },
+  {
+   "modelo": "Binomial negativa",
+   "rps": 0.21526978361318344,
+   "log_loss": 1.0441632188818004,
+   "brier": 0.6275307988479747,
+   "acierto": 0.48012470771628996,
+   "n": 1283
+  },
+  {
+   "modelo": "Poisson bivariado",
+   "rps": 0.21528333050428397,
+   "log_loss": 1.044750573225813,
+   "brier": 0.6273855362898004,
+   "acierto": 0.4793452844894778,
+   "n": 1283
+  },
+  {
+   "modelo": "Poisson",
+   "rps": 0.215285919970707,
+   "log_loss": 1.044970513618361,
+   "brier": 0.627562080140759,
+   "acierto": 0.48012470771628996,
+   "n": 1283
+  },
+  {
+   "modelo": "Poisson cero-inflado",
+   "rps": 0.21528606825096372,
+   "log_loss": 1.0449704223829261,
+   "brier": 0.6275621788317357,
+   "acierto": 0.48012470771628996,
+   "n": 1283
+  },
+  {
+   "modelo": "Dixon-Coles (penaltyblog)",
+   "rps": 0.2153129415406863,
+   "log_loss": 1.044943045087665,
+   "brier": 0.6277246915936784,
+   "acierto": 0.4793452844894778,
+   "n": 1283
+  },
+  {
+   "modelo": "Cópula Weibull",
+   "rps": 0.2154649104926867,
+   "log_loss": 1.046550895094901,
+   "brier": 0.6278624488332596,
+   "acierto": 0.48558067030397506,
+   "n": 1283
+  },
+  {
+   "modelo": "Elo",
+   "rps": 0.21705582260457115,
+   "log_loss": 1.0615866182715243,
+   "brier": 0.6367396759394653,
+   "acierto": 0.48558067030397506,
+   "n": 1283
+  },
+  {
+   "modelo": "Pi-ratings",
+   "rps": 0.22441789523377612,
+   "log_loss": 1.0996049211713337,
+   "brier": 0.6528394087609869,
+   "acierto": 0.4567420109119252,
+   "n": 1283
+  }
+ ],
+ "kaunitz": [
+  {
+   "alfa": 0.03,
+   "periodo": "afinado",
+   "n": 847,
+   "yield_pct": 4.83,
+   "t": 0.99,
+   "acierto_pct": 40.6,
+   "cuota_media": 3.1
+  },
+  {
+   "alfa": 0.03,
+   "periodo": "prueba",
+   "n": 497,
+   "yield_pct": 9.45,
+   "t": 1.4,
+   "acierto_pct": 42.1,
+   "cuota_media": 3.17
+  },
+  {
+   "alfa": 0.05,
+   "periodo": "afinado",
+   "n": 110,
+   "yield_pct": 9.98,
+   "t": 0.81,
+   "acierto_pct": 47.3,
+   "cuota_media": 2.96
+  },
+  {
+   "alfa": 0.05,
+   "periodo": "prueba",
+   "n": 79,
+   "yield_pct": 15.7,
+   "t": 0.94,
+   "acierto_pct": 46.8,
+   "cuota_media": 3.78
+  },
+  {
+   "alfa": 0.07,
+   "periodo": "afinado",
+   "n": 23,
+   "yield_pct": 20.65,
+   "t": 0.92,
+   "acierto_pct": 60.9,
+   "cuota_media": 2.71
+  },
+  {
+   "alfa": 0.07,
+   "periodo": "prueba",
+   "n": 28,
+   "yield_pct": 5.11,
+   "t": 0.19,
+   "acierto_pct": 42.9,
+   "cuota_media": 4.81
+  }
+ ]
+}

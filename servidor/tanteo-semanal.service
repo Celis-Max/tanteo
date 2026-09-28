@@ -1,0 +1,15 @@
+[Unit]
+Description=Tanteo · revalidación semanal (backtest, estrategias, factores)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/opt/tanteo
+ExecStart=/opt/tanteo/actualizar.sh --backtest --sin-abrir
+# El backtest completo en una máquina así puede irse a varias horas.
+TimeoutStartSec=10h
+# Es lo más pesado que corre aquí: que no estorbe al resto.
+Nice=15
+CPUWeight=50

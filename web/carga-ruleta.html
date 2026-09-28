@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tanteo · Carga: ruleta</title>
+<link rel="icon" href="assets/img/tanteo-keyart.jpg">
+<link rel="stylesheet" href="assets/css/fuentes.css">
+<link rel="stylesheet" href="assets/css/adaptable.css">
+<style>
+body{margin:0;background:#050F0A;font-family:Manrope,system-ui,sans-serif;color:#F3EFE6}
+.table{position:relative;background-color:#0F3D2E;background-image:radial-gradient(ellipse 800px 700px at 32% 45%,rgba(210,245,200,.20),rgba(0,0,0,0) 70%),radial-gradient(ellipse 130% 90% at 50% 45%,rgba(0,0,0,0) 45%,rgba(0,0,0,.7) 100%),repeating-radial-gradient(circle at 0 0,rgba(0,0,0,0) 0 30px,rgba(255,255,255,.026) 31px 32px,rgba(0,0,0,0) 33px 60px),repeating-radial-gradient(circle at 70px 70px,rgba(0,0,0,0) 0 18px,rgba(0,0,0,.06) 19px 20px,rgba(0,0,0,0) 21px 40px),radial-gradient(rgba(255,255,255,.05) .7px,rgba(0,0,0,0) 1.2px),radial-gradient(rgba(0,0,0,.14) .7px,rgba(0,0,0,0) 1.2px);background-size:100% 100%,100% 100%,140px 140px,140px 140px,4px 4px,6px 6px}
+.paper{background-color:#F6F1E6;background-image:linear-gradient(135deg,rgba(255,255,255,.55),rgba(255,255,255,0) 40%,rgba(0,0,0,.07) 100%),radial-gradient(rgba(60,40,20,.10) .8px,rgba(0,0,0,0) 1.3px);background-size:100% 100%,9px 9px;color:#1A1414}
+.chip{position:absolute;border-radius:50%;background:radial-gradient(circle at 35% 28%,rgba(255,255,255,.30),rgba(255,255,255,0) 45%),radial-gradient(circle,var(--c) 0 52%,#EDE6D6 53% 55%,rgba(0,0,0,0) 56%),repeating-conic-gradient(#EDE6D6 0 12deg,var(--c) 12deg 45deg);box-shadow:inset 0 0 0 3px rgba(0,0,0,.2),inset 0 -4px 0 rgba(0,0,0,.25),0 2px 0 rgba(0,0,0,.35),0 14px 22px rgba(0,0,0,.5)}
+.wheelwrap{position:relative;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#7A2A2E,#4A1216 55%,#2A0709);box-shadow:inset 0 2px 0 rgba(255,255,255,.15),inset 0 -10px 20px rgba(0,0,0,.5),0 0 0 5px #9C7A33,0 40px 80px rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center}
+.wheel{width:400px;height:400px;border-radius:50%;position:relative;background:radial-gradient(circle,rgba(0,0,0,0) 0 57%,#C9A24A 57.5% 59%,rgba(0,0,0,0) 59.5%),repeating-conic-gradient(rgba(233,207,131,.9) 0 .7deg,rgba(0,0,0,0) .7deg 9.73deg),conic-gradient(#1F7A3A 0 9.73deg,rgba(0,0,0,0) 9.73deg),repeating-conic-gradient(#B3101C 0 9.73deg,#151010 9.73deg 19.46deg);box-shadow:0 0 0 8px #C9A24A,inset 0 0 24px rgba(0,0,0,.5);animation:spin 5s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cone{position:absolute;left:50%;top:50%;width:226px;height:226px;margin:-113px 0 0 -113px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#8A3A2E,#4A1A12 60%,#2A0D08);box-shadow:0 0 0 4px #C9A24A,0 8px 18px rgba(0,0,0,.5)}
+.turret{position:absolute;left:50%;top:50%;width:160px;height:12px;margin:-6px 0 0 -80px;border-radius:6px;background:linear-gradient(180deg,#F7E3A0,#A57A2A)}
+.turret.v{transform:rotate(90deg)}
+.knob{position:absolute;left:50%;top:50%;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFF3C4,#C9A24A 55%,#6E4F16);box-shadow:0 4px 8px rgba(0,0,0,.5)}
+.ballorb{position:absolute;left:0;top:0;width:500px;height:500px;animation:spinb 2.2s linear infinite}
+@keyframes spinb{to{transform:rotate(-360deg)}}
+.ball{position:absolute;left:240px;top:42px;width:20px;height:20px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFFFFF,#D9D4C8 60%,#8C877C);box-shadow:0 3px 5px rgba(0,0,0,.5)}
+.dia{position:absolute;width:18px;height:18px;background:linear-gradient(135deg,#F7E3A0,#A57A2A 60%,#6E4F16);transform:rotate(45deg);box-shadow:0 4px 8px rgba(0,0,0,.55)}
+.sk{border-radius:6px;background:linear-gradient(90deg,rgba(26,20,20,.08) 0%,rgba(26,20,20,.18) 50%,rgba(26,20,20,.08) 100%);background-size:200% 100%;animation:shim 1.4s linear infinite}
+@keyframes shim{from{background-position:200% 0}to{background-position:-200% 0}}
+.mute{border:1px solid rgba(228,200,119,.6);background:rgba(4,18,12,.6);color:#F3EFE6;border-radius:999px;padding:12px 20px;display:flex;gap:10px;align-items:center;font:700 14px Manrope,sans-serif;cursor:pointer}
+.mute:focus-visible{outline:3px solid #F3DC92;outline-offset:4px}
+</style>
+<style>#page{max-width:1440px;width:100%;margin:0 auto}</style>
+</head>
+<body>
+<div id="page"><div id="dc-root"></div></div>
+<template id="dc-tpl">
+<div class="table">
+<div class="paper" style="position: absolute; left: 44px; top: 34px; padding: 4px 18px; border-radius: 8px; transform: rotate(-4deg); box-shadow: 0 2px 2px rgba(0,0,0,.4), 0 10px 18px rgba(0,0,0,.5); font-family: 'Great Vibes', cursive; font-size: 40px; color: #C1121F">Tanteo</div>
+<div class="chip" style="--c: #1F4E8C; left: 60px; top: 720px; width: 110px; height: 110px"></div>
+<div class="chip" style="--c: #C1121F; left: 1320px; top: 60px; width: 100px; height: 100px"></div>
+
+<div style="position: relative; flex-shrink: 0">
+<div class="wheelwrap">
+<div class="wheel"><span class="cone"></span><span class="turret"></span><span class="turret v"></span><span class="knob"></span></div>
+<div class="ballorb"><span class="ball"></span></div>
+</div>
+<div class="dia" style="left: 241px; top: -34px"></div>
+<div class="dia" style="left: 241px; top: 516px"></div>
+<div class="dia" style="left: -34px; top: 241px"></div>
+<div class="dia" style="left: 516px; top: 241px"></div>
+</div>
+
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 22px">
+<div style="font-size: 13px; letter-spacing: .26em; font-weight: 800; color: #E4C877; display: flex; gap: 10px; align-items: center"><span style="width: 9px; height: 9px; border-radius: 50%; background: #FF3B45; box-shadow: 0 0 0 4px rgba(255,59,69,.25)"></span>LIGA MX · EN VIVO</div>
+<div style="font-family: 'Great Vibes', cursive; font-size: 70px; line-height: 1; text-shadow: 0 4px 16px rgba(0,0,0,.6)">Cargando marcadores y probabilidades…</div>
+<div style="display: flex; gap: 16px; align-items: center">
+<div style="position: relative; width: 420px; height: 12px; border-radius: 999px; background: rgba(0,0,0,.45); box-shadow: inset 0 2px 4px rgba(0,0,0,.6), 0 0 0 1px rgba(228,200,119,.45)"><div style="width: {{pct}}%; height: 12px; border-radius: 999px; background: linear-gradient(90deg, #8C6A22, #F3DC92, #C9A24A)"></div></div>
+<span style="font-family: 'Bodoni Moda', serif; font-size: 20px; font-weight: 700; color: #F3DC92">{{pct}}%</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px; padding-top: 10px">
+<div class="paper" style="border-radius: 14px; padding: 18px 22px; display: flex; gap: 16px; align-items: center; transform: rotate(-.8deg); box-shadow: 0 2px 2px rgba(0,0,0,.35), 0 16px 30px rgba(0,0,0,.45)"><span class="sk" style="width: 34px; height: 40px"></span><div style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px"><span class="sk" style="width: 60%; height: 14px"></span><span class="sk" style="width: 40%; height: 12px"></span></div><span class="sk" style="width: 60px; height: 30px"></span></div>
+<div class="paper" style="border-radius: 14px; padding: 18px 22px; display: flex; gap: 16px; align-items: center; transform: rotate(.6deg); box-shadow: 0 2px 2px rgba(0,0,0,.35), 0 16px 30px rgba(0,0,0,.45)"><span class="sk" style="width: 34px; height: 40px"></span><div style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px"><span class="sk" style="width: 52%; height: 14px"></span><span class="sk" style="width: 34%; height: 12px"></span></div><span class="sk" style="width: 60px; height: 30px"></span></div>
+<div class="paper" style="border-radius: 14px; padding: 18px 22px; display: flex; gap: 16px; align-items: center; transform: rotate(-.4deg); box-shadow: 0 2px 2px rgba(0,0,0,.35), 0 16px 30px rgba(0,0,0,.45)"><span class="sk" style="width: 34px; height: 40px"></span><div style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px"><span class="sk" style="width: 66%; height: 14px"></span><span class="sk" style="width: 30%; height: 12px"></span></div><span class="sk" style="width: 60px; height: 30px"></span></div>
+</div>
+</div>
+
+<button class="mute" onClick="{{toggle}}" aria-pressed="{{onStr}}" style="position: absolute; right: 36px; bottom: 30px">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg>
+<span>{{label}}</span>
+</button>
+<div style="position: absolute; left: 44px; bottom: 36px; font-size: 13px; color: #C9D8CF">Plataforma informativa · sin apuestas</div>
+</div>
+</template>
+<script src="assets/js/tanteo-runtime.js"></script>
+<script>
+class Component extends DCLogic {
+constructor(...args) {
+super(...args);
+this.state = { pct: 0, on: false };
+this.url = 'assets/sonidos/tanteo-ruleta.mp3';
+}
+componentDidMount() {
+var self = this;
+this.pTimer = setInterval(function () { var n = self.state.pct + 1; self.setState({ pct: n > 100 ? 0 : n }); }, 50);
+}
+componentWillUnmount() { clearInterval(this.pTimer); this.stop(); }
+play() { try { var a = new Audio(this.url); a.volume = .8; var p = a.play(); if (p && p.catch) p.catch(function () {}); } catch (e) {} }
+stop() { if (this.loop) { clearInterval(this.loop); this.loop = null; } }
+renderVals() {
+var self = this;
+return {
+pct: this.state.pct,
+label: this.state.on ? 'Silenciar' : 'Escuchar sonido',
+onStr: this.state.on ? 'true' : 'false',
+toggle: function () {
+if (self.state.on) { self.stop(); self.setState({ on: false }); }
+else { self.play(); self.loop = setInterval(function () { self.play(); }, 5000); self.setState({ on: true }); }
+}
+};
+}
+}
+TanteoDC.mount(Component);
+</script>
+</body>
+</html>

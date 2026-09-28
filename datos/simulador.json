@@ -1,0 +1,49 @@
+{
+ "criterio": "mayor probabilidad",
+ "piernas": 2,
+ "monto": 100,
+ "pago": "cuota justa",
+ "tickets": [
+  {
+   "jornada": 9,
+   "creado": "2026-09-22",
+   "estado": "pendiente",
+   "monto": 100,
+   "prob": 0.76477,
+   "cuota_justa": 1.3076,
+   "piernas": [
+    {
+     "partido": "9|2026-09-26|Guadalajara Chivas|Queretaro",
+     "local": "Guadalajara Chivas",
+     "visita": "Queretaro",
+     "fecha": "2026-09-26",
+     "mercado": "1X",
+     "apuesta": "Local o empate",
+     "prob": 0.85573
+    },
+    {
+     "partido": "9|2026-09-27|Tigres UANL|Puebla",
+     "local": "Tigres UANL",
+     "visita": "Puebla",
+     "fecha": "2026-09-27",
+     "mercado": "1X",
+     "apuesta": "Local o empate",
+     "prob": 0.8937
+    }
+   ],
+   "pago": null,
+   "neto": null,
+   "banca": 0.0
+  }
+ ],
+ "totales": {
+  "tickets": 1,
+  "resueltos": 0,
+  "ganados": 0,
+  "pendientes": 1,
+  "invertido": 0.0,
+  "devuelto": 0.0,
+  "neto": 0.0,
+  "yield": null
+ }
+}

@@ -1,0 +1,17 @@
+[Unit]
+Description=Tanteo · ciclo diario (resultados, cuotas, clima, noticias, simulador)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/opt/tanteo
+ExecStart=/opt/tanteo/actualizar.sh --sin-abrir
+# Las fuentes externas fallan de vez en cuando; que reintente en vez de rendirse.
+Restart=on-failure
+RestartSec=15min
+# La E2.1.Micro es 1/8 de núcleo: lo que en la Mac tarda 12 s, aquí puede
+# tardar 20 min (el Monte Carlo es lo más lento). 2 h de margen.
+TimeoutStartSec=2h
+Nice=5

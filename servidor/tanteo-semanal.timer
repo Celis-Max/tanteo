@@ -1,0 +1,11 @@
+[Unit]
+Description=Tanteo · dispara la revalidación semanal
+
+[Timer]
+# Lunes 04:00: la jornada ya terminó y no hay nadie viendo la página.
+OnCalendar=Mon *-*-* 04:00:00
+Persistent=true
+RandomizedDelaySec=20min
+
+[Install]
+WantedBy=timers.target

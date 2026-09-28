@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tanteo · Kit de sonidos</title>
+<link rel="icon" href="assets/img/tanteo-keyart.jpg">
+<link rel="stylesheet" href="assets/css/fuentes.css">
+<link rel="stylesheet" href="assets/css/adaptable.css">
+<style>
+body{margin:0;background:#050F0A;font-family:Manrope,system-ui,sans-serif;color:#F3EFE6}
+a{color:#E4C877}
+.table{position:relative;background-color:#0F3D2E;background-image:radial-gradient(ellipse 1100px 800px at 50% 0,rgba(210,245,200,.20),rgba(0,0,0,0) 70%),radial-gradient(ellipse 900px 700px at 50% 1300px,rgba(210,245,200,.14),rgba(0,0,0,0) 70%),radial-gradient(ellipse 130% 90% at 50% 45%,rgba(0,0,0,0) 50%,rgba(0,0,0,.62) 100%),repeating-radial-gradient(circle at 0 0,rgba(0,0,0,0) 0 30px,rgba(255,255,255,.026) 31px 32px,rgba(0,0,0,0) 33px 60px),repeating-radial-gradient(circle at 70px 70px,rgba(0,0,0,0) 0 18px,rgba(0,0,0,.06) 19px 20px,rgba(0,0,0,0) 21px 40px),radial-gradient(rgba(255,255,255,.05) .7px,rgba(0,0,0,0) 1.2px),radial-gradient(rgba(0,0,0,.14) .7px,rgba(0,0,0,0) 1.2px);background-size:100% 100%,100% 100%,100% 100%,140px 140px,140px 140px,4px 4px,6px 6px}
+.paper{background-color:#F6F1E6;background-image:linear-gradient(135deg,rgba(255,255,255,.55),rgba(255,255,255,0) 40%,rgba(0,0,0,.07) 100%),radial-gradient(rgba(60,40,20,.10) .8px,rgba(0,0,0,0) 1.3px),radial-gradient(rgba(60,40,20,.06) .8px,rgba(0,0,0,0) 1.3px);background-size:100% 100%,9px 9px,13px 13px;color:#1A1414}
+.card{position:relative;border-radius:16px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.7),inset 0 0 22px rgba(120,90,50,.20),0 1px 1px rgba(0,0,0,.35),0 8px 16px rgba(0,0,0,.35),0 28px 52px rgba(0,0,0,.38)}
+.card::before{content:"";position:absolute;left:9px;top:9px;right:9px;bottom:9px;border:1px solid rgba(193,18,31,.28);border-radius:10px;pointer-events:none}
+.leather{background-color:#4A1216;background-image:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,0) 30%,rgba(0,0,0,.35) 100%),radial-gradient(rgba(0,0,0,.22) 1px,rgba(0,0,0,0) 1.4px);background-size:100% 100%,3px 3px;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),inset 0 -2px 4px rgba(0,0,0,.5),0 3px 0 #9C7A33,0 5px 0 #4A360F,0 18px 30px rgba(0,0,0,.6)}
+.stitch{position:absolute;left:9px;top:9px;right:9px;bottom:9px;border:1.5px dashed rgba(228,200,119,.5);border-radius:inherit;pointer-events:none}
+.zone{position:relative;margin:0;min-width:0;border:2px solid rgba(238,226,196,.5);border-radius:26px;padding:30px 30px 34px}
+.zone legend{padding:0 16px;font:700 15px 'Bodoni Moda',serif;letter-spacing:.32em;text-transform:uppercase;color:rgba(242,232,204,.9)}
+.chip{position:relative;display:flex;align-items:center;justify-content:center;border-radius:50%;border:0;color:#FFFFFF;background:radial-gradient(circle at 35% 28%,rgba(255,255,255,.30),rgba(255,255,255,0) 45%),radial-gradient(circle,var(--c) 0 52%,#EDE6D6 53% 55%,rgba(0,0,0,0) 56%),repeating-conic-gradient(#EDE6D6 0 12deg,var(--c) 12deg 45deg);box-shadow:inset 0 0 0 3px rgba(0,0,0,.2),inset 0 -4px 0 rgba(0,0,0,.25),0 2px 0 rgba(0,0,0,.35),0 12px 20px rgba(0,0,0,.45)}
+.abs{position:absolute}
+.play{width:64px;height:64px;flex-shrink:0;cursor:pointer;transition:transform .15s}
+.play:focus-visible{outline:3px solid #F3DC92;outline-offset:4px}
+.wave{display:flex;align-items:center;gap:3px;height:44px}
+.wave i{display:block;width:4px;border-radius:2px}
+.dl{font-size:13px;font-weight:800;color:#A50F1A;text-decoration:none}
+.dl:hover{color:#C1121F}
+</style>
+<style>#page{max-width:1440px;width:100%;margin:0 auto}</style>
+</head>
+<body>
+<div id="page"><div id="dc-root"></div></div>
+<template id="dc-tpl">
+<div class="table">
+<div class="chip abs" style="--c: #1F5E47; left: -30px; top: 260px; width: 120px; height: 120px"></div>
+<div class="chip abs" style="--c: #C1121F; left: 1340px; top: 820px; width: 110px; height: 110px"></div>
+<div class="chip abs" style="--c: #1A1414; left: 1320px; top: 800px; width: 110px; height: 110px"></div>
+
+<header class="leather" style="position: relative; display: flex; align-items: center; justify-content: space-between; padding: 18px 56px; border-radius: 0 0 30px 30px; margin: 0 14px">
+<span class="stitch"></span>
+<span class="paper" style="display: flex; align-items: center; justify-content: center; width: 156px; height: 60px; border-radius: 8px; transform: rotate(-4deg); box-shadow: 0 2px 2px rgba(0,0,0,.4), 0 10px 18px rgba(0,0,0,.5)"><span style="font-family: 'Great Vibes', cursive; font-size: 44px; line-height: 1; color: #C1121F">Tanteo</span></span>
+<span style="font-size: 13px; letter-spacing: .26em; font-weight: 800; color: #E4C877">IDENTIDAD SONORA</span>
+</header>
+
+<section style="padding: 50px 90px 30px; display: flex; justify-content: space-between; align-items: flex-end">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 13px; letter-spacing: .24em; font-weight: 800; color: #E4C877">13 SONIDOS ORIGINALES</div>
+<h1 style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: 62px; line-height: 1.05; text-shadow: 0 4px 18px rgba(0,0,0,.55)">Kit de <span style="font-family: 'Great Vibes', cursive; font-weight: 400; font-size: 92px; color: #F0484F">sonidos</span></h1>
+<p style="margin: 0; font-size: 17px; color: #D8E4DC; max-width: 640px; line-height: 1.55">Fichas de arcilla, naipes, ruleta y estadio. Toca una ficha para escucharla; cada sonido dice dónde suena en el sitio.</p>
+</div>
+<div class="paper card" style="padding: 18px 24px; transform: rotate(2deg); display: flex; gap: 14px; align-items: center">
+<span style="font-family: 'Bodoni Moda', serif; font-size: 34px; color: #C1121F; line-height: 1">♪</span>
+<div><div style="font-size: 12px; font-weight: 800; letter-spacing: .14em; color: #5A4C44">SONANDO</div><div style="font-family: 'Bodoni Moda', serif; font-size: 24px; font-weight: 700; line-height: 1.2">{{nowPlaying}}</div></div>
+</div>
+</section>
+
+<div style="padding: 10px 90px 70px; display: flex; flex-direction: column; gap: 40px">
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="4">
+<fieldset class="zone">
+<legend>{{g.suit}} {{g.name}}</legend>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px">
+<sc-for list="{{g.items}}" as="s" hint-placeholder-count="3">
+<div class="paper card" style="padding: 24px; display: flex; flex-direction: column; gap: 14px; transform: rotate({{s.tilt}}deg)">
+<div style="display: flex; gap: 16px; align-items: center">
+<button class="chip play" onClick="{{s.toggle}}" aria-label="{{s.aria}}" aria-pressed="{{s.pressed}}" style="--c: {{g.color}}; box-shadow: {{s.ring}}; transform: {{s.lift}}">
+<sc-if value="{{s.idle}}" hint-placeholder-val="{{true}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M8 5v14l11-7z"/></svg></sc-if>
+<sc-if value="{{s.on}}" hint-placeholder-val="{{false}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></sc-if>
+</button>
+<div style="flex-grow: 1"><div style="font-family: 'Bodoni Moda', serif; font-size: 24px; font-weight: 700; line-height: 1.1">{{s.title}}</div><div style="font-size: 13px; font-weight: 700; color: #5A4C44">{{s.dur}} · {{g.name}}</div></div>
+</div>
+<div class="wave">
+<sc-for list="{{s.bars}}" as="b" hint-placeholder-count="48"><i style="height: {{b.h}}px; background: {{s.barColor}}"></i></sc-for>
+</div>
+<div style="font-size: 14px; line-height: 1.45; color: #4A3F38"><strong style="color: #1A1414">Suena:</strong> {{s.uso}}</div>
+<div style="display: flex; justify-content: space-between; align-items: center; padding-top: 8px; border-top: 1px dashed rgba(26,20,20,.22)"><span style="font-size: 12px; font-weight: 700; color: #5A4C44">{{s.file}}</span><a class="dl" href="{{s.url}}" download="{{s.file}}">Descargar ↓</a></div>
+</div>
+</sc-for>
+</div>
+</fieldset>
+</sc-for>
+<div style="display: flex; justify-content: center; font-size: 13px; color: #C9D8CF">Sonidos originales generados para Tanteo · Formato MP3 · Plataforma informativa, sin apuestas</div>
+</div>
+</div>
+</template>
+<script src="assets/js/tanteo-runtime.js"></script>
+<script>
+class Component extends DCLogic {
+constructor(...args) {
+super(...args);
+this.state = { playing: null };
+this.G = [{"name":"Mesa","suit":"♠","color":"#1A1414","items":[{"k":"entrada","title":"Entrada","uso":"Splash al abrir Tanteo","vol":0.8,"url":"assets/sonidos/tanteo-entrada.mp3","file":"tanteo-entrada.mp3","dur":"3,5 s","bars":[28,22,12,16,17,35,40,37,34,33,32,31,30,30,29,28,27,26,25,25,23,24,22,22,21,21,20,20,19,19,18,18,17,17,16,16,16,15,15,14,10,9,7,6,5,5,4,4]},{"k":"ambiente-mesa","title":"Ambiente de mesa","uso":"Fondo del sitio, en bucle","vol":0.35,"url":"assets/sonidos/tanteo-ambiente-mesa.mp3","file":"tanteo-ambiente-mesa.mp3","dur":"9,2 s","bars":[30,22,31,23,26,23,24,27,24,30,33,28,25,26,22,23,31,25,23,25,23,22,20,24,25,18,19,24,26,40,27,24,22,27,22,24,26,32,20,26,28,24,26,23,25,21,18,22]},{"k":"ruleta","title":"Ruleta","uso":"Pantallas de carga: la ruleta gira","vol":0.8,"url":"assets/sonidos/tanteo-ruleta.mp3","file":"tanteo-ruleta.mp3","dur":"4,5 s","bars":[34,35,34,33,30,32,33,29,31,28,30,29,30,25,26,23,26,24,21,23,23,37,32,33,29,31,32,30,22,31,18,31,18,29,17,16,30,16,15,28,40,28,20,11,8,7,6,5]}]},{"name":"Cartas","suit":"♥","color":"#C1121F","items":[{"k":"carta-repartir","title":"Repartir carta","uso":"Al abrir una pantalla o un partido","vol":0.9,"url":"assets/sonidos/tanteo-carta-repartir.mp3","file":"tanteo-carta-repartir.mp3","dur":"0,6 s","bars":[4,6,8,11,13,18,21,25,29,33,40,35,22,15,28,20,15,12,12,10,9,8,9,9,8,7,7,7,7,7,6,6,6,6,5,6,5,5,5,5,5,5,4,4,4,4,4,4]},{"k":"carta-voltear","title":"Voltear carta","uso":"Al voltear un as del menú o ver un resultado","vol":0.85,"url":"assets/sonidos/tanteo-carta-voltear.mp3","file":"tanteo-carta-voltear.mp3","dur":"0,6 s","bars":[6,12,21,29,40,31,15,10,21,8,10,21,26,13,8,7,7,7,7,7,7,6,6,6,6,6,6,5,5,5,5,5,5,5,5,5,5,5,4,4,4,4,4,4,4,4,4,4]},{"k":"barajar","title":"Barajar","uso":"Pantalla de carga: barajando la jornada","vol":0.8,"url":"assets/sonidos/tanteo-barajar.mp3","file":"tanteo-barajar.mp3","dur":"2,1 s","bars":[4,21,14,27,23,26,22,24,24,24,23,23,28,27,27,26,29,27,25,26,27,25,29,28,27,28,29,26,20,20,21,24,22,23,20,40,23,11,10,9,9,8,8,5,6,5,5,4]}]},{"name":"Fichas","suit":"♣","color":"#1F5E47","items":[{"k":"ficha","title":"Ficha","uso":"Al poner una ficha en un pronóstico","vol":1,"url":"assets/sonidos/tanteo-ficha.mp3","file":"tanteo-ficha.mp3","dur":"0,6 s","bars":[40,24,16,25,23,15,11,9,10,10,9,11,8,9,8,7,7,7,6,7,6,6,5,6,6,6,6,5,5,6,6,5,6,5,5,5,5,5,5,4,5,4,4,4,4,4,4,4]},{"k":"fichas-apilar","title":"Apilar fichas","uso":"Al guardar una combinación","vol":0.9,"url":"assets/sonidos/tanteo-fichas-apilar.mp3","file":"tanteo-fichas-apilar.mp3","dur":"0,9 s","bars":[40,25,14,11,33,25,16,13,36,26,16,12,30,23,14,27,32,18,12,30,20,12,11,10,9,8,8,8,7,7,6,7,6,7,6,6,6,5,5,5,5,4,5,4,4,4,4,4]},{"k":"fichas-recoger","title":"Recoger fichas","uso":"Al recoger las fichas del simulador","vol":0.9,"url":"assets/sonidos/tanteo-fichas-recoger.mp3","file":"tanteo-fichas-recoger.mp3","dur":"1,3 s","bars":[4,6,7,34,34,33,28,24,28,33,40,25,25,38,38,29,39,20,20,26,28,24,13,37,26,14,21,13,11,10,10,9,9,7,8,7,6,6,6,5,5,5,5,5,5,4,4,4]}]},{"name":"Juego e interfaz","suit":"♦","color":"#1F4E8C","items":[{"k":"ganar","title":"Ganar","uso":"Cuando un pronóstico del modelo se cumple","vol":0.6,"url":"assets/sonidos/tanteo-ganar.mp3","file":"tanteo-ganar.mp3","dur":"2,4 s","bars":[18,19,27,29,31,36,36,40,37,34,32,31,29,29,28,27,26,25,24,24,23,22,21,21,21,20,21,20,19,18,17,16,16,14,13,11,9,8,10,9,7,7,7,6,5,5,4,4]},{"k":"gol","title":"¡Gol!","uso":"Alerta de gol en marcadores en vivo","vol":0.6,"url":"assets/sonidos/tanteo-gol.mp3","file":"tanteo-gol.mp3","dur":"3,8 s","bars":[19,35,36,28,16,30,39,38,26,23,35,40,39,38,37,37,37,35,37,37,36,32,23,23,22,22,22,21,19,16,16,15,13,12,11,12,10,9,9,9,8,7,6,5,5,4,4,4]},{"k":"click","title":"Clic","uso":"Botones y navegación","vol":0.9,"url":"assets/sonidos/tanteo-click.mp3","file":"tanteo-click.mp3","dur":"0,4 s","bars":[40,23,15,12,9,7,6,7,8,8,7,7,6,7,7,7,6,6,6,6,6,6,5,5,6,6,5,5,5,5,5,5,5,5,5,5,5,5,5,5,4,4,4,4,4,4,4,4]},{"k":"error","title":"Error","uso":"Si no se pudieron cargar los datos","vol":0.5,"url":"assets/sonidos/tanteo-error.mp3","file":"tanteo-error.mp3","dur":"0,7 s","bars":[40,35,28,23,22,19,16,16,14,13,12,36,30,27,24,25,19,17,15,17,14,13,12,9,11,7,8,7,6,7,6,6,6,5,6,6,5,5,5,5,5,5,4,4,4,4,4,4]}]}];
+}
+componentWillUnmount() { this.stop(); }
+stop() { if (this.au) { try { this.au.pause(); } catch (e) {} this.au = null; } }
+renderVals() {
+var self = this;
+var playing = this.state.playing;
+var name = 'Nada';
+var n = 0;
+var groups = this.G.map(function (g) {
+return {
+name: g.name, suit: g.suit, color: g.color,
+items: g.items.map(function (s) {
+var on = playing === s.k;
+if (on) name = s.title;
+var tilt = [-0.8, 0.6, -0.4, 0.7][n++ % 4];
+return {
+title: s.title, uso: s.uso, dur: s.dur, file: s.file, url: s.url, tilt: tilt,
+aria: (on ? 'Detener ' : 'Escuchar ') + s.title, pressed: on ? 'true' : 'false',
+idle: !on, on: on,
+barColor: on ? '#C1121F' : 'rgba(26,20,20,.55)',
+ring: on ? '0 0 0 3px #F3DC92, 0 0 0 5px rgba(0,0,0,.35), 0 16px 24px rgba(0,0,0,.5)' : 'inset 0 0 0 3px rgba(0,0,0,.2), inset 0 -4px 0 rgba(0,0,0,.25), 0 2px 0 rgba(0,0,0,.35), 0 12px 20px rgba(0,0,0,.45)',
+lift: on ? 'translateY(-4px)' : 'none',
+bars: s.bars.map(function (h) { return { h: h }; }),
+toggle: function () {
+self.stop();
+if (self.state.playing === s.k) { self.setState({ playing: null }); return; }
+try {
+var a = new Audio(s.url); a.volume = s.vol; a.loop = s.k === 'ambiente-mesa';
+a.onended = function () { if (self.au === a) { self.au = null; self.setState({ playing: null }); } };
+self.au = a;
+var p = a.play(); if (p && p.catch) p.catch(function () {});
+self.setState({ playing: s.k });
+} catch (e) {}
+}
+};
+})
+};
+});
+return { groups: groups, nowPlaying: name };
+}
+}
+TanteoDC.mount(Component);
+</script>
+</body>
+</html>

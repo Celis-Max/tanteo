@@ -1,0 +1,11 @@
+# Dependencias de Tanteo.
+#
+# Rangos y no versiones exactas a propósito: en tu Mac corres Python 3.14 con
+# pandas 3.0, y en ARM con Python 3.12 esa combinación puede no tener ruedas
+# precompiladas. Con rangos, pip resuelve lo que sí existe para la máquina.
+# Después del primer install bueno en el servidor: pip freeze > requirements.lock
+numpy>=1.26,<3
+pandas>=2.2,<4
+scipy>=1.11
+statsmodels>=0.14
+penaltyblog>=1.1

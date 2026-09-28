@@ -1,0 +1,62 @@
+{
+ "eventos": {
+  "gana_local": {
+   "n_total": 2859,
+   "n_prueba": 1494,
+   "coeficientes": {
+    "descanso_dif": {
+     "coef": -0.0252,
+     "p": 0.2063
+    },
+    "forma_dif": {
+     "coef": 0.0006,
+     "p": 0.951
+    },
+    "viaje_100km": {
+     "coef": 0.0064,
+     "p": 0.3493
+    },
+    "sube_1000m": {
+     "coef": 0.068,
+     "p": 0.0538
+    },
+    "modelo_1": {
+     "coef": 0.0211,
+     "p": 0.8517
+    }
+   },
+   "logloss_mercado": 0.63052,
+   "logloss_con_factores": 0.63015,
+   "mejora_pct": 0.058
+  },
+  "gana_visita": {
+   "n_total": 2859,
+   "n_prueba": 1494,
+   "coeficientes": {
+    "descanso_dif": {
+     "coef": 0.0514,
+     "p": 0.0184
+    },
+    "forma_dif": {
+     "coef": -0.0068,
+     "p": 0.5163
+    },
+    "viaje_100km": {
+     "coef": -0.0106,
+     "p": 0.1841
+    },
+    "sube_1000m": {
+     "coef": -0.0238,
+     "p": 0.5561
+    },
+    "modelo_2": {
+     "coef": 0.0243,
+     "p": 0.8501
+    }
+   },
+   "logloss_mercado": 0.5497,
+   "logloss_con_factores": 0.5511,
+   "mejora_pct": -0.255
+  }
+ }
+}
