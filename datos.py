@@ -12,10 +12,22 @@ import pandas as pd
 RAIZ = Path(__file__).resolve().parent
 DIR_DATOS = RAIZ / "datos"
 URL_HIST = "https://football-data.co.uk/new/MEX.csv"
-# Ojo con la ruta: `/new_league_fixtures.csv` (sin /new/) empezó a devolver el
-# archivo separado por TABULADORES, y pandas metía todo el encabezado en una
-# sola columna. La de abajo sigue entregando CSV con comas.
-URL_FIXTURES = "https://www.football-data.co.uk/new/new_league_fixtures.csv"
+# OJO CON LA RUTA. Hay dos archivos con casi el mismo nombre:
+#
+#   /new_league_fixtures.csv       ← esta. Separada por TABULADORES, y es la
+#                                    única que trae México.
+#   /new/new_league_fixtures.csv   ← con comas, pero congelada desde
+#                                    septiembre de 2025 y sin México.
+#
+# En su momento cambiamos a la de `/new/` porque la buena empezó a llegar con
+# tabuladores y pareció que se había roto. No se había roto: solo cambió de
+# separador, que es justo lo que resuelve `_leer_flexible()`. El cambio dejó
+# el proyecto días enteros con «0 partidos con cuotas» sin que nada fallara a
+# gritos, porque el archivo se descargaba bien; solo que era el equivocado.
+#
+# Si vuelve a salir «0 con cuotas», lo primero es mirar qué países trae este
+# archivo, no el código que lo interpreta.
+URL_FIXTURES = "https://www.football-data.co.uk/new_league_fixtures.csv"
 
 
 def _bajar(url: str, destino: Path) -> Path:
@@ -85,8 +97,8 @@ def _leer_flexible(ruta: Path) -> pd.DataFrame:
     return d
 
 
-def proximos() -> pd.DataFrame:
-    d = _leer_flexible(DIR_DATOS / "fixtures.csv")
+def _parsear_fixtures(d: pd.DataFrame) -> pd.DataFrame:
+    """Deja el archivo de fixtures en el formato que usa el resto del proyecto."""
     if "Country" not in d.columns:
         raise ValueError(
             "fixtures.csv no trae la columna Country. Columnas: "
@@ -98,7 +110,43 @@ def proximos() -> pd.DataFrame:
         for r, s in (("1", "H"), ("X", "D"), ("2", "A")):
             col = f"{origen}{s}"
             d[f"c_{destino}_{r}"] = pd.to_numeric(d[col], errors="coerce") if col in d else pd.NA
-    return d.dropna(subset=["fecha"]).sort_values(["fecha", "Time"]).reset_index(drop=True)
+    orden = ["fecha"] + (["Time"] if "Time" in d else [])
+    return d.dropna(subset=["fecha"]).sort_values(orden).reset_index(drop=True)
+
+
+def proximos(con_historial: bool = True) -> pd.DataFrame:
+    """Partidos de México con cuotas.
+
+    football-data solo publica los encuentros INMINENTES: el archivo trae una
+    jornada y desaparece en cuanto se juega. Si el ciclo no corre justo en esa
+    ventana, la cuota se pierde y no hay forma de recuperarla.
+
+    Por eso cada descarga distinta se archiva en `datos/cuotas_historial/`, y
+    aquí se releen todas: así un partido conserva la última cuota que se le vio
+    aunque el archivo de hoy ya no lo mencione. El archivo actual manda sobre
+    los archivados, que es lo correcto —la cuota más reciente es la que más se
+    parece a la de cierre.
+    """
+    actual = _parsear_fixtures(_leer_flexible(DIR_DATOS / "fixtures.csv"))
+    if not con_historial:
+        return actual
+
+    partes = []
+    historial = DIR_DATOS / "cuotas_historial"
+    if historial.is_dir():
+        # Por nombre es por fecha: `cuotas_AAAAMMDD_HHMM.csv`. Del más viejo al
+        # más nuevo, para que al quitar duplicados sobreviva el último visto.
+        for f in sorted(historial.glob("cuotas_*.csv")):
+            try:
+                partes.append(_parsear_fixtures(_leer_flexible(f)))
+            except (ValueError, pd.errors.ParserError):
+                continue  # una foto corrupta no debe tirar el ciclo
+    partes.append(actual)
+
+    d = pd.concat(partes, ignore_index=True)
+    d = d.drop_duplicates(subset=["equipo_local", "equipo_visita"], keep="last")
+    orden = ["fecha"] + (["Time"] if "Time" in d else [])
+    return d.sort_values(orden).reset_index(drop=True)
 
 
 def equipos_activos(hist: pd.DataFrame, hasta, anios: float = 3.0) -> list[str]:

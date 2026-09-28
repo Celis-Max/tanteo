@@ -21,10 +21,11 @@ echo "→ zona horaria en hora de México…"
 timedatectl set-timezone America/Mexico_City || true
 
 # ── Memoria de intercambio ───────────────────────────────────────────────
-# La E2.1.Micro trae 1 GB y Ubuntu ya se come una parte. Tanteo llega a 230 MB
-# en su punto más alto (medido), así que entra, pero sin margen: basta un pico
-# de pandas para que el kernel mate el proceso a media madrugada y te quedes
-# sin actualización sin saber por qué. 2 GB de swap cuestan disco, que sobra.
+# Con los 12 GB de la A1.Flex esto sobra: Tanteo llega a 230 MB en su punto
+# más alto (medido). Se deja porque no estorba —swappiness en 10, así que no
+# se toca salvo apuro real— y porque el día que haya que rehacer la instancia
+# puede tocar una E2.1.Micro de 1 GB, donde sí es la diferencia entre que el
+# ciclo termine o que el kernel lo mate a media madrugada.
 if ! swapon --show | grep -q '/swapfile'; then
   echo "→ creando 2 GB de memoria de intercambio…"
   fallocate -l 2G /swapfile || dd if=/dev/zero of=/swapfile bs=1M count=2048

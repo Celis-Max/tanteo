@@ -9,7 +9,9 @@ datos/backtest.json (lo lee la página). Tarda varios minutos la primera vez.
 from __future__ import annotations
 
 import json
+import os
 import pickle
+from multiprocessing import Pool
 from pathlib import Path
 
 import numpy as np
@@ -28,14 +30,37 @@ UMBRAL = 0.05
 KELLY = 0.25
 
 
+def _un_xi(arg):
+    """Un solo recorrido del walk-forward. Tiene que estar al nivel del módulo
+    para que se pueda enviar a otro proceso."""
+    hist, xi = arg
+    d = val.walk_forward(hist, xi, "2016-01-01")
+    print(f"  xi={xi} listo ({len(d):,} partidos)", flush=True)
+    return xi, d
+
+
 def predicciones(hist: pd.DataFrame, refrescar: bool = False) -> dict[float, pd.DataFrame]:
     if CACHE.exists() and not refrescar:
         with open(CACHE, "rb") as f:
             return pickle.load(f)
-    todo = {}
-    for xi in XIS:
-        print(f"  caminando en el tiempo con xi={xi}…", flush=True)
-        todo[xi] = val.walk_forward(hist, xi, "2016-01-01")
+
+    # Cada xi es un recorrido independiente sobre el mismo histórico, y
+    # `walk_forward` no toca nada de fuera: se reparten entre procesos sin más.
+    # Medido en el servidor, un recorrido se lleva un núcleo entero al 100%
+    # mientras el otro miraba; en serie se desperdiciaba la mitad de la máquina.
+    #
+    # Procesos = min(núcleos, cuántos xi hay). Más procesos que núcleos solo
+    # haría que se peleen por la CPU, y cada uno carga su copia del histórico
+    # (unos 265 MB medidos), así que tampoco conviene abrir de más.
+    n = min(len(XIS), os.cpu_count() or 1)
+    print(f"  caminando en el tiempo: {len(XIS)} valores de xi en {n} proceso(s)…", flush=True)
+
+    if n > 1:
+        with Pool(n) as pool:
+            todo = dict(pool.map(_un_xi, [(hist, xi) for xi in XIS]))
+    else:
+        todo = dict(_un_xi((hist, xi)) for xi in XIS)
+
     CACHE.parent.mkdir(exist_ok=True)
     with open(CACHE, "wb") as f:
         pickle.dump(todo, f)

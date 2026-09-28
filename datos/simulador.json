@@ -7,7 +7,7 @@
   {
    "jornada": 9,
    "creado": "2026-09-22",
-   "estado": "pendiente",
+   "estado": "perdido",
    "monto": 100,
    "prob": 0.76477,
    "cuota_justa": 1.3076,
@@ -19,7 +19,9 @@
      "fecha": "2026-09-26",
      "mercado": "1X",
      "apuesta": "Local o empate",
-     "prob": 0.85573
+     "prob": 0.85573,
+     "marcador": "0-2",
+     "pego": false
     },
     {
      "partido": "9|2026-09-27|Tigres UANL|Puebla",
@@ -28,22 +30,55 @@
      "fecha": "2026-09-27",
      "mercado": "1X",
      "apuesta": "Local o empate",
-     "prob": 0.8937
+     "prob": 0.8937,
+     "marcador": "1-0",
+     "pego": true
+    }
+   ],
+   "pago": 0.0,
+   "neto": -100.0,
+   "banca": -100.0
+  },
+  {
+   "jornada": 10,
+   "creado": "2026-09-28",
+   "estado": "pendiente",
+   "monto": 100,
+   "prob": 0.66302,
+   "cuota_justa": 1.5083,
+   "piernas": [
+    {
+     "partido": "10|2026-10-10|Juarez|Club Tijuana",
+     "local": "Juarez",
+     "visita": "Club Tijuana",
+     "fecha": "2026-10-10",
+     "mercado": "O15",
+     "apuesta": "Más de 1.5 goles",
+     "prob": 0.79666
+    },
+    {
+     "partido": "10|2026-10-11|Club America|Monterrey",
+     "local": "Club America",
+     "visita": "Monterrey",
+     "fecha": "2026-10-11",
+     "mercado": "O15",
+     "apuesta": "Más de 1.5 goles",
+     "prob": 0.83225
     }
    ],
    "pago": null,
    "neto": null,
-   "banca": 0.0
+   "banca": -100.0
   }
  ],
  "totales": {
-  "tickets": 1,
-  "resueltos": 0,
+  "tickets": 2,
+  "resueltos": 1,
   "ganados": 0,
   "pendientes": 1,
-  "invertido": 0.0,
+  "invertido": 100.0,
   "devuelto": 0.0,
-  "neto": 0.0,
-  "yield": null
+  "neto": -100.0,
+  "yield": -1.0
  }
 }

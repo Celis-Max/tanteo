@@ -44,18 +44,46 @@ def historico_completo(hist: pd.DataFrame, torneo: dict) -> pd.DataFrame:
     return pd.concat([hist, pd.DataFrame(nuevos)], ignore_index=True).sort_values("fecha").reset_index(drop=True)
 
 
+# Cuánto pueden separarse la fecha de football-data y la de ESPN para seguir
+# considerándolas el mismo partido. Los de la noche en México caen al día
+# siguiente en UTC, así que un día de margen hace falta; dos es holgura.
+DIAS_TOLERANCIA = 2
+
+
 def cuotas_de(prox: pd.DataFrame) -> dict:
-    """Cuotas disponibles, indexadas por partido."""
+    """Cuotas disponibles, indexadas por emparejamiento, con su fecha.
+
+    Se guarda la fecha —y `cuota_de()` la comprueba— porque las cuotas ahora
+    se acumulan entre descargas: sin ese control, cuando Atlante vuelva a
+    recibir a Monterrey el torneo que viene se le pegaría la cuota de este
+    partido como si fuera la suya. Sería un error callado, de los peores: la
+    página enseñaría un valor esperado calculado contra una línea de hace
+    meses, y nada avisaría.
+    """
     salida = {}
     for _, p in prox.iterrows():
         clave = f"{p.equipo_local}|{p.equipo_visita}"
-        c = {}
+        c = {"_fecha": p.fecha}
         for tipo in ("avg", "max", "ps"):
             for k in ("1", "X", "2"):
                 v = p.get(f"c_{tipo}_{k}")
                 c[f"{tipo}_{k}"] = float(v) if pd.notna(v) else None
         salida[clave] = c
     return salida
+
+
+def cuota_de(cuotas: dict, partido: dict) -> dict | None:
+    """La cuota de este partido, solo si la fecha cuadra."""
+    c = cuotas.get(f"{partido['local']}|{partido['visita']}")
+    if not c:
+        return None
+    try:
+        dias = abs((pd.Timestamp(partido["fecha"]) - pd.Timestamp(c["_fecha"])).days)
+    except (ValueError, TypeError):
+        return None
+    if dias > DIAS_TOLERANCIA:
+        return None
+    return {k: v for k, v in c.items() if not k.startswith("_")}
 
 
 MODELOS_ENSAMBLE = {
@@ -173,7 +201,7 @@ def construir(xi: float = 0.0015, backtest: dict | None = None, refrescar: bool 
             d["matriz"] = matriz_web(matriz)
             d["base_modelo"] = f"ensamble de {len(d.get('por_modelo', {}))} modelos" if ensamble else "Dixon-Coles"
 
-            c = cuotas.get(f"{p['local']}|{p['visita']}")
+            c = cuota_de(cuotas, p)
             if c:
                 origen = next((t for t in ("ps", "max", "avg") if all(c[f"{t}_{k}"] for k in ("1", "X", "2"))), None)
                 if origen:
