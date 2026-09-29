@@ -1,0 +1,110 @@
+{
+ "Club America": {
+  "id": "227",
+  "archivo": "227.png",
+  "color": "#ffff91",
+  "color2": "#001C58"
+ },
+ "Atlante": {
+  "id": "226",
+  "archivo": "226.png",
+  "color": "#022789",
+  "color2": "#022789"
+ },
+ "Atlas": {
+  "id": "216",
+  "archivo": "216.png",
+  "color": "#EF0107",
+  "color2": "#e1e1e1"
+ },
+ "Atl. San Luis": {
+  "id": "15720",
+  "archivo": "15720.png",
+  "color": "#EF0107",
+  "color2": "#dfa829"
+ },
+ "Cruz Azul": {
+  "id": "218",
+  "archivo": "218.png",
+  "color": "#0000ff",
+  "color2": "#ffffff"
+ },
+ "Juarez": {
+  "id": "17851",
+  "archivo": "17851.png",
+  "color": "#89f442",
+  "color2": "#ffffff"
+ },
+ "Guadalajara Chivas": {
+  "id": "219",
+  "archivo": "219.png",
+  "color": "#EF0107",
+  "color2": "#104e8a"
+ },
+ "Club Leon": {
+  "id": "228",
+  "archivo": "228.png",
+  "color": "#008000",
+  "color2": "#FFF61B"
+ },
+ "Monterrey": {
+  "id": "220",
+  "archivo": "220.png",
+  "color": "#001C58",
+  "color2": "#ffffff"
+ },
+ "Necaxa": {
+  "id": "229",
+  "archivo": "229.png",
+  "color": "#EF0107",
+  "color2": "#000000"
+ },
+ "Pachuca": {
+  "id": "234",
+  "archivo": "234.png",
+  "color": "#001C58",
+  "color2": "#02b0d0"
+ },
+ "Puebla": {
+  "id": "231",
+  "archivo": "231.png",
+  "color": "#ffffff",
+  "color2": "#0032a8"
+ },
+ "UNAM Pumas": {
+  "id": "233",
+  "archivo": "233.png",
+  "color": "#ffffff",
+  "color2": "#060040"
+ },
+ "Queretaro": {
+  "id": "222",
+  "archivo": "222.png",
+  "color": "#212121",
+  "color2": "#02b0d0"
+ },
+ "Santos Laguna": {
+  "id": "225",
+  "archivo": "225.png",
+  "color": "#15926d",
+  "color2": "#00331b"
+ },
+ "Tigres UANL": {
+  "id": "232",
+  "archivo": "232.png",
+  "color": "#ffd011",
+  "color2": "#0000ff"
+ },
+ "Club Tijuana": {
+  "id": "10125",
+  "archivo": "10125.png",
+  "color": "#EF0107",
+  "color2": "#e1e1e1"
+ },
+ "Toluca": {
+  "id": "223",
+  "archivo": "223.png",
+  "color": "#EF0107",
+  "color2": "#ffffff"
+ }
+}

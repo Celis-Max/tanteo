@@ -1,0 +1,112 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   TANTEO · páginas de texto (ayuda, preguntas, términos, privacidad)
+
+   Se apoyan en el resto de hojas del sitio —el paño, las tarjetas de papel,
+   las fuentes— y aquí solo se añade lo propio de leer texto largo: medida de
+   línea cómoda, jerarquía de títulos y una tabla de contenidos.
+
+   Las cuatro páginas comparten esta hoja y la misma estructura, así que un
+   cambio de estilo se hace en un sitio y no en cuatro.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.hoja{
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 44px clamp(20px, 5vw, 56px) 70px;
+}
+
+.hoja-cabeza{ margin-bottom: 34px }
+.hoja-cabeza .eyebrow{ margin-bottom: 10px }
+.hoja h1{
+  font-family: 'Bodoni Moda', serif; font-weight: 500;
+  font-size: clamp(34px, 6vw, 54px); line-height: 1.08;
+  margin: 0 0 12px; color: #F3EFE6;
+}
+.hoja h1 em{
+  font-family: 'Great Vibes', cursive; font-style: normal;
+  font-size: 1.32em; color: #F0484F; line-height: .9;
+}
+.hoja-entrada{
+  font-size: 1.02rem; line-height: 1.65; color: #D8E4DC; max-width: 62ch;
+}
+
+/* Cada apartado, sobre papel: es el mismo material que las tarjetas del
+   resto del sitio, así que la página no parece de otro lugar. */
+.apartado{
+  background-color: #F6F1E6;
+  background-image: linear-gradient(135deg, rgba(255,255,255,.55), rgba(255,255,255,0) 40%, rgba(0,0,0,.07) 100%),
+                    radial-gradient(rgba(60,40,20,.10) .8px, rgba(0,0,0,0) 1.3px);
+  background-size: 100% 100%, 9px 9px;
+  color: #1A1414;
+  border-radius: 16px;
+  padding: 26px clamp(20px, 4vw, 34px) 28px;
+  margin-bottom: 20px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.7),
+              inset 0 0 22px rgba(120,90,50,.18),
+              0 1px 1px rgba(0,0,0,.35), 0 12px 26px rgba(0,0,0,.34);
+}
+.apartado h2{
+  font-family: 'Bodoni Moda', serif; font-weight: 700;
+  font-size: 1.44rem; line-height: 1.2; margin: 0 0 14px; color: #1A1414;
+}
+.apartado h3{
+  font-size: 1rem; font-weight: 800; margin: 22px 0 8px; color: #5A1A20;
+}
+.apartado p, .apartado li{
+  font-size: .95rem; line-height: 1.68; color: #3A2E2A; margin: 0 0 12px;
+}
+.apartado ul, .apartado ol{ margin: 0 0 12px; padding-left: 22px }
+.apartado li{ margin-bottom: 7px }
+.apartado strong{ color: #1A1414 }
+.apartado a{ color: #8C1420; text-decoration: underline; text-underline-offset: 2px }
+.apartado a:hover{ color: #C1121F }
+.apartado :last-child{ margin-bottom: 0 }
+
+/* La regla que sostiene todo el sitio, destacada donde toca. */
+.aviso-clave{
+  border-left: 4px solid #C1121F;
+  background: rgba(193,18,31,.07);
+  border-radius: 0 12px 12px 0;
+  padding: 14px 18px; margin: 18px 0;
+}
+.aviso-clave p{ margin: 0 }
+
+/* Preguntas y respuestas, plegables: la lista completa abruma. */
+details.pregunta{
+  border-top: 1px solid rgba(26,20,20,.14);
+  padding: 2px 0;
+}
+details.pregunta:first-of-type{ border-top: 0 }
+details.pregunta > summary{
+  cursor: pointer; list-style: none;
+  padding: 14px 30px 14px 0; position: relative;
+  font-weight: 700; font-size: .98rem; color: #1A1414;
+}
+details.pregunta > summary::-webkit-details-marker{ display: none }
+details.pregunta > summary::after{
+  content: "+"; position: absolute; right: 4px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.3rem; font-weight: 400; color: #C1121F; line-height: 1;
+}
+details.pregunta[open] > summary::after{ content: "−" }
+details.pregunta > div{ padding: 0 0 16px }
+
+/* Índice lateral: en pantallas anchas acompaña; en móvil va arriba. */
+.indice{
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 26px;
+}
+.indice a{
+  font-size: .78rem; font-weight: 600; text-decoration: none;
+  padding: 7px 14px; border-radius: 100px;
+  border: 1px solid rgba(228,200,119,.42);
+  background: rgba(4,18,12,.5); color: #E4C877;
+  transition: background .2s, transform .2s;
+}
+.indice a:hover{ background: rgba(228,200,119,.16); transform: translateY(-1px) }
+
+.actualizado{
+  font-size: .78rem; color: #A9B8AE; text-align: center;
+  margin-top: 26px; padding-top: 18px;
+  border-top: 1px dashed rgba(228,200,119,.28);
+}

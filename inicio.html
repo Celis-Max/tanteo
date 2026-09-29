@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tanteo · Menú principal</title>
+<link rel="icon" href="assets/img/tanteo-keyart.jpg">
+<script src="assets/js/intro.js"></script>
+<link rel="stylesheet" href="assets/css/fuentes.css">
+<link rel="stylesheet" href="assets/css/adaptable.css">
+<link rel="stylesheet" href="assets/css/movimiento.css">
+<style>
+body{margin:0;background:#07190F;font-family:Manrope,system-ui,sans-serif;color:#F3EFE6}
+a{color:#E4C877}a:hover{color:#F3DC92}
+.table{position:relative;background-color:#0F3D2E;background-image:radial-gradient(ellipse 130% 90% at 50% 45%,rgba(0,0,0,0) 50%,rgba(0,0,0,.62) 100%),repeating-radial-gradient(circle at 0 0,rgba(0,0,0,0) 0 30px,rgba(255,255,255,.026) 31px 32px,rgba(0,0,0,0) 33px 60px),repeating-radial-gradient(circle at 70px 70px,rgba(0,0,0,0) 0 18px,rgba(0,0,0,.06) 19px 20px,rgba(0,0,0,0) 21px 40px),radial-gradient(rgba(255,255,255,.05) .7px,rgba(0,0,0,0) 1.2px),radial-gradient(rgba(0,0,0,.14) .7px,rgba(0,0,0,0) 1.2px);background-size:100% 100%,140px 140px,140px 140px,4px 4px,6px 6px;background-position:0 0,0 0,0 0,0 0,2px 3px}
+.deco{position:absolute;left:0;top:0;right:0;bottom:0;pointer-events:none;overflow:hidden;z-index:0}
+.content{position:relative;z-index:1}
+.lamp{position:absolute;border-radius:50%;background:radial-gradient(closest-side,rgba(200,240,190,.20),rgba(200,240,190,.07) 55%,rgba(0,0,0,0))}
+.crop{position:absolute;overflow:hidden;-webkit-mask-image:radial-gradient(closest-side,#000 55%,rgba(0,0,0,0) 100%);mask-image:radial-gradient(closest-side,#000 55%,rgba(0,0,0,0) 100%)}
+.crop img{position:absolute;display:block;width:1400px;height:1400px;max-width:none}
+.leather{background-color:#4A1216;background-image:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,0) 30%,rgba(0,0,0,.35) 100%),radial-gradient(rgba(0,0,0,.22) 1px,rgba(0,0,0,0) 1.4px);background-size:100% 100%,3px 3px;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),inset 0 -2px 4px rgba(0,0,0,.5),0 3px 0 #9C7A33,0 5px 0 #4A360F,0 18px 30px rgba(0,0,0,.6)}
+.stitch{position:absolute;left:9px;top:9px;right:9px;bottom:9px;border:1.5px dashed rgba(228,200,119,.5);border-radius:inherit;pointer-events:none}
+.paper{background-color:#F6F1E6;background-image:linear-gradient(135deg,rgba(255,255,255,.55),rgba(255,255,255,0) 40%,rgba(0,0,0,.07) 100%),radial-gradient(rgba(60,40,20,.10) .8px,rgba(0,0,0,0) 1.3px),radial-gradient(rgba(60,40,20,.06) .8px,rgba(0,0,0,0) 1.3px);background-size:100% 100%,9px 9px,13px 13px;background-position:0 0,0 0,4px 6px;color:#1A1414}
+.card{position:relative;border-radius:16px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.7),inset 0 0 22px rgba(120,90,50,.20),0 1px 1px rgba(0,0,0,.35),0 8px 16px rgba(0,0,0,.35),0 28px 52px rgba(0,0,0,.38)}
+.card::before{content:"";position:absolute;left:9px;top:9px;right:9px;bottom:9px;border:1px solid rgba(193,18,31,.28);border-radius:10px;pointer-events:none}
+.wood{background-color:#3B1114;background-image:linear-gradient(160deg,rgba(255,255,255,.12),rgba(255,255,255,0) 35%),radial-gradient(ellipse 80% 70% at 30% 20%,rgba(140,50,50,.45),rgba(0,0,0,0) 70%),repeating-linear-gradient(100deg,rgba(0,0,0,.13) 0 3px,rgba(0,0,0,0) 3px 11px)}
+.zone{position:relative;margin:0;min-width:0;border:2px solid rgba(238,226,196,.5);border-radius:26px;padding:30px 30px 34px}
+.zone legend{padding:0 16px;font:700 15px 'Bodoni Moda',serif;letter-spacing:.32em;text-transform:uppercase;color:rgba(242,232,204,.9)}
+.chip{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:50%;border:0;color:#FFFFFF;background:radial-gradient(circle at 35% 28%,rgba(255,255,255,.30),rgba(255,255,255,0) 45%),radial-gradient(circle,var(--c) 0 52%,#EDE6D6 53% 55%,rgba(0,0,0,0) 56%),repeating-conic-gradient(#EDE6D6 0 12deg,var(--c) 12deg 45deg);box-shadow:inset 0 0 0 3px rgba(0,0,0,.2),inset 0 -4px 0 rgba(0,0,0,.25),0 2px 0 rgba(0,0,0,.35),0 12px 20px rgba(0,0,0,.45)}
+.abs{position:absolute}
+.pr{width:66px;height:66px;font-family:Manrope,sans-serif;line-height:1.1}
+.pr small{font-size:9px;font-weight:800;letter-spacing:.08em;opacity:.9}
+.pr b{font-size:15px;font-weight:800}
+.pr.on{box-shadow:0 0 0 3px #F3DC92,0 0 0 5px rgba(0,0,0,.4),0 16px 24px rgba(0,0,0,.55);transform:translateY(-6px)}
+.pbar{display:flex;gap:2px;height:8px;border-radius:4px;overflow:hidden}
+.pbar span{display:block;height:8px}
+.wx{display:inline-flex;gap:6px;align-items:center;padding:4px 10px;border-radius:999px;background:rgba(26,20,20,.07);font-size:12px;font-weight:800;color:#4A3F38;letter-spacing:0}
+.back{position:absolute;border-radius:12px;background-color:#9E1520;background-image:linear-gradient(135deg,rgba(255,255,255,.18),rgba(255,255,255,0) 45%),repeating-linear-gradient(45deg,rgba(255,255,255,.16) 0 2px,rgba(0,0,0,0) 2px 9px),repeating-linear-gradient(-45deg,rgba(255,255,255,.16) 0 2px,rgba(0,0,0,0) 2px 9px);box-shadow:inset 0 0 0 7px #F4F0E7,inset 0 0 0 9px #7A0F17,0 2px 2px rgba(0,0,0,.4),0 18px 34px rgba(0,0,0,.55)}
+.burnt{border-radius:10px 16px 6px 22px;box-shadow:inset 0 0 26px 9px rgba(80,34,8,.78),inset 0 0 5px 2px rgba(30,10,0,.9),0 18px 34px rgba(0,0,0,.55)}
+.dia{position:absolute;width:18px;height:18px;background:linear-gradient(135deg,#F7E3A0,#A57A2A 60%,#6E4F16);transform:rotate(45deg);box-shadow:0 4px 8px rgba(0,0,0,.55)}
+.die{position:absolute;width:62px;height:62px;border-radius:14px;background-color:#F4F0E7;background-image:radial-gradient(circle at 26% 26%,#1A1414 0 6px,rgba(0,0,0,0) 7px),radial-gradient(circle at 74% 74%,#1A1414 0 6px,rgba(0,0,0,0) 7px),radial-gradient(circle at 50% 50%,#C1121F 0 6px,rgba(0,0,0,0) 7px),linear-gradient(135deg,#FFFFFF,#DCD4C2);box-shadow:inset 0 -5px 0 rgba(0,0,0,.14),0 2px 2px rgba(0,0,0,.4),0 16px 28px rgba(0,0,0,.55)}
+.pencil{position:absolute;width:300px;height:16px;border-radius:3px;background:linear-gradient(180deg,#F7C948,#E0A91E 50%,#B98512);box-shadow:0 8px 14px rgba(0,0,0,.5)}
+.pencil::before{content:"";position:absolute;right:-34px;top:0;width:34px;height:16px;background:linear-gradient(90deg,#E8C9A0,#C9A57A);clip-path:polygon(0 0,100% 50%,0 100%)}
+.pencil::after{content:"";position:absolute;left:-22px;top:0;width:22px;height:16px;border-radius:4px 0 0 4px;background:linear-gradient(90deg,#E27A86,#C9505E 70%,#B8B8B8 70%,#8C8C8C)}
+.suit{position:absolute;font-family:'Bodoni Moda',serif;line-height:1}
+.live{display:inline-block;width:9px;height:9px;border-radius:50%;background:#FF3B45;box-shadow:0 0 0 4px rgba(255,59,69,.25)}
+.crest{display:flex;align-items:center;justify-content:center;flex-shrink:0;width:42px;height:48px;padding-bottom:8px;box-sizing:border-box;clip-path:polygon(0 0,100% 0,100% 62%,50% 100%,0 62%);font:800 11px Manrope,sans-serif;color:#FFFFFF;text-shadow:0 1px 2px rgba(0,0,0,.6)}
+.eyebrow{font-size:13px;letter-spacing:.24em;text-transform:uppercase;font-weight:800;color:#E4C877}
+.fcol a{display:block;color:#EADBD0;text-decoration:none;font-size:15px;padding:5px 0}
+.fcol a:hover{color:#F3DC92}
+.pill{padding:8px 14px;border-radius:8px;font-size:13px;font-weight:800}
+.fac{position:relative;height:250px;padding:22px;box-sizing:border-box;display:flex;flex-direction:column;gap:10px}
+.fac svg{color:#C1121F}
+</style>
+<style>#page{max-width:1440px;width:100%;margin:0 auto}</style>
+</head>
+<body>
+<div id="page">
+<div class="table">
+
+<div class="deco">
+<div class="lamp" style="left: 120px; top: -300px; width: 1200px; height: 1100px"></div>
+<div class="lamp" style="left: -200px; top: 900px; width: 1100px; height: 900px"></div>
+<div class="lamp" style="left: 400px; top: 1500px; width: 1200px; height: 900px"></div>
+<div class="lamp" style="left: 500px; top: 2200px; width: 1200px; height: 1000px"></div>
+<div class="lamp" style="left: 100px; top: 2850px; width: 1200px; height: 800px"></div>
+<div class="crop" style="left: -150px; top: 180px; width: 440px; height: 720px"><img src="assets/img/tanteo-keyart.jpg" alt="" style="left: -20px; top: 0"></div>
+<div class="crop" style="left: 1090px; top: 2680px; width: 560px; height: 560px"><img src="assets/img/tanteo-keyart.jpg" alt="" style="left: -938px; top: 140px"></div>
+<div class="crop" style="left: 1230px; top: 900px; width: 250px; height: 420px"><img src="assets/img/tanteo-keyart.jpg" alt="" style="left: -1222px; top: -480px"></div>
+<div class="suit" style="left: 40px; top: 2300px; font-size: 420px; color: rgba(0,0,0,.14); transform: rotate(-14deg)">♠</div>
+<div class="suit" style="left: 1060px; top: 1500px; font-size: 360px; color: rgba(0,0,0,.12); transform: rotate(12deg)">♦</div>
+<div class="back" style="left: 30px; top: 1180px; width: 120px; height: 172px; transform: rotate(-26deg)"></div>
+<div class="back" style="left: 70px; top: 1200px; width: 120px; height: 172px; transform: rotate(-10deg)"></div>
+<div class="die" style="left: 1330px; top: 190px; transform: rotate(18deg)"></div>
+<div class="die" style="left: 1285px; top: 250px; transform: rotate(-9deg); width: 52px; height: 52px"></div>
+<div class="chip abs" style="--c: #1F4E8C; left: 1330px; top: 2080px; width: 92px; height: 92px"></div>
+<div class="chip abs" style="--c: #1A1414; left: 1318px; top: 2068px; width: 92px; height: 92px"></div>
+<div class="chip abs" style="--c: #C1121F; left: 1306px; top: 2056px; width: 92px; height: 92px"></div>
+<div class="chip abs" style="--c: #1F5E47; left: 26px; top: 3060px; width: 96px; height: 96px"></div>
+<div class="chip abs" style="--c: #C1121F; left: 60px; top: 3090px; width: 96px; height: 96px"></div>
+<div class="dia" style="left: 470px; top: 190px"></div>
+<div class="dia" style="left: 1400px; top: 820px"></div>
+<div class="dia" style="left: 690px; top: 1480px; width: 12px; height: 12px"></div>
+<div class="dia" style="left: 30px; top: 2080px"></div>
+</div>
+
+<div class="content" style="display: flex; flex-direction: column">
+
+<header class="leather" style="position: relative; display: flex; align-items: center; justify-content: space-between; padding: 18px 56px; border-radius: 0 0 30px 30px; margin: 0 14px">
+<span class="stitch"></span>
+<a href="inicio.html" class="paper" style="display: flex; align-items: center; justify-content: center; width: 156px; height: 60px; border-radius: 8px; transform: rotate(-4deg); box-shadow: 0 2px 2px rgba(0,0,0,.4), 0 10px 18px rgba(0,0,0,.5); text-decoration: none" aria-label="Tanteo, inicio"><span style="font-family: 'Great Vibes', cursive; font-size: 44px; line-height: 1; color: #C1121F">Tanteo</span></a>
+<nav style="display: flex; gap: 36px; align-items: center; font-size: 16px; font-weight: 600">
+<a href="inicio.html" style="color: #F3DC92; text-decoration: none; display: flex; gap: 8px; align-items: center"><span style="font-size: 12px">♦</span>Inicio</a>
+<a href="en-vivo.html" style="color: #F3EFE6; text-decoration: none; display: flex; gap: 10px; align-items: center"><span class="live"></span>En vivo</a>
+<a href="ligas.html">Internacional</a>
+<a href="parlays.html" style="color: #F3EFE6; text-decoration: none">Parlays</a>
+<a href="simulador.html" style="color: #F3EFE6; text-decoration: none">Simulador</a>
+<a href="#modelo" style="color: #F3EFE6; text-decoration: none">Cómo funciona</a>
+</nav>
+<div style="display: flex; gap: 12px; align-items: center">
+
+
+</div>
+</header>
+
+<div style="margin: 18px 56px 0; display: flex; align-items: center; gap: 22px; padding: 12px 22px; border-radius: 999px; background: rgba(4,18,12,.55); border: 1px solid rgba(228,200,119,.35); font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden" id="zona-ticker">
+<span style="display: flex; gap: 8px; align-items: center; color: #FF6B72; letter-spacing: .12em"><span class="live"></span>LIGA MX · J10</span>
+<span>AME <b style="color: #F3DC92">2–1</b> CAZ <span style="color: #FF6B72">67'</span></span><span style="color: #9C7A33">♦</span>
+<span>TIG <b style="color: #F3DC92">0–0</b> MTY <span style="color: #FF6B72">34'</span></span><span style="color: #9C7A33">♦</span>
+<span>GDL <b style="color: #F3DC92">1–1</b> PUM <span style="color: #FF6B72">81'</span></span><span style="color: #9C7A33">♦</span>
+<span>TOL <b style="color: #F3DC92">3–1</b> LEO <span style="color: #A9C2B6">Final</span></span><span style="color: #9C7A33">♦</span>
+<span>PAC <b style="color: #F3DC92">2–2</b> SAN <span style="color: #A9C2B6">Final</span></span><span style="color: #9C7A33">♦</span>
+<span>ATL – PUE <span style="color: #A9C2B6">19:00</span></span>
+</div>
+
+<section style="position: relative; height: 700px; padding: 40px 56px 30px 110px; box-sizing: border-box; display: flex; gap: 40px; align-items: center">
+<div style="width: 640px; display: flex; flex-direction: column; gap: 24px">
+<div class="eyebrow" id="zona-eyebrow">Liga MX · Apertura 2026 · Jornada 10</div>
+<h1 style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: 68px; line-height: 1.04; color: #F3EFE6; text-shadow: 0 4px 18px rgba(0,0,0,.55)">Las probabilidades de la Liga MX, sobre la mesa.<br><span style="font-family: 'Great Vibes', cursive; font-weight: 400; font-size: 104px; color: #F0484F; line-height: 1">Lee el tanteo.</span></h1>
+<p style="margin: 0; font-size: 19px; line-height: 1.6; color: #D8E4DC; max-width: 560px">Nuestro modelo estima qué tan probable es cada resultado a partir de los goles de 4,725 partidos desde 2012. El contexto —forma, clima, noticias— se muestra para que tú lo juzgues. Aquí no se apuesta: solo se lee el juego.</p>
+<div style="display: flex; gap: 16px; align-items: center">
+<a href="en-vivo.html" style="display: flex; gap: 10px; align-items: center; padding: 18px 30px; background: #C1121F; color: #FFFFFF; border-radius: 999px; text-decoration: none; font-weight: 700; font-size: 17px; box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 14px 26px rgba(0,0,0,.45)"><span class="live" style="background: #FFFFFF; box-shadow: 0 0 0 4px rgba(255,255,255,.25)"></span>Ver la jornada en vivo</a>
+<a href="parlays.html" style="padding: 17px 30px; border: 1.5px solid #D4AF5A; color: #F3EFE6; border-radius: 999px; text-decoration: none; font-weight: 700; font-size: 17px; background: rgba(4,18,12,.45)">Parlays más probables</a>
+</div>
+<div style="display: flex; gap: 24px; padding-top: 4px">
+<div style="display: flex; gap: 10px; align-items: center; font-size: 15px; color: #E5ECE8; font-weight: 600"><span style="color: #F0484F; font-size: 18px">♦</span>100% informativo</div>
+<div style="display: flex; gap: 10px; align-items: center; font-size: 15px; color: #E5ECE8; font-weight: 600"><span style="color: #D4AF5A; font-size: 18px">♣</span>Sin apuestas</div>
+<div style="display: flex; gap: 10px; align-items: center; font-size: 15px; color: #E5ECE8; font-weight: 600"><span style="color: #F0484F; font-size: 18px">♥</span>Sin dinero de por medio</div>
+</div>
+</div>
+<div style="position: relative; flex-grow: 1; height: 600px" id="zona-destacado">
+<div class="paper burnt abs" style="width: 150px; height: 214px; right: -6px; top: 6px; transform: rotate(16deg); padding: 14px; box-sizing: border-box; color: #C1121F; font-family: 'Bodoni Moda', serif"><div style="font-size: 30px; font-weight: 700; line-height: 1">A</div><div style="font-size: 24px; line-height: 1">♥</div><div style="position: absolute; right: 22px; bottom: 18px; font-size: 64px; line-height: 1">♥</div></div>
+<div style="position: absolute; left: 40px; top: 20px; width: 490px; height: 490px; border-radius: 22px; transform: rotate(-3deg); box-shadow: 0 0 0 10px #F4F0E7, 0 0 0 11px rgba(0,0,0,.2), 0 3px 3px 10px rgba(0,0,0,.25), 0 36px 80px rgba(0,0,0,.65)"><img src="assets/img/tanteo-keyart.jpg" alt="Arte de Tanteo: carta con el logotipo sobre paño verde, fichas, ruleta y cuatro ases" style="display: block; width: 490px; height: 490px; object-fit: cover; border-radius: 22px"></div>
+<div class="paper card" style="position: absolute; left: -40px; bottom: 0; width: 350px; padding: 20px 22px; transform: rotate(4deg); display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: center"><span style="font-family: 'Great Vibes', cursive; font-size: 30px; color: #C1121F; line-height: 1">Clásico Joven</span><span style="display: flex; gap: 6px; align-items: center; font-size: 12px; font-weight: 800; color: #C1121F"><span class="live"></span>67'</span></div>
+<div style="display: flex; align-items: center; justify-content: space-between"><span class="crest" style="background: linear-gradient(135deg, #F7C600 50%, #0E2A5A 50%)">AME</span><span style="font-family: 'Bodoni Moda', serif; font-size: 40px; font-weight: 700">2 <span style="color: #C1121F">·</span> 1</span><span class="crest" style="background: linear-gradient(135deg, #1B4B9B 50%, #FFFFFF 50%)">CAZ</span></div>
+<div class="pbar"><span style="width: 78%; background: #C1121F"></span><span style="width: 17%; background: #1A1414"></span><span style="width: 5%; background: #1F4E8C"></span></div>
+<div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 800; color: #4A3F38"><span style="color: #A50F1A">América 78%</span><span>Empate 17%</span><span>Cruz Azul 5%</span></div>
+</div>
+</div>
+</section>
+
+<section style="padding: 30px 56px 50px 110px">
+<fieldset class="zone" style="padding: 40px 40px 50px">
+<legend>Mesa principal</legend>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 30px" id="zona-accesos">
+<a href="en-vivo.html" class="paper card" style="height: 340px; padding: 26px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; text-decoration: none; transform: rotate(-3deg) translateY(10px)">
+<div style="display: flex; flex-direction: column; color: #C1121F; font-family: 'Bodoni Moda', serif; line-height: 1"><span style="font-size: 38px; font-weight: 700">A</span><span style="font-size: 28px">♥</span></div>
+<div style="position: absolute; right: 30px; top: 70px; font-size: 128px; line-height: 1; color: rgba(193,18,31,.14); font-family: 'Bodoni Moda', serif">♥</div>
+<div style="display: flex; flex-direction: column; gap: 8px"><div style="display: flex; gap: 8px; align-items: center; font-size: 12px; font-weight: 800; letter-spacing: .14em; color: #C1121F"><span class="live"></span>3 EN JUEGO</div><div style="font-family: 'Bodoni Moda', serif; font-size: 28px; font-weight: 700">En vivo</div><div style="font-size: 15px; line-height: 1.5; color: #4A3F38">Marcadores y cómo cambia la probabilidad minuto a minuto.</div><div style="font-weight: 800; color: #A50F1A; font-size: 15px; padding-top: 6px">Entrar →</div></div>
+</a>
+<a href="parlays.html" class="paper card" style="height: 340px; padding: 26px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; text-decoration: none; transform: rotate(-1deg)">
+<div style="display: flex; flex-direction: column; font-family: 'Bodoni Moda', serif; line-height: 1"><span style="font-size: 38px; font-weight: 700">A</span><span style="font-size: 28px">♣</span></div>
+<div style="position: absolute; right: 30px; top: 70px; font-size: 128px; line-height: 1; color: rgba(26,20,20,.10); font-family: 'Bodoni Moda', serif">♣</div>
+<div style="display: flex; flex-direction: column; gap: 8px"><div style="font-size: 12px; font-weight: 800; letter-spacing: .14em; color: #1F5E47">COMBINACIONES</div><div style="font-family: 'Bodoni Moda', serif; font-size: 28px; font-weight: 700">Parlays más probables</div><div style="font-size: 15px; line-height: 1.5; color: #4A3F38">Las combinaciones con mejor probabilidad de la jornada.</div><div style="font-weight: 800; color: #A50F1A; font-size: 15px; padding-top: 6px">Entrar →</div></div>
+</a>
+<a href="simulador.html" class="paper card" style="height: 340px; padding: 26px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; text-decoration: none; transform: rotate(1deg)">
+<div style="display: flex; flex-direction: column; color: #C1121F; font-family: 'Bodoni Moda', serif; line-height: 1"><span style="font-size: 38px; font-weight: 700">A</span><span style="font-size: 28px">♦</span></div>
+<div style="position: absolute; right: 30px; top: 70px; font-size: 128px; line-height: 1; color: rgba(193,18,31,.14); font-family: 'Bodoni Moda', serif">♦</div>
+<div style="display: flex; flex-direction: column; gap: 8px"><div style="font-size: 12px; font-weight: 800; letter-spacing: .14em; color: #1F5E47">ARMA LA TUYA</div><div style="font-family: 'Bodoni Moda', serif; font-size: 28px; font-weight: 700">Simulador</div><div style="font-size: 15px; line-height: 1.5; color: #4A3F38">Combina resultados y mira qué tan probable es que se cumplan.</div><div style="font-weight: 800; color: #A50F1A; font-size: 15px; padding-top: 6px">Entrar →</div></div>
+</a>
+<a href="#tabla" class="paper card" style="height: 340px; padding: 26px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; text-decoration: none; transform: rotate(3deg) translateY(10px)">
+<div style="display: flex; flex-direction: column; font-family: 'Bodoni Moda', serif; line-height: 1"><span style="font-size: 38px; font-weight: 700">A</span><span style="font-size: 28px">♠</span></div>
+<div style="position: absolute; right: 30px; top: 70px; font-size: 128px; line-height: 1; color: rgba(26,20,20,.10); font-family: 'Bodoni Moda', serif">♠</div>
+<div style="display: flex; flex-direction: column; gap: 8px"><div style="font-size: 12px; font-weight: 800; letter-spacing: .14em; color: #1F5E47">LIGA MX</div><div style="font-family: 'Bodoni Moda', serif; font-size: 28px; font-weight: 700">Tabla general</div><div style="font-size: 15px; line-height: 1.5; color: #4A3F38">Puntos, Liguilla y Play-In del Apertura.</div><div style="font-weight: 800; color: #A50F1A; font-size: 15px; padding-top: 6px">Entrar →</div></div>
+</a>
+</div>
+</fieldset>
+</section>
+
+<section id="modelo" style="padding: 20px 56px 60px 110px">
+<fieldset class="zone" style="padding: 40px 40px 46px">
+<legend>Cómo funciona el modelo</legend>
+<div style="display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 30px">
+<div style="display: flex; flex-direction: column; gap: 8px"><h2 style="margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 500; font-size: 44px">Cinco cartas, <span style="font-family: 'Great Vibes', cursive; font-weight: 400; font-size: 64px; color: #F0484F">una probabilidad</span></h2><p style="margin: 0; font-size: 16px; color: #D8E4DC; max-width: 640px; line-height: 1.55">Detrás de cada porcentaje hay un sistema que cruza estos datos y se recalcula cuando algo cambia, también durante el partido.</p></div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)) 210px; gap: 20px; align-items: center">
+<div class="paper card fac" style="transform: rotate(-3deg)"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><div style="font-family: 'Bodoni Moda', serif; font-size: 21px; font-weight: 700">Resultados</div><div style="font-size: 14px; line-height: 1.5; color: #4A3F38">Historial de cada club y de sus enfrentamientos directos.</div><div style="position: absolute; right: 18px; bottom: 14px; font-family: 'Bodoni Moda', serif; font-size: 24px; color: #C1121F">♥</div></div>
+<div class="paper card fac" style="transform: rotate(-1deg)"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg><div style="font-family: 'Bodoni Moda', serif; font-size: 21px; font-weight: 700">Forma reciente</div><div style="font-size: 14px; line-height: 1.5; color: #4A3F38">Se muestra como contexto. Probada contra la cuota, no agrega nada: la línea ya lo sabe.</div><div style="position: absolute; right: 18px; bottom: 14px; font-family: 'Bodoni Moda', serif; font-size: 24px">♣</div></div>
+<div class="paper card fac" style="transform: rotate(1deg)"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><div style="font-family: 'Bodoni Moda', serif; font-size: 21px; font-weight: 700">Estadísticas</div><div style="font-size: 14px; line-height: 1.5; color: #4A3F38">Goles a favor y en contra. El modelo no usa tiros ni posesión: solo goles y fechas.</div><div style="position: absolute; right: 18px; bottom: 14px; font-family: 'Bodoni Moda', serif; font-size: 24px; color: #C1121F">♦</div></div>
+<div class="paper card fac" style="transform: rotate(-1.5deg)"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M17 11l4 4M21 11l-4 4"/></svg><div style="font-family: 'Bodoni Moda', serif; font-size: 21px; font-weight: 700">Alineaciones</div><div style="font-size: 14px; line-height: 1.5; color: #4A3F38">El modelo NO las conoce. Se muestran las noticias de la semana para que tú ajustes a mano.</div><div style="position: absolute; right: 18px; bottom: 14px; font-family: 'Bodoni Moda', serif; font-size: 24px">♠</div></div>
+<div class="paper card fac" style="transform: rotate(2deg)"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 15h10a4 4 0 0 0 0-8 6 6 0 0 0-11.5 1.5A3.5 3.5 0 0 0 7 15z"/><path d="M9 18l-1 3M13 18l-1 3M17 18l-1 3"/></svg><div style="font-family: 'Bodoni Moda', serif; font-size: 21px; font-weight: 700">Clima y sede</div><div style="font-size: 14px; line-height: 1.5; color: #4A3F38">Clima real del estadio. De todo esto, solo la altitud dio señal al probarla contra el mercado.</div><div style="position: absolute; right: 18px; bottom: 14px; font-family: 'Bodoni Moda', serif; font-size: 24px; color: #C1121F">♥</div></div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 14px">
+<svg width="60" height="24" viewBox="0 0 60 24" fill="none" stroke="#E4C877" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h54M46 3l10 9-10 9"/></svg>
+<span class="chip" style="--c: #C1121F; width: 150px; height: 150px; font-family: 'Bodoni Moda', serif; font-size: 40px; font-weight: 700">%</span>
+<div style="font-family: 'Great Vibes', cursive; font-size: 32px; color: #F3EFE6">Probabilidad</div>
+<div style="font-size: 12px; font-weight: 800; letter-spacing: .12em; color: #E4C877">LOCAL · EMPATE · VISITA</div>
+</div>
+</div>
+</fieldset>
+</section>
+
+<section id="tabla" style="padding: 10px 56px 60px 110px; display: grid; grid-template-columns: minmax(0, 1fr) 460px; gap: 40px; align-items: start">
+<fieldset class="zone">
+<legend>En vivo · Jornada 10</legend>
+<div style="display: flex; flex-direction: column; gap: 22px" id="zona-tresvivos">
+<div class="paper card" style="padding: 22px 26px; display: grid; grid-template-columns: minmax(0, 1fr) 230px; gap: 16px 20px; align-items: center; transform: rotate(-.8deg)">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; gap: 10px; align-items: center; font-size: 12px; font-weight: 800; letter-spacing: .12em; color: #5A4C44"><span style="color: #C1121F; font-size: 16px">♥</span>ESTADIO BANORTE <span style="display: flex; gap: 6px; align-items: center; color: #C1121F"><span class="live"></span>67'</span><span class="wx"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18h10a4 4 0 0 0 0-8 6 6 0 0 0-11.5 1.5A3.5 3.5 0 0 0 7 18z"/></svg>17° Nublado</span></div>
+<div style="display: flex; gap: 14px; align-items: center"><span class="crest" style="background: linear-gradient(135deg, #F7C600 50%, #0E2A5A 50%)">AME</span><span style="flex-grow: 1; font-size: 19px; font-weight: 800">América</span><span style="font-family: 'Bodoni Moda', serif; font-size: 36px; font-weight: 700">2</span></div>
+<div style="display: flex; gap: 14px; align-items: center"><span class="crest" style="background: linear-gradient(135deg, #1B4B9B 50%, #FFFFFF 50%)">CAZ</span><span style="flex-grow: 1; font-size: 19px; font-weight: 700; color: #4A3F38">Cruz Azul</span><span style="font-family: 'Bodoni Moda', serif; font-size: 36px; font-weight: 700; color: #4A3F38">1</span></div>
+</div>
+<div style="display: flex; gap: 10px; justify-content: flex-end"><span class="chip pr on" style="--c: #C1121F"><small>AME</small><b>78%</b></span><span class="chip pr" style="--c: #1A1414"><small>EMP</small><b>17%</b></span><span class="chip pr" style="--c: #1F4E8C"><small>CAZ</small><b>5%</b></span></div>
+<div style="grid-column: 1 / -1; display: flex; gap: 12px; align-items: center; font-size: 12px; font-weight: 800; color: #5A4C44"><span style="white-space: nowrap">PROBABILIDAD EN VIVO</span><div class="pbar" style="flex-grow: 1"><span style="width: 78%; background: #C1121F"></span><span style="width: 17%; background: #1A1414"></span><span style="width: 5%; background: #1F4E8C"></span></div><span style="white-space: nowrap">Antes: 45 · 28 · 27</span></div>
+</div>
+<div class="paper card" style="padding: 22px 26px; display: grid; grid-template-columns: minmax(0, 1fr) 230px; gap: 16px 20px; align-items: center; transform: rotate(.6deg)">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; gap: 10px; align-items: center; font-size: 12px; font-weight: 800; letter-spacing: .12em; color: #5A4C44"><span style="font-size: 16px">♣</span>CLÁSICO REGIO <span style="display: flex; gap: 6px; align-items: center; color: #C1121F"><span class="live"></span>34'</span><span class="wx"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>29° Despejado</span></div>
+<div style="display: flex; gap: 14px; align-items: center"><span class="crest" style="background: linear-gradient(135deg, #F7A800 50%, #0A3A7A 50%)">TIG</span><span style="flex-grow: 1; font-size: 19px; font-weight: 800">Tigres</span><span style="font-family: 'Bodoni Moda', serif; font-size: 36px; font-weight: 700">0</span></div>
+<div style="display: flex; gap: 14px; align-items: center"><span class="crest" style="background: linear-gradient(135deg, #0B2552 50%, #FFFFFF 50%)">MTY</span><span style="flex-grow: 1; font-size: 19px; font-weight: 800">Monterrey</span><span style="font-family: 'Bodoni Moda', serif; font-size: 36px; font-weight: 700">0</span></div>
+</div>
+<div style="display: flex; gap: 10px; justify-content: flex-end"><span class="chip pr on" style="--c: #C1121F"><small>TIG</small><b>38%</b></span><span class="chip pr" style="--c: #1A1414"><small>EMP</small><b>33%</b></span><span class="chip pr" style="--c: #1F4E8C"><small>MTY</small><b>29%</b></span></div>
+<div style="grid-column: 1 / -1; display: flex; gap: 12px; align-items: center; font-size: 12px; font-weight: 800; color: #5A4C44"><span style="white-space: nowrap">PROBABILIDAD EN VIVO</span><div class="pbar" style="flex-grow: 1"><span style="width: 38%; background: #C1121F"></span><span style="width: 33%; background: #1A1414"></span><span style="width: 29%; background: #1F4E8C"></span></div><span style="white-space: nowrap">Antes: 41 · 30 · 29</span></div>
+</div>
+<div class="paper card" style="padding: 22px 26px; display: grid; grid-template-columns: minmax(0, 1fr) 230px; gap: 16px 20px; align-items: center; transform: rotate(-.4deg)">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; gap: 10px; align-items: center; font-size: 12px; font-weight: 800; letter-spacing: .12em; color: #5A4C44"><span style="color: #C1121F; font-size: 16px">♦</span>ESTADIO AKRON <span style="display: flex; gap: 6px; align-items: center; color: #C1121F"><span class="live"></span>81'</span><span class="wx"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 15h10a4 4 0 0 0 0-8 6 6 0 0 0-11.5 1.5A3.5 3.5 0 0 0 7 15z"/><path d="M9 18l-1 3M13 18l-1 3M17 18l-1 3"/></svg>21° Lluvia</span></div>
+<div style="display: flex; gap: 14px; align-items: center"><span class="crest" style="background: linear-gradient(135deg, #C8102E 50%, #0B2D6B 50%)">GDL</span><span style="flex-grow: 1; font-size: 19px; font-weight: 800">Chivas</span><span style="font-family: 'Bodoni Moda', serif; font-size: 36px; font-weight: 700">1</span></div>
+<div style="display: flex; gap: 14px; align-items: center"><span class="crest" style="background: linear-gradient(135deg, #0B1F4B 50%, #C7A64B 50%)">PUM</span><span style="flex-grow: 1; font-size: 19px; font-weight: 800">Pumas</span><span style="font-family: 'Bodoni Moda', serif; font-size: 36px; font-weight: 700">1</span></div>
+</div>
+<div style="display: flex; gap: 10px; justify-content: flex-end"><span class="chip pr" style="--c: #C1121F"><small>GDL</small><b>14%</b></span><span class="chip pr on" style="--c: #1A1414"><small>EMP</small><b>72%</b></span><span class="chip pr" style="--c: #1F4E8C"><small>PUM</small><b>14%</b></span></div>
+<div style="grid-column: 1 / -1; display: flex; gap: 12px; align-items: center; font-size: 12px; font-weight: 800; color: #5A4C44"><span style="white-space: nowrap">PROBABILIDAD EN VIVO</span><div class="pbar" style="flex-grow: 1"><span style="width: 14%; background: #C1121F"></span><span style="width: 72%; background: #1A1414"></span><span style="width: 14%; background: #1F4E8C"></span></div><span style="white-space: nowrap">Antes: 36 · 30 · 34</span></div>
+</div>
+<a href="en-vivo.html" style="align-self: center; font-weight: 800; font-size: 15px; text-decoration: none; letter-spacing: .08em">VER TODA LA JORNADA →</a>
+</div>
+</fieldset>
+
+<div style="position: relative; padding-top: 18px">
+<div class="pencil" style="left: 150px; top: 700px; transform: rotate(-28deg)"></div>
+<div class="paper" style="position: relative; border-radius: 6px 6px 14px 14px; padding: 0 0 26px; transform: rotate(1.5deg); box-shadow: 0 2px 2px rgba(0,0,0,.35), 0 26px 52px rgba(0,0,0,.5); background-image: linear-gradient(90deg, rgba(0,0,0,0) 58px, rgba(193,18,31,.45) 58px 60px, rgba(0,0,0,0) 60px), repeating-linear-gradient(180deg, rgba(0,0,0,0) 0 41px, rgba(31,78,140,.22) 41px 42px), radial-gradient(rgba(60,40,20,.08) .8px, rgba(0,0,0,0) 1.3px); background-size: 100% 100%, 100% 42px, 9px 9px; background-position: 0 0, 0 104px, 0 0" id="zona-tabla">
+<div style="height: 26px; border-radius: 6px 6px 0 0; background: linear-gradient(180deg, #8E1B22, #5E0F15); box-shadow: inset 0 -2px 0 rgba(0,0,0,.3)"></div>
+<div style="display: flex; justify-content: space-between; align-items: baseline; padding: 14px 26px 0 76px; height: 64px; box-sizing: border-box"><span style="font-family: 'Great Vibes', cursive; font-size: 44px; color: #C1121F; line-height: 1">Hoja de tanteo</span><span style="font-size: 12px; font-weight: 800; letter-spacing: .12em; color: #5A4C44">TABLA GENERAL</span></div>
+<div style="display: grid; grid-template-columns: 58px minmax(0, 1fr) 44px 52px 52px; align-items: center; height: 42px; padding-right: 22px; font-size: 11px; font-weight: 800; letter-spacing: .1em; color: #5A4C44"><span style="text-align: center">#</span><span style="padding-left: 18px">CLUB</span><span>PJ</span><span>DG</span><span style="text-align: right">PTS</span></div>
+<div style="display: grid; grid-template-columns: 58px minmax(0, 1fr) 44px 52px 52px; align-items: center; height: 42px; padding-right: 22px; font-size: 15px; font-weight: 700"><span style="text-align: center; font-family: 'Bodoni Moda', serif; color: #9C7A33; font-weight: 700">1</span><span style="padding-left: 18px; display: flex; gap: 10px; align-items: center"><span style="width: 14px; height: 16px; clip-path: polygon(0 0,100% 0,100% 62%,50% 100%,0 62%); background: linear-gradient(135deg, #D0021B 50%, #FFFFFF 50%)"></span>Toluca</span><span>9</span><span>+11</span><span style="text-align: right; font-family: 'Bodoni Moda', serif; font-size: 20px">22</span></div>
+<div style="display: grid; grid-template-columns: 58px minmax(0, 1fr) 44px 52px 52px; align-items: center; height: 42px; padding-right: 22px; font-size: 15px; font-weight: 700"><span style="text-align: center; font-family: 'Bodoni Moda', serif; color: #9C7A33; font-weight: 700">2</span><span style="padding-left: 18px; display: flex; gap: 10px; align-items: center"><span style="width: 14px; height: 16px; clip-path: polygon(0 0,100% 0,100% 62%,50% 100%,0 62%); background: linear-gradient(135deg, #F7C600 50%, #0E2A5A 50%)"></span>América</span><span>9</span><span>+9</span><span style="text-align: right; font-family: 'Bodoni Moda', serif; font-size: 20px">21</span></div>
+<div style="display: grid; grid-template-columns: 58px minmax(0, 1fr) 44px 52px 52px; align-items: center; height: 42px; padding-right: 22px; font-size: 15px; font-weight: 700"><span style="text-align: center; font-family: 'Bodoni Moda', serif; color: #9C7A33; font-weight: 700">3</span><span style="padding-left: 18px; display: flex; gap: 10px; align-items: center"><span style="width: 14px; height: 16px; clip-path: polygon(0 0,100% 0,100% 62%,50% 100%,0 62%); background: linear-gradient(135deg, #1B4B9B 50%, #FFFFFF 50%)"></span>Cruz Azul</span><span>9</span><span>+7</span><span style="text-align: right; font-family: 'Bodoni Moda', serif; font-size: 20px">19</span></div>
+<div style="display: grid; grid-template-columns: 58px minmax(0, 1fr) 44px 52px 52px; align-items: center; height: 42px; padding-right: 22px; font-size: 15px; font-weight: 700"><span style="text-align: center; font-family: 'Bodoni Moda', serif; color: #9C7A33; font-weight: 700">4</span><span style="padding-left: 18px; display: flex; gap: 10px; align-items: center"><span style="width: 14px; height: 16px; clip-path: polygon(0 0,100% 0,100% 62%,50% 100%,0 62%); background: linear-gradient(135deg, #F7A800 50%, #0A3A7A 50%)"></span>Tigres</span><span>9</span><span>+6</span><span style="text-align: right; font-family: 'Bodoni Moda', serif; font-size: 20px">18</span></div>
+<div style="display: grid; grid-template-columns: 58px minmax(0, 1fr) 44px 52px 52px; align-items: center; height: 42px; padding-right: 22px; font-size: 15px; font-weight: 700"><span style="text-align: center; font-family: 'Bodoni Moda', serif; color: #9C7A33; font-weight: 700">5</span><span style="padding-left: 18px; display: flex; gap: 10px; align-items: center"><span style="width: 14px; height: 16px; clip-path: polygon(0 0,100% 0,100% 62%,50% 100%,0 62%); background: linear-gradient(135deg, #0B2552 50%, #FFFFFF 50%)"></span>Monterrey</span><span>9</span><span>+4</span><span style="text-align: right; font-family: 'Bodoni Moda', serif; font-size: 20px">17</span></div>
+<div style="display: grid; grid-template-columns: 58px minmax(0, 1fr) 44px 52px 52px; align-items: center; height: 42px; padding-right: 22px; font-size: 15px; font-weight: 700; border-bottom: 2px solid #9C7A33"><span style="text-align: center; font-family: 'Bodoni Moda', serif; color: #9C7A33; font-weight: 700">6</span><span style="padding-left: 18px; display: flex; gap: 10px; align-items: center"><span style="width: 14px; height: 16px; clip-path: polygon(0 0,100% 0,100% 62%,50% 100%,0 62%); background: linear-gradient(135deg, #0B2B66 50%, #FFFFFF 50%)"></span>Pachuca</span><span>9</span><span>+3</span><span style="text-align: right; font-family: 'Bodoni Moda', serif; font-size: 20px">16</span></div>
+<div style="display: grid; grid-template-columns: 58px minmax(0, 1fr) 44px 52px 52px; align-items: center; height: 42px; padding-right: 22px; font-size: 15px; font-weight: 700"><span style="text-align: center; font-family: 'Bodoni Moda', serif; color: #1F5E47; font-weight: 700">7</span><span style="padding-left: 18px; display: flex; gap: 10px; align-items: center"><span style="width: 14px; height: 16px; clip-path: polygon(0 0,100% 0,100% 62%,50% 100%,0 62%); background: linear-gradient(135deg, #C8102E 50%, #0B2D6B 50%)"></span>Chivas</span><span>9</span><span>+2</span><span style="text-align: right; font-family: 'Bodoni Moda', serif; font-size: 20px">15</span></div>
+<div style="display: grid; grid-template-columns: 58px minmax(0, 1fr) 44px 52px 52px; align-items: center; height: 42px; padding-right: 22px; font-size: 15px; font-weight: 700"><span style="text-align: center; font-family: 'Bodoni Moda', serif; color: #1F5E47; font-weight: 700">8</span><span style="padding-left: 18px; display: flex; gap: 10px; align-items: center"><span style="width: 14px; height: 16px; clip-path: polygon(0 0,100% 0,100% 62%,50% 100%,0 62%); background: linear-gradient(135deg, #0B1F4B 50%, #C7A64B 50%)"></span>Pumas</span><span>9</span><span>+1</span><span style="text-align: right; font-family: 'Bodoni Moda', serif; font-size: 20px">14</span></div>
+<div style="display: grid; grid-template-columns: 58px minmax(0, 1fr) 44px 52px 52px; align-items: center; height: 42px; padding-right: 22px; font-size: 15px; font-weight: 700"><span style="text-align: center; font-family: 'Bodoni Moda', serif; color: #1F5E47; font-weight: 700">9</span><span style="padding-left: 18px; display: flex; gap: 10px; align-items: center"><span style="width: 14px; height: 16px; clip-path: polygon(0 0,100% 0,100% 62%,50% 100%,0 62%); background: linear-gradient(135deg, #0A7A3B 50%, #F5D000 50%)"></span>León</span><span>9</span><span>0</span><span style="text-align: right; font-family: 'Bodoni Moda', serif; font-size: 20px">13</span></div>
+<div style="display: grid; grid-template-columns: 58px minmax(0, 1fr) 44px 52px 52px; align-items: center; height: 42px; padding-right: 22px; font-size: 15px; font-weight: 700; border-bottom: 2px solid #1F5E47"><span style="text-align: center; font-family: 'Bodoni Moda', serif; color: #1F5E47; font-weight: 700">10</span><span style="padding-left: 18px; display: flex; gap: 10px; align-items: center"><span style="width: 14px; height: 16px; clip-path: polygon(0 0,100% 0,100% 62%,50% 100%,0 62%); background: linear-gradient(135deg, #C8102E 50%, #111111 50%)"></span>Tijuana</span><span>9</span><span>-1</span><span style="text-align: right; font-family: 'Bodoni Moda', serif; font-size: 20px">12</span></div>
+<div style="display: flex; gap: 18px; padding: 16px 22px 0 76px; font-size: 12px; font-weight: 800; color: #5A4C44"><span style="display: flex; gap: 6px; align-items: center"><span style="width: 12px; height: 12px; background: #9C7A33"></span>Liguilla directa</span><span style="display: flex; gap: 6px; align-items: center"><span style="width: 12px; height: 12px; background: #1F5E47"></span>Play-In</span></div>
+</div>
+</div>
+</section>
+
+<section style="padding: 20px 56px 90px 110px">
+<div class="wood" style="position: relative; border-radius: 30px; padding: 56px 64px; display: flex; gap: 64px; align-items: center; box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 0 0 3px #9C7A33, 0 0 0 5px #4A360F, 0 36px 70px rgba(0,0,0,.6)">
+<span class="stitch" style="left: 14px; top: 14px; right: 14px; bottom: 14px"></span>
+<div style="position: relative; width: 300px; height: 300px; flex-shrink: 0; display: flex; align-items: center; justify-content: center">
+<div style="width: 270px; height: 270px; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 14px #5A1A1E, 0 0 0 18px #C9A24A, 0 26px 50px rgba(0,0,0,.65)"><img src="assets/img/tanteo-keyart.jpg" alt="" style="display: block; width: 1100px; height: 1100px; max-width: none; margin-left: -822px; margin-top: 0"></div>
+<div class="dia" style="left: 16px; top: 26px"></div><div class="dia" style="right: 16px; top: 26px"></div><div class="dia" style="left: 16px; bottom: 26px"></div><div class="dia" style="right: 16px; bottom: 26px"></div>
+<div class="chip abs" style="--c: #C1121F; width: 104px; height: 104px; right: -26px; bottom: -10px; font-family: 'Bodoni Moda', serif; font-weight: 700; font-size: 22px" id="ficha-parlay">15.6%</div>
+</div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 20px; position: relative">
+<div style="display: flex; justify-content: space-between; align-items: flex-start">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<div class="eyebrow">El parlay más probable · Jornada 10</div>
+<div style="font-family: 'Great Vibes', cursive; font-size: 64px; line-height: 1.1; color: #F4F0E7; text-shadow: 0 4px 14px rgba(0,0,0,.5)">Cuatro cartas seguras</div>
+</div>
+<div class="paper card" style="padding: 14px 22px; text-align: right; transform: rotate(3deg)"><div style="font-size: 12px; color: #5A4C44; font-weight: 800; letter-spacing: .1em">PROBABILIDAD</div><div style="font-family: 'Bodoni Moda', serif; font-size: 44px; font-weight: 700; color: #C1121F; line-height: 1.05" id="cifra-parlay">15.6%</div><div style="font-size: 12px; font-weight: 800; color: #5A4C44">1 en 6</div></div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div class="paper" style="border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 2px 2px rgba(0,0,0,.3), 0 10px 18px rgba(0,0,0,.35)"><span class="crest" style="background: linear-gradient(135deg, #C8102E 50%, #111111 50%); width: 30px; height: 34px; font-size: 0; padding: 0"></span><div style="flex-grow: 1"><div style="font-weight: 800; font-size: 16px">Tijuana gana</div><div style="font-size: 13px; color: #5A4C44">vs San Luis</div></div><span style="font-family: 'Bodoni Moda', serif; font-weight: 700; font-size: 22px">52%</span></div>
+<div class="paper" style="border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 2px 2px rgba(0,0,0,.3), 0 10px 18px rgba(0,0,0,.35)"><span class="crest" style="background: linear-gradient(135deg, #B3001B 50%, #111111 50%); width: 30px; height: 34px; font-size: 0; padding: 0"></span><div style="flex-grow: 1"><div style="font-weight: 800; font-size: 16px">Atlas gana o empata</div><div style="font-size: 13px; color: #5A4C44">vs Puebla</div></div><span style="font-family: 'Bodoni Moda', serif; font-weight: 700; font-size: 22px">73%</span></div>
+<div class="paper" style="border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 2px 2px rgba(0,0,0,.3), 0 10px 18px rgba(0,0,0,.35)"><span class="crest" style="background: linear-gradient(135deg, #0A2C7A 50%, #D1001C 50%); width: 30px; height: 34px; font-size: 0; padding: 0"></span><div style="flex-grow: 1"><div style="font-weight: 800; font-size: 16px">Menos de 3.5 goles</div><div style="font-size: 13px; color: #5A4C44">Querétaro vs Necaxa</div></div><span style="font-family: 'Bodoni Moda', serif; font-weight: 700; font-size: 22px">71%</span></div>
+<div class="paper" style="border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 2px 2px rgba(0,0,0,.3), 0 10px 18px rgba(0,0,0,.35)"><span class="crest" style="background: linear-gradient(135deg, #F7A800 50%, #0B2552 50%); width: 30px; height: 34px; font-size: 0; padding: 0"></span><div style="flex-grow: 1"><div style="font-weight: 800; font-size: 16px">Ambos anotan: Sí</div><div style="font-size: 13px; color: #5A4C44">Tigres vs Monterrey</div></div><span style="font-family: 'Bodoni Moda', serif; font-weight: 700; font-size: 22px">58%</span></div>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center; padding-top: 6px">
+<div style="font-size: 16px; color: #F3E6E6">Aciertos esperados: <strong style="color: #F3DC92; font-size: 22px">2.5 de 4</strong></div>
+<div style="display: flex; gap: 12px">
+<a href="parlays.html" style="padding: 15px 26px; border: 1.5px solid #D4AF5A; color: #F3EFE6; border-radius: 999px; text-decoration: none; font-weight: 700; font-size: 16px">Ver más parlays</a>
+<a href="simulador.html" style="padding: 16px 28px; background: #C1121F; color: #FFFFFF; border-radius: 999px; text-decoration: none; font-weight: 700; font-size: 16px; box-shadow: inset 0 1px 0 rgba(255,255,255,.3)">Abrir en el simulador</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<footer class="leather" style="position: relative; margin: auto 14px 0; padding: 56px 70px 34px; border-radius: 34px 34px 0 0; display: flex; flex-direction: column; gap: 36px">
+<span class="stitch"></span>
+<div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 1.2fr; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<span class="paper" style="align-self: flex-start; padding: 6px 22px; border-radius: 8px; transform: rotate(-4deg); font-family: 'Great Vibes', cursive; font-size: 48px; line-height: 1.1; color: #C1121F; box-shadow: 0 2px 2px rgba(0,0,0,.4), 0 12px 20px rgba(0,0,0,.5)">Tanteo</span>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #EADBD0">Probabilidades de la Liga MX calculadas con resultados, estadísticas, alineaciones y clima.</p>
+<div style="display: flex; gap: 10px">
+<a href="#" aria-label="Instagram" style="width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(228,200,119,.5); display: flex; align-items: center; justify-content: center; color: #E4C877"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+<a href="#" aria-label="X" style="width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(228,200,119,.5); display: flex; align-items: center; justify-content: center; color: #E4C877"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
+<a href="#" aria-label="Facebook" style="width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(228,200,119,.5); display: flex; align-items: center; justify-content: center; color: #E4C877"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 3h-2a4 4 0 0 0-4 4v14M6 11h8"/></svg></a>
+<a href="#" aria-label="YouTube" style="width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(228,200,119,.5); display: flex; align-items: center; justify-content: center; color: #E4C877"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z"/></svg></a>
+</div>
+</div>
+<div class="fcol"><div class="eyebrow" style="padding-bottom: 12px">Liga MX</div><a href="en-vivo.html">Jornada en vivo</a><a href="#">Calendario</a><a href="#tabla">Tabla general</a><a href="#">Liguilla y Play-In</a><a href="#">Clubes</a></div>
+<div class="fcol"><div class="eyebrow" style="padding-bottom: 12px">Análisis</div><a href="parlays.html">Parlays más probables</a><a href="simulador.html">Simulador</a><a href="#modelo">Cómo funciona el modelo</a><a href="#">Historial de aciertos</a><a href="#">Alertas</a></div>
+<div class="fcol"><div class="eyebrow" style="padding-bottom: 12px">Ayuda</div><a href="ayuda.html">Centro de ayuda</a><a href="preguntas.html">Preguntas frecuentes</a><a href="terminos.html">Términos</a><a href="privacidad.html">Privacidad</a><a href="#">Contacto</a></div>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div class="eyebrow">Datos que analizamos</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><span class="paper pill">Resultados</span><span class="paper pill">Estadísticas</span><span class="paper pill">Alineaciones</span><span class="paper pill">Lesiones</span><span class="paper pill">Clima</span><span class="paper pill">Localía</span></div>
+<div class="eyebrow" style="padding-top: 8px">Contacto</div>
+<div style="font-size: 15px; color: #EADBD0">[CORREO DE CONTACTO]</div>
+</div>
+</div>
+<div style="height: 1px; background: linear-gradient(90deg, rgba(228,200,119,0), rgba(228,200,119,.6), rgba(228,200,119,0))"></div>
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 30px">
+<div style="display: flex; gap: 16px; align-items: center"><span style="width: 48px; height: 48px; flex-shrink: 0; border-radius: 50%; border: 2px solid #E4C877; display: flex; align-items: center; justify-content: center; font-family: 'Bodoni Moda', serif; font-weight: 700; font-size: 22px; color: #E4C877">i</span><span style="font-size: 13px; line-height: 1.6; color: #EADBD0; max-width: 700px">Tanteo es una plataforma informativa: no acepta apuestas ni maneja dinero. Las probabilidades son estimaciones de un modelo y no garantizan ningún resultado.</span></div>
+<div style="font-size: 13px; color: #CDB9A8">© 2026 Tanteo · Hecho en México · <a href="index.html?ir=inicio.html" style="color: #E4C877; text-decoration: none">Ver la intro</a></div>
+</div>
+</footer>
+</div>
+</div>
+</div>
+<script src="datos.js"></script>
+<script src="assets/js/escudos-reales.js"></script>
+<script src="assets/js/en-vivo.js"></script>
+<script src="assets/js/pagina-inicio.js"></script>
+<script src="assets/js/mesa-viva.js"></script>
+</body>
+</html>

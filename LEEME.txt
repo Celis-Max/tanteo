@@ -1,0 +1,36 @@
+TANTEO · Probabilidades de la Liga MX
+======================================
+
+Plataforma informativa: no acepta apuestas ni maneja dinero.
+Muestra probabilidades calculadas por un modelo (resultados, forma,
+estadísticas, alineaciones y clima).
+
+Cómo abrirlo
+- Descomprime la carpeta y abre index.html en tu navegador (Chrome, Edge, Safari o Firefox).
+- index.html es el splash: toca "Repartir" para oír la entrada y luego "Entrar a la mesa".
+- Funciona sin internet: las tipografías vienen incluidas en assets/fonts.
+
+Páginas
+- index.html ............ Splash de entrada con sonido
+- inicio.html ........... Menú principal
+- en-vivo.html .......... Marcadores y probabilidad en vivo (jornada 10)
+- parlays.html .......... Parlays más probables
+- simulador.html ........ Simulador de probabilidades (funciona, con sonidos)
+- carga-barajando.html .. Pantalla de carga: barajando
+- carga-ficha.html ...... Pantalla de carga: ficha
+- carga-ruleta.html ..... Pantalla de carga: ruleta
+- sonidos.html .......... Kit de sonidos (escuchar y descargar)
+
+Carpetas
+- assets/img ............ Arte del logo
+- assets/sonidos ........ 13 sonidos en MP3 (los que usa el sitio)
+- assets/js ............. Pequeño motor que hace funcionar las páginas interactivas
+- assets/fonts, assets/css  Tipografías (Great Vibes, Bodoni Moda, Manrope; licencia SIL OFL)
+- sonidos-wav ........... Los mismos 13 sonidos en WAV, calidad máxima
+
+Notas
+- Es un diseño visual: marcadores, tabla, clima y probabilidades son datos de ejemplo;
+  el sistema de análisis real las sustituiría.
+- Los sonidos son originales, creados para Tanteo.
+- Los navegadores solo reproducen audio después de un toque o clic; por eso el splash empieza con "Repartir".
+- Pendiente por llenar: [CORREO DE CONTACTO].

@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tanteo · Privacidad</title>
+<meta name="description" content="Política de privacidad de Tanteo: sin cuentas, sin cookies de seguimiento y sin analítica.">
+<link rel="icon" href="assets/img/tanteo-keyart.jpg">
+<script src="assets/js/intro.js"></script>
+<link rel="stylesheet" href="assets/css/fuentes.css">
+<link rel="stylesheet" href="assets/css/adaptable.css">
+<link rel="stylesheet" href="assets/css/movimiento.css">
+<link rel="stylesheet" href="assets/css/documento.css">
+<style>
+body{margin:0;background:#07190F;font-family:Manrope,system-ui,sans-serif;color:#F3EFE6}
+a{color:#E4C877}a:hover{color:#F3DC92}
+.table{position:relative;background-color:#0F3D2E;background-image:radial-gradient(ellipse 130% 90% at 50% 45%,rgba(0,0,0,0) 50%,rgba(0,0,0,.62) 100%),repeating-radial-gradient(circle at 0 0,rgba(0,0,0,0) 0 30px,rgba(255,255,255,.026) 31px 32px,rgba(0,0,0,0) 33px 60px),repeating-radial-gradient(circle at 70px 70px,rgba(0,0,0,0) 0 18px,rgba(0,0,0,.06) 19px 20px,rgba(0,0,0,0) 21px 40px),radial-gradient(rgba(255,255,255,.05) .7px,rgba(0,0,0,0) 1.2px),radial-gradient(rgba(0,0,0,.14) .7px,rgba(0,0,0,0) 1.2px);background-size:100% 100%,140px 140px,140px 140px,4px 4px,6px 6px;background-position:0 0,0 0,0 0,0 0,2px 3px}
+.deco{position:absolute;left:0;top:0;right:0;bottom:0;pointer-events:none;overflow:hidden;z-index:0}
+.content{position:relative;z-index:1}
+.lamp{position:absolute;border-radius:50%;background:radial-gradient(closest-side,rgba(200,240,190,.20),rgba(200,240,190,.07) 55%,rgba(0,0,0,0))}
+.crop{position:absolute;overflow:hidden;-webkit-mask-image:radial-gradient(closest-side,#000 55%,rgba(0,0,0,0) 100%);mask-image:radial-gradient(closest-side,#000 55%,rgba(0,0,0,0) 100%)}
+.crop img{position:absolute;display:block;width:1400px;height:1400px;max-width:none}
+.leather{background-color:#4A1216;background-image:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,0) 30%,rgba(0,0,0,.35) 100%),radial-gradient(rgba(0,0,0,.22) 1px,rgba(0,0,0,0) 1.4px);background-size:100% 100%,3px 3px;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),inset 0 -2px 4px rgba(0,0,0,.5),0 3px 0 #9C7A33,0 5px 0 #4A360F,0 18px 30px rgba(0,0,0,.6)}
+.stitch{position:absolute;left:9px;top:9px;right:9px;bottom:9px;border:1.5px dashed rgba(228,200,119,.5);border-radius:inherit;pointer-events:none}
+.paper{background-color:#F6F1E6;background-image:linear-gradient(135deg,rgba(255,255,255,.55),rgba(255,255,255,0) 40%,rgba(0,0,0,.07) 100%),radial-gradient(rgba(60,40,20,.10) .8px,rgba(0,0,0,0) 1.3px),radial-gradient(rgba(60,40,20,.06) .8px,rgba(0,0,0,0) 1.3px);background-size:100% 100%,9px 9px,13px 13px;background-position:0 0,0 0,4px 6px;color:#1A1414}
+.card{position:relative;border-radius:16px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.7),inset 0 0 22px rgba(120,90,50,.20),0 1px 1px rgba(0,0,0,.35),0 8px 16px rgba(0,0,0,.35),0 28px 52px rgba(0,0,0,.38)}
+.card::before{content:"";position:absolute;left:9px;top:9px;right:9px;bottom:9px;border:1px solid rgba(193,18,31,.28);border-radius:10px;pointer-events:none}
+.wood{background-color:#3B1114;background-image:linear-gradient(160deg,rgba(255,255,255,.12),rgba(255,255,255,0) 35%),radial-gradient(ellipse 80% 70% at 30% 20%,rgba(140,50,50,.45),rgba(0,0,0,0) 70%),repeating-linear-gradient(100deg,rgba(0,0,0,.13) 0 3px,rgba(0,0,0,0) 3px 11px)}
+.zone{position:relative;margin:0;min-width:0;border:2px solid rgba(238,226,196,.5);border-radius:26px;padding:30px 30px 34px}
+.zone legend{padding:0 16px;font:700 15px 'Bodoni Moda',serif;letter-spacing:.32em;text-transform:uppercase;color:rgba(242,232,204,.9)}
+.chip{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:50%;border:0;color:#FFFFFF;background:radial-gradient(circle at 35% 28%,rgba(255,255,255,.30),rgba(255,255,255,0) 45%),radial-gradient(circle,var(--c) 0 52%,#EDE6D6 53% 55%,rgba(0,0,0,0) 56%),repeating-conic-gradient(#EDE6D6 0 12deg,var(--c) 12deg 45deg);box-shadow:inset 0 0 0 3px rgba(0,0,0,.2),inset 0 -4px 0 rgba(0,0,0,.25),0 2px 0 rgba(0,0,0,.35),0 12px 20px rgba(0,0,0,.45)}
+.abs{position:absolute}
+.pr{width:66px;height:66px;font-family:Manrope,sans-serif;line-height:1.1}
+.pr small{font-size:9px;font-weight:800;letter-spacing:.08em;opacity:.9}
+.pr b{font-size:15px;font-weight:800}
+.pr.on{box-shadow:0 0 0 3px #F3DC92,0 0 0 5px rgba(0,0,0,.4),0 16px 24px rgba(0,0,0,.55);transform:translateY(-6px)}
+.pbar{display:flex;gap:2px;height:8px;border-radius:4px;overflow:hidden}
+.pbar span{display:block;height:8px}
+.wx{display:inline-flex;gap:6px;align-items:center;padding:4px 10px;border-radius:999px;background:rgba(26,20,20,.07);font-size:12px;font-weight:800;color:#4A3F38;letter-spacing:0}
+.back{position:absolute;border-radius:12px;background-color:#9E1520;background-image:linear-gradient(135deg,rgba(255,255,255,.18),rgba(255,255,255,0) 45%),repeating-linear-gradient(45deg,rgba(255,255,255,.16) 0 2px,rgba(0,0,0,0) 2px 9px),repeating-linear-gradient(-45deg,rgba(255,255,255,.16) 0 2px,rgba(0,0,0,0) 2px 9px);box-shadow:inset 0 0 0 7px #F4F0E7,inset 0 0 0 9px #7A0F17,0 2px 2px rgba(0,0,0,.4),0 18px 34px rgba(0,0,0,.55)}
+.burnt{border-radius:10px 16px 6px 22px;box-shadow:inset 0 0 26px 9px rgba(80,34,8,.78),inset 0 0 5px 2px rgba(30,10,0,.9),0 18px 34px rgba(0,0,0,.55)}
+.dia{position:absolute;width:18px;height:18px;background:linear-gradient(135deg,#F7E3A0,#A57A2A 60%,#6E4F16);transform:rotate(45deg);box-shadow:0 4px 8px rgba(0,0,0,.55)}
+.die{position:absolute;width:62px;height:62px;border-radius:14px;background-color:#F4F0E7;background-image:radial-gradient(circle at 26% 26%,#1A1414 0 6px,rgba(0,0,0,0) 7px),radial-gradient(circle at 74% 74%,#1A1414 0 6px,rgba(0,0,0,0) 7px),radial-gradient(circle at 50% 50%,#C1121F 0 6px,rgba(0,0,0,0) 7px),linear-gradient(135deg,#FFFFFF,#DCD4C2);box-shadow:inset 0 -5px 0 rgba(0,0,0,.14),0 2px 2px rgba(0,0,0,.4),0 16px 28px rgba(0,0,0,.55)}
+.pencil{position:absolute;width:300px;height:16px;border-radius:3px;background:linear-gradient(180deg,#F7C948,#E0A91E 50%,#B98512);box-shadow:0 8px 14px rgba(0,0,0,.5)}
+.pencil::before{content:"";position:absolute;right:-34px;top:0;width:34px;height:16px;background:linear-gradient(90deg,#E8C9A0,#C9A57A);clip-path:polygon(0 0,100% 50%,0 100%)}
+.pencil::after{content:"";position:absolute;left:-22px;top:0;width:22px;height:16px;border-radius:4px 0 0 4px;background:linear-gradient(90deg,#E27A86,#C9505E 70%,#B8B8B8 70%,#8C8C8C)}
+.suit{position:absolute;font-family:'Bodoni Moda',serif;line-height:1}
+.live{display:inline-block;width:9px;height:9px;border-radius:50%;background:#FF3B45;box-shadow:0 0 0 4px rgba(255,59,69,.25)}
+.crest{display:flex;align-items:center;justify-content:center;flex-shrink:0;width:42px;height:48px;padding-bottom:8px;box-sizing:border-box;clip-path:polygon(0 0,100% 0,100% 62%,50% 100%,0 62%);font:800 11px Manrope,sans-serif;color:#FFFFFF;text-shadow:0 1px 2px rgba(0,0,0,.6)}
+.eyebrow{font-size:13px;letter-spacing:.24em;text-transform:uppercase;font-weight:800;color:#E4C877}
+.fcol a{display:block;color:#EADBD0;text-decoration:none;font-size:15px;padding:5px 0}
+.fcol a:hover{color:#F3DC92}
+.pill{padding:8px 14px;border-radius:8px;font-size:13px;font-weight:800}
+.fac{position:relative;height:250px;padding:22px;box-sizing:border-box;display:flex;flex-direction:column;gap:10px}
+.fac svg{color:#C1121F}
+</style>
+</head>
+<body>
+<div class="table">
+<div class="content" style="display: flex; flex-direction: column">
+<header class="leather" style="position: relative; display: flex; align-items: center; justify-content: space-between; padding: 18px 56px; border-radius: 0 0 30px 30px; margin: 0 14px">
+<span class="stitch"></span>
+<a href="inicio.html" class="paper" style="display: flex; align-items: center; justify-content: center; width: 156px; height: 60px; border-radius: 8px; transform: rotate(-4deg); box-shadow: 0 2px 2px rgba(0,0,0,.4), 0 10px 18px rgba(0,0,0,.5); text-decoration: none" aria-label="Tanteo, inicio"><span style="font-family: 'Great Vibes', cursive; font-size: 44px; line-height: 1; color: #C1121F">Tanteo</span></a>
+<nav style="display: flex; gap: 36px; align-items: center; font-size: 16px; font-weight: 600">
+<a href="inicio.html" style="color: #F3DC92; text-decoration: none; display: flex; gap: 8px; align-items: center"><span style="font-size: 12px">♦</span>Inicio</a>
+<a href="en-vivo.html" style="color: #F3EFE6; text-decoration: none; display: flex; gap: 10px; align-items: center"><span class="live"></span>En vivo</a>
+<a href="ligas.html">Internacional</a>
+<a href="parlays.html" style="color: #F3EFE6; text-decoration: none">Parlays</a>
+<a href="simulador.html" style="color: #F3EFE6; text-decoration: none">Simulador</a>
+<a href="#modelo" style="color: #F3EFE6; text-decoration: none">Cómo funciona</a>
+</nav>
+<div style="display: flex; gap: 12px; align-items: center">
+
+
+</div>
+</header>
+<main class="hoja">
+<div class="hoja-cabeza">
+  <div class="eyebrow">Privacidad</div>
+  <h1>Qué datos <em>no</em> guardamos</h1>
+  <p class="hoja-entrada">Tanteo no pide datos personales, no usa cookies de seguimiento y no tiene analítica. Esta página explica lo poco que sí ocurre.</p>
+</div>
+<nav class="indice"><a href="#resumen">En corto</a><a href="#no-recogemos">Lo que no se recoge</a><a href="#navegador">Lo que se guarda en tu navegador</a><a href="#servidor">Lo que ve el servidor</a><a href="#terceros">Datos de terceros</a><a href="#menores">Menores de edad</a><a href="#derechos">Tus derechos</a></nav>
+<section class="apartado" id="resumen">
+<h2>En corto</h2>
+
+<div class="aviso-clave"><p>
+No hay cuentas. No se piden datos personales. No hay cookies de seguimiento,
+ni analítica, ni publicidad. Nada de lo que hagas en el sitio se envía a nadie.
+</p></div>
+</section>
+<section class="apartado" id="no-recogemos">
+<h2>Lo que no se recoge</h2>
+
+<p>Tanteo <strong>no pide ni almacena</strong> nombre, correo, teléfono, fecha de nacimiento,
+ubicación, datos de pago ni ningún otro dato personal. No existe registro de usuarios porque no
+hay usuarios: el sitio funciona igual para todo el mundo.</p>
+<p>Tampoco hay Google Analytics ni ninguna otra herramienta de medición, ni píxeles de redes
+sociales, ni publicidad.</p>
+</section>
+<section class="apartado" id="navegador">
+<h2>Lo que se guarda en tu navegador</h2>
+
+<p>Algunas cosas se guardan <strong>en tu propio dispositivo</strong>, no en ningún servidor. No se
+envían a ninguna parte, no se pueden leer desde fuera y desaparecen si borras los datos del sitio:</p>
+<ul>
+<li><strong>Tu combinación de parlay</strong>, para que no se pierda al recargar.</li>
+<li><strong>Si prefieres la mesa quieta</strong>, cuando apagas las animaciones.</li>
+<li><strong>Si ya viste la intro</strong> en esta pestaña, para no repetírtela al navegar.</li>
+</ul>
+<p>Eso es todo, y es técnicamente lo que se llama <em>almacenamiento local</em>, no una cookie de
+seguimiento: no identifica a nadie ni viaja a ningún servidor.</p>
+</section>
+<section class="apartado" id="servidor">
+<h2>Lo que ve el servidor</h2>
+
+<p>Como cualquier sitio web, el servidor registra las peticiones que recibe —hora, página pedida,
+dirección IP y tipo de navegador— en su archivo de registro. Sirve para saber si el sitio funciona
+y detectar fallos, y no se cruza con nada ni se comparte.</p>
+<p>Los partidos en vivo se consultan directamente desde tu navegador a la API pública de ESPN. Esa
+petición sale de tu equipo, así que ESPN ve tu dirección IP igual que si visitaras su página; Tanteo
+no interviene ni guarda nada de eso.</p>
+</section>
+<section class="apartado" id="terceros">
+<h2>Datos de terceros</h2>
+
+<p>La información que se muestra proviene de fuentes externas: football-data.co.uk, la API pública
+de ESPN, Open-Meteo, Google News y The Odds API. Son datos <strong>sobre partidos y equipos</strong>,
+públicos, nunca sobre personas que visitan el sitio.</p>
+<p>Las fuentes se consultan desde el servidor una vez al día, salvo los marcadores en vivo, que se
+piden desde tu navegador mientras miras un partido.</p>
+</section>
+<section class="apartado" id="menores">
+<h2>Menores de edad</h2>
+
+<p>Tanteo es un sitio informativo sobre fútbol, sin apuestas ni contenido restringido, y no recoge
+datos de nadie, tenga la edad que tenga.</p>
+<p>Dicho eso: la información sobre cuotas y probabilidades está pensada para adultos. Apostar es
+ilegal para menores de edad en México.</p>
+</section>
+<section class="apartado" id="derechos">
+<h2>Tus derechos</h2>
+
+<p>Como no se guarda ningún dato personal, no hay nada que rectificar ni suprimir. Si quieres
+borrar lo que quedó en tu navegador, basta con limpiar los datos del sitio desde la configuración
+de tu navegador; todo vuelve a como estaba la primera vez.</p>
+</section>
+<p class="actualizado">Actualizado el 29 de septiembre de 2026 · Tanteo</p>
+</main>
+<footer class="leather" style="position: relative; margin: auto 14px 0; padding: 56px 70px 34px; border-radius: 34px 34px 0 0; display: flex; flex-direction: column; gap: 36px">
+<span class="stitch"></span>
+<div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 1.2fr; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<span class="paper" style="align-self: flex-start; padding: 6px 22px; border-radius: 8px; transform: rotate(-4deg); font-family: 'Great Vibes', cursive; font-size: 48px; line-height: 1.1; color: #C1121F; box-shadow: 0 2px 2px rgba(0,0,0,.4), 0 12px 20px rgba(0,0,0,.5)">Tanteo</span>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #EADBD0">Probabilidades de la Liga MX calculadas con resultados, estadísticas, alineaciones y clima.</p>
+<div style="display: flex; gap: 10px">
+<a href="#" aria-label="Instagram" style="width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(228,200,119,.5); display: flex; align-items: center; justify-content: center; color: #E4C877"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+<a href="#" aria-label="X" style="width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(228,200,119,.5); display: flex; align-items: center; justify-content: center; color: #E4C877"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
+<a href="#" aria-label="Facebook" style="width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(228,200,119,.5); display: flex; align-items: center; justify-content: center; color: #E4C877"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 3h-2a4 4 0 0 0-4 4v14M6 11h8"/></svg></a>
+<a href="#" aria-label="YouTube" style="width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(228,200,119,.5); display: flex; align-items: center; justify-content: center; color: #E4C877"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z"/></svg></a>
+</div>
+</div>
+<div class="fcol"><div class="eyebrow" style="padding-bottom: 12px">Liga MX</div><a href="en-vivo.html">Jornada en vivo</a><a href="#">Calendario</a><a href="#tabla">Tabla general</a><a href="#">Liguilla y Play-In</a><a href="#">Clubes</a></div>
+<div class="fcol"><div class="eyebrow" style="padding-bottom: 12px">Análisis</div><a href="parlays.html">Parlays más probables</a><a href="simulador.html">Simulador</a><a href="#modelo">Cómo funciona el modelo</a><a href="#">Historial de aciertos</a><a href="#">Alertas</a></div>
+<div class="fcol"><div class="eyebrow" style="padding-bottom: 12px">Ayuda</div><a href="ayuda.html">Centro de ayuda</a><a href="preguntas.html">Preguntas frecuentes</a><a href="terminos.html">Términos</a><a href="privacidad.html">Privacidad</a><a href="#">Contacto</a></div>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div class="eyebrow">Datos que analizamos</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><span class="paper pill">Resultados</span><span class="paper pill">Estadísticas</span><span class="paper pill">Alineaciones</span><span class="paper pill">Lesiones</span><span class="paper pill">Clima</span><span class="paper pill">Localía</span></div>
+<div class="eyebrow" style="padding-top: 8px">Contacto</div>
+<div style="font-size: 15px; color: #EADBD0">[CORREO DE CONTACTO]</div>
+</div>
+</div>
+<div style="height: 1px; background: linear-gradient(90deg, rgba(228,200,119,0), rgba(228,200,119,.6), rgba(228,200,119,0))"></div>
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 30px">
+<div style="display: flex; gap: 16px; align-items: center"><span style="width: 48px; height: 48px; flex-shrink: 0; border-radius: 50%; border: 2px solid #E4C877; display: flex; align-items: center; justify-content: center; font-family: 'Bodoni Moda', serif; font-weight: 700; font-size: 22px; color: #E4C877">i</span><span style="font-size: 13px; line-height: 1.6; color: #EADBD0; max-width: 700px">Tanteo es una plataforma informativa: no acepta apuestas ni maneja dinero. Las probabilidades son estimaciones de un modelo y no garantizan ningún resultado.</span></div>
+<div style="font-size: 13px; color: #CDB9A8">© 2026 Tanteo · Hecho en México · <a href="index.html?ir=inicio.html" style="color: #E4C877; text-decoration: none">Ver la intro</a></div>
+</div>
+</footer>
+</div></div>
+<script src="datos.js"></script>
+<script src="assets/js/mesa-viva.js"></script>
+</body>
+</html>

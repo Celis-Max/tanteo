@@ -1,0 +1,212 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   TANTEO · movimiento de mesa
+
+   REGLA QUE NO SE ROMPE: aquí solo se animan `transform` y `opacity`.
+   Son las dos únicas propiedades que el navegador resuelve en el
+   compositor sin volver a calcular diseño ni repintar. En este proyecto
+   ya congelamos la pestaña dos veces: una con `filter: blur()` a pantalla
+   completa y otra con `mix-blend-mode` por tarjeta. No se repite.
+
+   Nada de `width`, `top`, `filter`, `box-shadow` ni `background-position`
+   animados. Las sombras de las piezas van pintadas dentro del SVG.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── La capa ──────────────────────────────────────────────────────────
+   Va dentro de .table y antes de .content, para que las piezas queden
+   sobre el paño pero debajo del contenido legible. */
+.mesa-viva{
+  position: fixed; inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  contain: layout paint;      /* aísla al resto de la página de estos repintados */
+}
+.table > .content{ position: relative; z-index: 1 }
+
+/* ── Piezas: ficha, naipe, ruleta ─────────────────────────────────────
+   Dos capas a propósito: el div coloca (y es lo que arrastra el dedo),
+   el svg de adentro hace la deriva. Así el arrastre nunca pelea con la
+   animación, que fue justo lo que tronó la versión anterior. */
+.pieza{
+  position: absolute; left: 0; top: 0;
+  width: 64px;
+  opacity: var(--hondo, .5);
+  transform: translate3d(var(--x, 50vw), var(--y, 50vh), 0) translate(-50%, -50%);
+  pointer-events: auto;
+  cursor: grab;
+  touch-action: none;
+}
+.pieza.agarrada{ cursor: grabbing; opacity: .95; z-index: 3 }
+.pieza svg{
+  display: block; width: 100%; height: auto;
+  transform-origin: 50% 50%;
+  animation: derivar var(--dur, 20s) ease-in-out var(--retraso, 0s) infinite alternate;
+}
+.pieza.agarrada svg{ animation-play-state: paused }
+
+@keyframes derivar{
+  from{ transform: translate3d(0, 0, 0) rotate(var(--giro, 0deg)) scale(1) }
+  to  { transform: translate3d(14px, -26px, 0) rotate(calc(var(--giro, 0deg) + 16deg)) scale(1.05) }
+}
+
+/* La ruleta no deriva: gira. */
+.pieza.ruleta{ opacity: .42 }
+.pieza.ruleta svg{ animation: none }
+.pieza.ruleta .rueda{
+  transform-box: view-box; transform-origin: 100px 100px;
+  animation: girar 38s linear infinite;
+}
+.pieza.ruleta .bola{
+  transform-box: view-box; transform-origin: 100px 100px;
+  animation: bolear 6.5s cubic-bezier(.45,0,.55,1) infinite;
+}
+@keyframes girar{ to{ transform: rotate(360deg) } }
+@keyframes bolear{ from{ transform: rotate(360deg) } to{ transform: rotate(0deg) } }
+
+/* Los naipes además se voltean muy de vez en cuando. */
+.pieza.naipe svg{ animation-duration: calc(var(--dur, 20s) * 1.3) }
+
+/* ── Luces ────────────────────────────────────────────────────────────
+   Gradientes ya “desenfocados” por definición: un radial suave cuesta
+   cero, un blur() del mismo tamaño cuesta la pestaña. */
+.luz{
+  position: absolute; top: -12vh; left: -10vw;
+  width: 34vw; height: 42vh;
+  border-radius: 50%;
+  background: radial-gradient(closest-side,
+              rgba(255,240,205,.22), rgba(255,236,190,.08) 48%, rgba(0,0,0,0) 78%);
+}
+.luz-a{ animation: vagar-a 26s ease-in-out infinite alternate }
+.luz-b{
+  left: auto; right: -12vw; top: 28vh;
+  background: radial-gradient(closest-side,
+              rgba(190,240,205,.18), rgba(150,220,180,.07) 48%, rgba(0,0,0,0) 78%);
+  animation: vagar-b 34s ease-in-out infinite alternate;
+}
+@keyframes vagar-a{
+  from{ transform: translate3d(0,0,0) scale(1);        opacity: .75 }
+  to  { transform: translate3d(38vw,18vh,0) scale(1.25); opacity: 1 }
+}
+@keyframes vagar-b{
+  from{ transform: translate3d(0,0,0) scale(1.15);      opacity: .6 }
+  to  { transform: translate3d(-32vw,-22vh,0) scale(.9); opacity: .95 }
+}
+
+/* Barrido: el reflejo que cruza el paño cada tanto, como cuando alguien
+   mueve el foco sobre la mesa. */
+.barrido{
+  position: absolute; top: 0; left: -22vw;
+  width: 13vw; height: 100vh;
+  background: linear-gradient(100deg,
+              rgba(255,255,255,0), rgba(255,250,235,.055) 45%, rgba(255,255,255,0));
+  animation: barrer 17s linear infinite;
+}
+@keyframes barrer{
+  from{ transform: translate3d(0,0,0) rotate(12deg) }
+  to  { transform: translate3d(135vw,0,0) rotate(12deg) }
+}
+
+/* Los focos que ya traía la plantilla ahora respiran. Solo opacidad. */
+.lamp{ animation: latir 9s ease-in-out infinite alternate }
+.lamp:nth-of-type(2n){ animation-duration: 13s; animation-delay: -4s }
+.lamp:nth-of-type(3n){ animation-duration: 7s;  animation-delay: -2s }
+@keyframes latir{ from{ opacity: .55 } to{ opacity: 1 } }
+
+/* ── Reparto de cartas ────────────────────────────────────────────────
+   OJO: las tarjetas traen `transform: rotate(Ndeg)` EN LÍNEA, y el estilo
+   en línea le gana a cualquier regla de hoja. Por eso mesa-viva.js mueve
+   esa rotación a --base y limpia el atributo; aquí la recomponemos.
+
+   Las tres reglas pesan lo mismo (tres clases), así que manda el orden
+   en que están escritas. Cambiar el orden rompe la animación: ya pasó.
+
+   La intensidad va en variables (--cae, --sesgo, --merma) y no en clases
+   aparte: una clase extra pesaría cuatro y le ganaría a `.asentada`, que
+   pesa tres, dejando las tarjetas torcidas para siempre. Ese error exacto
+   ya nos costó una tarde. */
+.paper.card.por-repartir{
+  opacity: 0;
+  transform: translate3d(0, var(--cae, 34px), 0)
+             rotate(var(--sesgo, -13deg))
+             scale(var(--merma, .93))
+             var(--base,);
+}
+.paper.card.repartida{
+  opacity: 1;
+  transform: translate3d(0, 0, 0) rotate(0deg) scale(1) var(--base,);
+  transition: transform .58s cubic-bezier(.2,.85,.3,1.08),
+              opacity   .38s ease-out;
+  transition-delay: calc(var(--orden, 0) * 70ms);
+}
+/* Ya repartida: se suelta la transición larga para que la inclinación
+   siga al cursor sin arrastre. */
+.paper.card.asentada{
+  transform: perspective(1000px)
+             rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg))
+             var(--base,);
+  transition: transform .16s ease-out;
+}
+
+/* Brillo que sigue al cursor sobre la carta. Se mueve con transform,
+   no con background-position. */
+.paper.card.asentada::after{
+  content: ""; position: absolute; inset: 0;
+  border-radius: inherit; pointer-events: none;
+  background: linear-gradient(105deg,
+              rgba(255,255,255,0) 38%, rgba(255,255,255,.5) 50%, rgba(255,255,255,0) 62%);
+  opacity: 0;
+  transform: translate3d(calc(var(--luz, 50%) * 2 - 100%), 0, 0);
+  transition: opacity .25s ease;
+}
+.paper.card.asentada:hover::after{ opacity: .5 }
+
+/* ── Interruptor ──────────────────────────────────────────────────────*/
+.boton-movimiento{
+  position: fixed; right: 14px; bottom: 14px; z-index: 40;
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 1px solid rgba(228,200,119,.5);
+  background: rgba(10,35,25,.82);
+  color: #E4C877; font-size: 16px; line-height: 1;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform .18s ease, opacity .18s ease;
+  opacity: .42;
+}
+.boton-movimiento:hover{ opacity: 1; transform: scale(1.12) }
+
+/* ── Menos movimiento ─────────────────────────────────────────────────
+   Si el sistema lo pide o el usuario lo apaga, todo queda quieto. Lo que
+   no puede pasar es que una tarjeta se quede invisible. */
+.sin-movimiento .paper.card.por-repartir{ opacity: 1; transform: var(--base,) }
+@media (prefers-reduced-motion: reduce){
+  .mesa-viva, .luz, .barrido{ display: none }
+  .paper.card.por-repartir{ opacity: 1; transform: var(--base,) }
+  .lamp{ animation: none }
+  *{ animation-duration: .01ms !important; transition-duration: .01ms !important }
+}
+
+/* En pantallas chicas menos piezas y menos luz: el móvil ya trae bastante
+   trabajo con el diseño. */
+@media (max-width: 760px){
+  .barrido{ display: none }
+  .luz{ opacity: .6 }
+  .pieza{ opacity: calc(var(--hondo, .5) * .7) }
+}
+
+/* ── Escudos reales ───────────────────────────────────────────────────
+   Los pone `escudos-reales.js` encima de los banderines de la plantilla.
+   El `background` del banderín viene en el atributo style, así que hay
+   que ganarle con !important; no hay dónde más cambiarlo. */
+.crest.con-escudo{
+  background: none !important;
+  clip-path: none !important;
+  padding-bottom: 0 !important;
+  text-shadow: none;
+  aspect-ratio: 1;
+  height: auto !important;
+}
+.crest.con-escudo img{
+  width: 100%; height: 100%;
+  object-fit: contain;
+  display: block;
+}
